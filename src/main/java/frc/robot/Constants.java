@@ -28,9 +28,9 @@ public class Constants {
     public static final class CAN_ID_Constants {
 
         // Drive Train Can IDs
-        public static final int kCanID_DriveTrain_left_1 = 1;
+        public static final int kCanID_DriveTrain_left_1 = 16;
         public static final int kCanID_DriveTrain_left_2 = 2;
-        public static final int kCanID_DriveTrain_right_1 = 3;
+        public static final int kCanID_DriveTrain_right_1 = 13;
         public static final int kCanID_DriveTrain_right_2 = 4;
 
         // Launcher Can IDs
