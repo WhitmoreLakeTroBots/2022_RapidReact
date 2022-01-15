@@ -8,25 +8,69 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
-
 package frc.robot;
 
 /**
- * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
- * constants.  This class should not be used for any other purpose.  All constants should be
- * declared globally (i.e. public static).  Do not put anything functional in this class.
+ * The Constants class provides a convenient place for teams to hold robot-wide
+ * numerical or boolean
+ * constants. This class should not be used for any other purpose. All constants
+ * should be
+ * declared globally (i.e. public static). Do not put anything functional in
+ * this class.
  *
- * <p>It is advised to statically import this class (or one of its inner classes) wherever the
+ * <p>
+ * It is advised to statically import this class (or one of its inner classes)
+ * wherever the
  * constants are needed, to reduce verbosity.
  */
 public class Constants {
-   /**
-    * public static final class DriveConstants {
-    *   public static final int kLeftMotor1Port = 0;
-    *   public static final int kLeftMotor2Port = 1;
-    *   public static final int kRightMotor1Port = 2;
-    *   public static final int kRightMotor2Port = 3; 
-    * }
-    */ 
-}
 
+    public static final class CAN_ID_Constants {
+
+        // Drive Train Can IDs
+        public static final int kCanID_DriveTrain_left_1 = 1;
+        public static final int kCanID_DriveTrain_left_2 = 2;
+        public static final int kCanID_DriveTrain_right_1 = 3;
+        public static final int kCanID_DriveTrain_right_2 = 4;
+
+        // Launcher Can IDs
+        public static final int kCanID_Launcher_1 = 5;
+        public static final int kCanID_launcher_2 = 6;
+
+        public static final int kCanID_Climber_1 =7;
+        public static final int kCanID_Climber_2 =8;
+
+
+
+    }
+
+    public static final class JoyStick_Constants {
+        public static final double DriveDeadband = .1;
+    }
+
+    public static final class Profiler_Constants_DriveTrain {
+
+        // Profile Settings
+        public static final String profileTestLogName = "logs\\motionProfileTestResults";
+        public static final String profileLogName = "//media//sda1//motionProfile";
+        public static final double profileAdditionLoopNumber = 50;
+        public static final String profileLogFileExtension = ".txt";
+        public static final double profileDriveAccelration = 75; // inches/sec/sec
+        public static final double profileTurnAcceleration = 50; // inches/sec/sec
+        public static final double profileAnglarAccelration = 10;
+        public static final double profileInitVelocity = 0.0;
+        public static final double profileDefaultTurnVelocity = 50; // inches/sec
+        public static final double profileMovementThreshold = 0.75;
+        public static final double profileEndTimeScalar = 1.3;
+        public static final double profileEndTol = .25;
+
+        public static final double Kp = .0005;
+        public static final double Ki = 0.0;
+        public static final double Kd = 0.0;
+
+
+    }
+
+
+
+}
