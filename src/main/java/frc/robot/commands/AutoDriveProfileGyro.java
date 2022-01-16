@@ -91,6 +91,7 @@ public class AutoDriveProfileGyro extends CommandBase{
 
 	// Called repeatedly when this Command is scheduled to run
 	public void execute() {
+		System.err.println("Auto Drive Profile Running");
 		double encoderVal = subDriveTrain.getEncoder_Inches_LR();
 		double deltaTime = RobotMath.getTime() - _startTime;
 		double profileDist = mp.getTotalDistanceTraveled(deltaTime);

@@ -54,6 +54,7 @@ public class CmdLauncherStart extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
+        System.err.println("Cmd launcher");
     }
 
     // Called once the command ends or is interrupted.
