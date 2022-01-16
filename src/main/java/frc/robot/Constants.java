@@ -37,8 +37,8 @@ public class Constants {
         public static final int kCanID_Launcher_1 = 5;
         public static final int kCanID_launcher_2 = 6;
 
-        public static final int kCanID_Climber_1 =7;
-        public static final int kCanID_Climber_2 =8;
+        public static final int kCanID_Climber_1 = 7;
+        public static final int kCanID_Climber_2 = 8;
 
 
 
