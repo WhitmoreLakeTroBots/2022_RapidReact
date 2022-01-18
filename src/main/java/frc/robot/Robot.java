@@ -18,6 +18,7 @@ import edu.wpi.first.hal.HAL;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.CmdTeleOp;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -29,6 +30,8 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 public class Robot extends TimedRobot {
 
     private Command m_autonomousCommand;
+
+    private Command m_teleCommand;
 
     private RobotContainer m_robotContainer;
 
@@ -79,6 +82,7 @@ public class Robot extends TimedRobot {
     @Override
     public void autonomousInit() {
         m_autonomousCommand = m_robotContainer.getAutonomousCommand();
+        m_teleCommand = m_robotContainer.getteleCommand();
 
         // schedule the autonomous command (example)
         if (m_autonomousCommand != null) {
@@ -91,6 +95,8 @@ public class Robot extends TimedRobot {
     */
     @Override
     public void autonomousPeriodic() {
+        
+
     }
 
     @Override
@@ -109,6 +115,10 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void teleopPeriodic() {
+
+        System.err.println("***RuningBefore");
+       
+        System.err.println("RuningAfter");
     }
 
     @Override
@@ -122,6 +132,7 @@ public class Robot extends TimedRobot {
     */
     @Override
     public void testPeriodic() {
+        System.err.println("testMode");
     }
 
 }

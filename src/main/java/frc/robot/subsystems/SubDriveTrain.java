@@ -142,8 +142,8 @@ public class SubDriveTrain extends SubsystemBase {
      * @param stick joyStick that currently has control of the wheels
      */
     public void Drive(Joystick stick) {
-        double joyX = CommonLogic.joyDeadBand(stick.getX(), JoyStick_Constants.DriveDeadband);
-        double joyY = CommonLogic.joyDeadBand(-stick.getY(), JoyStick_Constants.DriveDeadband);
+         double joyX = CommonLogic.joyDeadBand(stick.getX(), JoyStick_Constants.DriveDeadband);
+         double joyY = CommonLogic.joyDeadBand(-stick.getY(), JoyStick_Constants.DriveDeadband);
         Drive((joyY - joyX), (joyY + joyX));
     }
 
