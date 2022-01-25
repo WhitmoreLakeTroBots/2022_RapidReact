@@ -26,7 +26,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 /**
  *
  */
-public class SubLauncher extends SubsystemBase {
+public class SubLauncher extends SubsystemBase {/*
     public double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput, maxRPM, maxVel, minVEL, maxACC;
 
     private int iTargetRPM = 0;
@@ -44,7 +44,7 @@ public class SubLauncher extends SubsystemBase {
     private SparkMaxPIDController pid;
     /**
     *
-    */
+    
     public SubLauncher() {
         kP = 7e-5;
         kI = 3e-7;
@@ -59,11 +59,11 @@ public class SubLauncher extends SubsystemBase {
         maxACC = 3000;
 
 
-
-        CanSpark_launcher_lead = new WL_Spark(CAN_ID_Constants.kCanID_Launcher_1,
-                WL_Spark.MotorType.kBrushless);
-        // CanSpark_launcher_follower = new
-        // WL_Spark(Constants.CAN_ID_Constants.kCanID_launcher_2,CANSparkMax.MotorType.kBrushless);
+//****For full chassis uncomment
+        CanSpark_launcher_lead = new WL_Spark(CAN_ID_Constants.kCanID_Launcher_1, WL_Spark.MotorType.kBrushless);
+        
+       
+       // CanSpark_launcher_follower = new WL_Spark(Constants.CAN_ID_Constants.kCanID_launcher_2,CANSparkMax.MotorType.kBrushless);
 
         // Incase we have swapped one that has an inverted or current limit set in
         // memory
@@ -115,5 +115,5 @@ public class SubLauncher extends SubsystemBase {
     public void simulationPeriodic() {
         // This method will be called once per scheduler run when in simulation
 
-    }
+    }*/
 }

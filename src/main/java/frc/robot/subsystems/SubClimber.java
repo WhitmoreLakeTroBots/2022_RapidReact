@@ -27,8 +27,9 @@ public class SubClimber extends SubsystemBase {
     */
     public SubClimber() {
 
-        CanSpark_Climber_1 = new WL_Spark(CAN_ID_Constants.kCanID_Climber_1, WL_Spark.MotorType.kBrushless);
-        CanSpark_Climber_2 = new WL_Spark(CAN_ID_Constants.kCanID_Climber_2, WL_Spark.MotorType.kBrushless);
+        //for full chassis uncomment other motors
+     //   CanSpark_Climber_1 = new WL_Spark(CAN_ID_Constants.kCanID_Climber_1, WL_Spark.MotorType.kBrushless);
+     //   CanSpark_Climber_2 = new WL_Spark(CAN_ID_Constants.kCanID_Climber_2, WL_Spark.MotorType.kBrushless);
 
         CanSpark_Climber_1.restoreFactoryDefaults();
         CanSpark_Climber_2.restoreFactoryDefaults();

@@ -122,7 +122,7 @@ public class Robot extends TimedRobot {
     public void teleopPeriodic() {
 
         System.err.println("***TeleopPeriodic");
-
+        RobotContainer.getInstance().subDriveTrain.Drive(RobotContainer.getInstance().joyRc);
     }
 
     @Override
