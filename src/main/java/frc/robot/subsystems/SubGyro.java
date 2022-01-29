@@ -9,38 +9,36 @@ public class SubGyro extends SubsystemBase {
 
   private AHRS navx;
   public static double navxOffset = 0.0;
+  private double softoffset = 0.0;
 
   public SubGyro() {
     navx = new AHRS(SPI.Port.kMXP);
     resetNavx();
   }
 
-
   @Override
   public void periodic() {
 
   }
 
-  public void invertNavx () {
+  public void invertNavx() {
     if (navxOffset == 0.0) {
       navxOffset = 180.0;
-    }
-    else {
+    } else {
       navxOffset = 0;
     }
   }
 
-  public void invertNavx (boolean value) {
+  public void invertNavx(boolean value) {
     if (value) {
       navxOffset = 180.0;
-    }
-    else {
+    } else {
       navxOffset = 0.0;
     }
   }
 
   public double getNavxAngleRaw() {
-    return navx.getAngle();
+    return navx.getAngle() + softoffset;
   }
 
   public double getNormaliziedNavxAngle() {
@@ -50,6 +48,7 @@ public class SubGyro extends SubsystemBase {
   public void resetNavx() {
     navx.reset();
     navx.zeroYaw();
+    softoffset = navx.getAngle() * -1.0;
   }
 
   public double gyroNormalize(double heading) {
@@ -128,9 +127,8 @@ public class SubGyro extends SubsystemBase {
     return returnValue;
   }
 
-
   public double deltaHeading(double targetHeading) {
 
-    return deltaHeading (getNormaliziedNavxAngle(), targetHeading);
+    return deltaHeading(getNormaliziedNavxAngle(), targetHeading);
   }
 }

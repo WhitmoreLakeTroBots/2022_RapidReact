@@ -16,6 +16,7 @@ import edu.wpi.first.hal.FRCNetComm.tInstances;
 import edu.wpi.first.hal.FRCNetComm.tResourceType;
 import edu.wpi.first.hal.HAL;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.CmdTeleDrive;
@@ -101,7 +102,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void autonomousPeriodic() {
-
+        RobotContainer.getInstance().updateSmartDash();
     }
 
     @Override
@@ -123,6 +124,7 @@ public class Robot extends TimedRobot {
 
         System.err.println("***TeleopPeriodic");
         RobotContainer.getInstance().subDriveTrain.Drive(RobotContainer.getInstance().joyRc);
+        RobotContainer.getInstance().updateSmartDash();
     }
 
     @Override
