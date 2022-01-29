@@ -54,7 +54,7 @@ public class SubDriveTrain extends SubsystemBase {
     //8.45 12.75 10.71
     public final double kMaxInchesPerSecond = 13.88 * 12;    //  inches  / per second
 
-    public final double kp_DriveStraightGyro = 0.02;
+    public final double kp_DriveStraightGyro = 0.006;
     public final double ki_DriveStraightGyro = 0.0; 
     public final double kd_DriveStraightGyro = 0.0; 
     
