@@ -50,7 +50,8 @@ public class SubDriveTrain extends SubsystemBase {
 
     public final double KWeelDiamiter = 6;
     public final double kWheelCircumference = 6.0*Math.PI;
-    public final double kGearBoxRatio = 10.75;
+    public final double kGearBoxRatio = 8.45;
+    //8.45 12.75 10.71
     public final double kMaxInchesPerSecond = 13.88 * 12;    //  inches  / per second
 
     public final double kp_DriveStraightGyro = 0.02;
@@ -236,5 +237,9 @@ public class SubDriveTrain extends SubsystemBase {
    // setDefaultCommand(new cmdTeleDrive());
 
   //}
-   
+  public double getpower() {
+     return CanSpark_driveLeft_1.get();
+  }
+
+
 }

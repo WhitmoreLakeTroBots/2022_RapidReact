@@ -5,9 +5,9 @@ import java.lang.module.ModuleDescriptor.Requires;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import frc.robot.RobotContainer;
-public class CmdHitMe extends CommandBase {
+public class CmdCommandStart extends CommandBase {
     
-    public CmdHitMe() {
+    public CmdCommandStart() {
 
 
         //  addRequirements(RobotContainer.getInstance().subDriveTrain);
@@ -32,7 +32,7 @@ public class CmdHitMe extends CommandBase {
       @Override
       public void execute() {
   
-          System.err.println("Hit");
+          System.err.println("CmdCommandStart");
           
       }
   

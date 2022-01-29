@@ -57,7 +57,7 @@ public class CmdTeleDrive extends CommandBase {
     @Override
     public void execute() {
 
-        System.err.println("Runing");
+        System.err.println("TeleDrive");
         RobotContainer.getInstance().subDriveTrain.Drive(RobotContainer.getInstance().joyRc);
     }
 
