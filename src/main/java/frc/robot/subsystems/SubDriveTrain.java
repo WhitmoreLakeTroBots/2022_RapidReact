@@ -241,5 +241,15 @@ public class SubDriveTrain extends SubsystemBase {
      return CanSpark_driveLeft_1.get();
   }
 
+  public void SetBrakeMode (WL_Spark.IdleMode newMode){
+      
+      // Set Brake Mode for the motors so we stop when controls are let go of
+      CanSpark_driveLeft_1.setIdleMode(newMode);
+      //CanSpark_driveLeft_2.setIdleMode(newMode);
+      CanSpark_driveRight_1.setIdleMode(newMode);
+      //CanSpark_driveRight_2.setIdleMode(newMode);
+
+  }
+
 
 }
