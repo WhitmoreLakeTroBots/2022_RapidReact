@@ -34,7 +34,7 @@ public class Constants {
         //public static final int kCanID_DriveTrain_right_2 = 4;
 
         // Launcher Can IDs
-        //public static final int kCanID_Launcher_1 = 5;
+        public static final int kCanID_Launcher_1 = 2;
         //public static final int kCanID_launcher_2 = 6;
       
         //public static final int kCanID_Climber_1 = 7;
