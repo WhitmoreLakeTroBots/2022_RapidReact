@@ -151,7 +151,7 @@ public class RobotContainer {
     // BtnHitMe.whenPressed(new CmdHitMe(),true);
 
     final JoystickButton btnBasicLaunch = new JoystickButton(joy2, 3);
-    btnBasicLaunch.whenPressed(new CmdLauncherRun(3000.0));
+    btnBasicLaunch.whenPressed(new CmdLauncherRun(2000.0));
     
     final JoystickButton btnLaunchStop = new JoystickButton(joy2, 4);
     btnLaunchStop.whenPressed(new CmdLauncherStop());
@@ -190,10 +190,11 @@ public class RobotContainer {
 
   public void updateSmartDash() {
 
-
-    //SmartDashboard.putNumber("angle", String.format("%.4f%n",subGyro.getNavxAngleRaw()));
     SmartDashboard.putNumber("Norm Angle", subGyro.getNormaliziedNavxAngle());
     SmartDashboard.putNumber("Left Encoder", subDriveTrain.getEncoderPosLeft());
     SmartDashboard.putNumber("Right Encoder", subDriveTrain.getEncoderPosRight());
+    SmartDashboard.putNumber("launcher RPM", subLauncher.CanSpark_launcher_lead.getVelocity());
+    SmartDashboard.putNumber("launcher Power", subLauncher.CanSpark_launcher_lead.get());
+    SmartDashboard.putNumber("PID", subLauncher.getPIDv());
   }
 }

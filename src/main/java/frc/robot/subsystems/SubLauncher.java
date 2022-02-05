@@ -12,11 +12,12 @@
 
 package frc.robot.subsystems;
 
+import frc.robot.CommonLogic;
 import frc.robot.RobotContainer;
 import frc.robot.Constants.*;
 import frc.robot.hardware.WL_Spark;
 import com.revrobotics.SparkMaxPIDController;
-
+import frc.robot.PID;
 //import frc.robot.commands.*;
 //import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -30,17 +31,19 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class SubLauncher extends SubsystemBase {
     public double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput, maxRPM, maxVel, minVEL, maxACC;
 
+    public PID PIDcalc;
+
     private double iTargetRPM = 0;
     private final double kTargetRPM = 3000;
     public WL_Spark CanSpark_launcher_lead;
     public SparkMaxPIDController pid;
-    
+    private double PIDv = 0;
     
     
     public SubLauncher() {
-        kP = 7e-5;
+        kP = 7e-4;
         kI = 3e-7;
-        kD = 0;
+        kD = 3e-8;
         kIz = 0;
         kFF = 0;
         kMaxOutput = 1;
@@ -53,7 +56,7 @@ public class SubLauncher extends SubsystemBase {
 
 //****For full chassis uncomment
         CanSpark_launcher_lead = new WL_Spark(CAN_ID_Constants.kCanID_Launcher_1, WL_Spark.MotorType.kBrushless);
-        
+        PIDcalc = new PID(kP,kI,kD);
        
        // CanSpark_launcher_follower = new WL_Spark(Constants.CAN_ID_Constants.kCanID_launcher_2,CANSparkMax.MotorType.kBrushless);
 
@@ -97,8 +100,9 @@ public class SubLauncher extends SubsystemBase {
     public void setTargetRPM(Double newTargetRPM) {
         iTargetRPM = newTargetRPM;
         //CanSpark_launcher_lead.setReferenceVelocity(iTargetRPM , WL_Spark.ControlType.kSmartVelocity);
-        pid.setReference(iTargetRPM, WL_Spark.ControlType.kSmartVelocity);
-        
+        //pid.setReference(iTargetRPM, WL_Spark.ControlType.kSmartVelocity);
+        PIDv = calcpowrdiff(CanSpark_launcher_lead.getVelocity(), iTargetRPM);
+        setpower(CommonLogic.CapMotorPower(PIDv + CanSpark_launcher_lead.get(), -1, 1) ); 
     }
 
   public void setpower(double power){
@@ -116,7 +120,12 @@ public class SubLauncher extends SubsystemBase {
 
     }
 
-    /*private double calcpowrdiff(Double curentSpeed, double targetSpeed){
-        
-    }*/
+    public double getPIDv(){
+        return PIDv;
+    }
+
+    private double calcpowrdiff(Double curentSpeed, double targetSpeed){
+    return PIDcalc.calcPID(targetSpeed, curentSpeed)/maxRPM;
+
+    }
 }
