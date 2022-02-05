@@ -30,10 +30,10 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class SubLauncher extends SubsystemBase {
     public double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput, maxRPM, maxVel, minVEL, maxACC;
 
-    private int iTargetRPM = 0;
-    private final int kTargetRPM = 3000;
+    private double iTargetRPM = 0;
+    private final double kTargetRPM = 3000;
     public WL_Spark CanSpark_launcher_lead;
-    private SparkMaxPIDController pid;
+    public SparkMaxPIDController pid;
     
     
     
@@ -78,6 +78,7 @@ public class SubLauncher extends SubsystemBase {
         pid.setP(kP);
         pid.setI(kI);
         pid.setD(kD);
+        pid.setIZone(kIz);
         pid.setFF(kFF);
         pid.setOutputRange(kMinOutput, kMaxOutput);
 
@@ -93,12 +94,16 @@ public class SubLauncher extends SubsystemBase {
         this.setTargetRPM(kTargetRPM);
     }
 
-    public void setTargetRPM(int newTargetRPM) {
+    public void setTargetRPM(Double newTargetRPM) {
         iTargetRPM = newTargetRPM;
+        //CanSpark_launcher_lead.setReferenceVelocity(iTargetRPM , WL_Spark.ControlType.kSmartVelocity);
         pid.setReference(iTargetRPM, WL_Spark.ControlType.kSmartVelocity);
+        
     }
 
-  
+  public void setpower(double power){
+    CanSpark_launcher_lead.set(power);
+  }
 
     // Stop the flywheel
     public void stop() {
@@ -110,4 +115,8 @@ public class SubLauncher extends SubsystemBase {
         // This method will be called once per scheduler run when in simulation
 
     }
+
+    /*private double calcpowrdiff(Double curentSpeed, double targetSpeed){
+        
+    }*/
 }
