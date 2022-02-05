@@ -29,13 +29,20 @@ public class Constants {
 
         // Drive Train Can IDs
         public static final int kCanID_DriveTrain_left_1 = 16;
-        //public static final int kCanID_DriveTrain_left_2 = 2;
-        public static final int kCanID_DriveTrain_right_1 = 13;
-        //public static final int kCanID_DriveTrain_right_2 = 4;
+        public static final int kCanID_DriveTrain_left_2 = 1;
+        public static final int kCanID_DriveTrain_right_1 = 14;
+        public static final int kCanID_DriveTrain_right_2 = 15;
 
         // Launcher Can IDs
         public static final int kCanID_Launcher_1 = 34;
         //public static final int kCanID_launcher_2 = 6;
+
+        public static final int kCanID_Roller = 11;
+        public static final int kCanID_Retractor = 10;
+
+        public static final int kCanID_Track = 45;
+
+        public static final int kCanID_Feeder = 4;
       
         //public static final int kCanID_Climber_1 = 7;
         //public static final int kCanID_Climber_2 = 8;
