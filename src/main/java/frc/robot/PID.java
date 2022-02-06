@@ -83,4 +83,14 @@ public class PID {
 		PIDValue = p + i + d; 
 		return PIDValue;
 	}
+
+	public void resetErrors(){
+		pError = 0;
+		iError = 0;
+		dError = 0;
+		deltaError = 0;
+		cumError = 0;
+		PIDValue = 0;
+		lastError = 0;
+	}
 }
