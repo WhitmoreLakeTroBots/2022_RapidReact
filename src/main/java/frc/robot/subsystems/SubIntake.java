@@ -82,7 +82,7 @@ CanSpark_Roller.setInverted(true);
 // we don't know if this need to be true or false until testing 
 CanSpark_Retractor.setInverted(false);
 
-//set softlimites
+//set softlimits
 CanSpark_Retractor.setSoftLimit(WL_Spark.SoftLimitDirection.kForward, MaxPostion);
 CanSpark_Retractor.setSoftLimit(WL_Spark.SoftLimitDirection.kReverse, MinPosition);
 
@@ -97,7 +97,7 @@ CanSpark_Retractor.burnFlash();
         if (bEnabled) {
             gotoPositon();
         } else {
-            CanSpark_Roller.set(0);
+            stopRoller();
             TargetPosition = CanSpark_Roller.getPosition();
         }
 

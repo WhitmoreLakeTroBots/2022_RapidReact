@@ -30,55 +30,79 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
  */
 public class SubIndexer extends SubsystemBase {
     //****** Cfeate constants */
-    
-    //define object for TrackMotor 
+    // the track motor
+    private WL_Spark CanSpark_TrackMotor;
 
-    //define object for feeder 
+    // the feeder motor
+    private WL_Spark CanSpark_FeederMotor;
 
-    //define double constant for feederCollectionPower
+    // feeder collection power
+    private double FeederCollectionPower = 0.4;
 
-    //define double constant for FeederLaunchPower note this should be reverse of collection power
+    // feeder launcher power - this should be reverse of collection power
+    private double FeederLauncherPower = -1*FeederCollectionPower;
 
-    //define double constant for track power
-
+    // track power
+    private double TrackMotorPower = 0.4;
 
 
     public SubIndexer() {
   //**** set constants   */
+        // mapping the track motor to the Spark
+        CanSpark_TrackMotor = new WL_Spark(CAN_ID_Constants.kCanID_Track, WL_Spark.MotorType.kBrushless);
+    
+        // mapping the feeder motor to the spark
+        CanSpark_FeederMotor = new WL_Spark(CAN_ID_Constants.kCanID_Feeder, WL_Spark.MotorType.kBrushless);
 
+        // restore to factory default
+        CanSpark_TrackMotor.restoreFactoryDefaults();
+        CanSpark_FeederMotor.restoreFactoryDefaults();
+
+        // set the current limit in Amps
+        CanSpark_TrackMotor.setSmartCurrentLimit(25);
+        CanSpark_FeederMotor.setSmartCurrentLimit(25);
+
+        // set the idle modes
+        CanSpark_TrackMotor.setIdleMode(WL_Spark.IdleMode.kCoast);
+        CanSpark_FeederMotor.setIdleMode(WL_Spark.IdleMode.kCoast);
+        
+        // set inverted to false
+        CanSpark_TrackMotor.setInverted(false);
+        CanSpark_FeederMotor.setInverted(false);
+
+        // finish intialization by burning the flash
+        CanSpark_FeederMotor.burnFlash();
+        CanSpark_TrackMotor.burnFlash();
     }
 
     @Override
     public void periodic() {
-        // This method will be called once per scheduler run
-
     }
 
     public void starttrack() {
         //start Track motor at TrackPower
+        CanSpark_TrackMotor.set(TrackMotorPower);
     }
 
     
     public void stopTrack() {
         //stop track motor
+        CanSpark_TrackMotor.set(0);
     }
 
     public void FeederHolding(){
         //run Launch motor backwork at feederCollectionPower
-
+        CanSpark_FeederMotor.set(FeederCollectionPower);
     }
 
     public void FeederLaunch(){
         //run Feeder forward for a short duration
-
-
-        //****need to sort this logic  either postion count or time count */
-
+        CanSpark_FeederMotor.set(FeederLauncherPower);
     } 
 
     public void FeederStop(){
         //stop Feeder
-
+        CanSpark_FeederMotor.set(0);
     }
 
     @Override
