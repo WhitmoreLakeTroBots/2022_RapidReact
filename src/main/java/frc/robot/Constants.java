@@ -35,7 +35,7 @@ public class Constants {
 
         // Launcher Can IDs
         public static final int kCanID_Launcher_1 = 34;
-        //public static final int kCanID_launcher_2 = 6;
+        // public static final int kCanID_launcher_2 = 6;
 
         public static final int kCanID_Roller = 11;
         public static final int kCanID_Retractor = 10;
@@ -43,21 +43,20 @@ public class Constants {
         public static final int kCanID_Track = 45;
 
         public static final int kCanID_Feeder = 4;
-      
-        //public static final int kCanID_Climber_1 = 7;
-        //public static final int kCanID_Climber_2 = 8;
+
+        // public static final int kCanID_Climber_1 = 7;
+        // public static final int kCanID_Climber_2 = 8;
 
         // fake numbers do not use
 
-        //public static final int kCanID_DriveTrain_left_2 = 16;
-        //public static final int kCanID_DriveTrain_right_2 = 13;
+        // public static final int kCanID_DriveTrain_left_2 = 16;
+        // public static final int kCanID_DriveTrain_right_2 = 13;
 
-       // public static final int kCanID_Launcher_1 = 44;
-       // public static final int kCanID_launcher_2 = 20;
+        // public static final int kCanID_Launcher_1 = 44;
+        // public static final int kCanID_launcher_2 = 20;
 
-        //public static final int kCanID_Climber_1 = 13;
-        //public static final int kCanID_Climber_2 = 16;
-
+        // public static final int kCanID_Climber_1 = 13;
+        // public static final int kCanID_Climber_2 = 16;
 
     }
 
@@ -85,9 +84,19 @@ public class Constants {
         public static final double Ki = 0.0;
         public static final double Kd = 0.0;
 
-
     }
 
+    public static final class ControllerConstants {
 
+        public enum RobotMode {
+            Start,
+            End,
+            Intake,
+            Carry,
+            Launching,
+            Climb;
+        }
+
+    }
 
 }
