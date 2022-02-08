@@ -49,8 +49,8 @@ public class Constants {
 
         // fake numbers do not use
 
-       // public static final int kCanID_DriveTrain_left_2 = 16;
-       // public static final int kCanID_DriveTrain_right_2 = 13;
+        //public static final int kCanID_DriveTrain_left_2 = 16;
+        //public static final int kCanID_DriveTrain_right_2 = 13;
 
        // public static final int kCanID_Launcher_1 = 44;
        // public static final int kCanID_launcher_2 = 20;
