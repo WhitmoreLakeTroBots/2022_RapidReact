@@ -82,6 +82,7 @@ public class CmdReverseRoller extends CommandBase {
         System.err.println("RollerReversal- Execute");
         if (RobotMath.getTime() >= TargetTime){
             RobotContainer.getInstance().subIntake.ReverseRoller();
+            
         }   
     }
 

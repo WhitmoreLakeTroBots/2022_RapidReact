@@ -152,9 +152,9 @@ public class SubDriveTrain extends SubsystemBase {
         Drive((joyY - joyX), (joyY + joyX));
         
         //car turn go burrrrrr
-        if(joyY <= -0.05){
+       /* if(joyY <= -0.05){
             joyX = joyX * -1;
-        }
+        }*/
     }
 
     /**

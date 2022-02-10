@@ -38,7 +38,7 @@ public class SubIntake extends SubsystemBase {
     // need double maxPostion set to max value
     private float MaxPostion = 70;
     // need double Tolerance
-    public  final double Tolerance = 300;
+    public  final double Tolerance = 5;
     // need double MinPosition set to 0
     private float MinPosition = 0;
     // Need double fullExtentedPos set to fully extended position (need to test)
@@ -80,7 +80,7 @@ CanSpark_Retractor.setIdleMode(WL_Spark.IdleMode.kBrake);
 CanSpark_Roller.setInverted(true);
 // set retractor inverstion here  
 // we don't know if this need to be true or false until testing 
-CanSpark_Retractor.setInverted(false);
+CanSpark_Retractor.setInverted(true);
 
 //set softlimits
 CanSpark_Retractor.setSoftLimit(WL_Spark.SoftLimitDirection.kForward, MaxPostion);
