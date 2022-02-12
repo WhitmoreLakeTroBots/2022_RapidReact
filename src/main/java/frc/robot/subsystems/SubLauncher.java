@@ -35,7 +35,8 @@ public class SubLauncher extends SubsystemBase {
     private double currPowerStep = 0;  // how large of steps to take for ramping
     private double PIDv = 0;
     private final double LAUNCHER_MAX_RPM = 5676;
-    private final int RAMP_STEPS = 50;
+    private final int RAMP_STEPS = 25;
+    private final double STEP_RANGE = 2.0/ RAMP_STEPS;
     public enum LauncherModes {
         RAMPING,
         RUNNING,
@@ -45,9 +46,11 @@ public class SubLauncher extends SubsystemBase {
     private LauncherModes currLauncherMode = LauncherModes.STOPPED;
 
     public SubLauncher() {
-        kP = 7e-4;
-        kI = 3e-7;
-        kD = 3e-8;
+        kP = 7e-3;
+        // kI = 3e-7;
+        kI = 0.0;
+        //kD = 3e-8;
+        kD = 0.0;
         kIz = 0;
         kFF = 0;
         
@@ -65,7 +68,7 @@ public class SubLauncher extends SubsystemBase {
         // memory
         CanSpark_launcher.restoreFactoryDefaults();
         CanSpark_launcher.setInverted(false);
-        CanSpark_launcher.setSmartCurrentLimit(30);
+        CanSpark_launcher.setSmartCurrentLimit(100);
         CanSpark_launcher.setIdleMode(WL_Spark.IdleMode.kCoast);
       
     }
@@ -78,7 +81,7 @@ public class SubLauncher extends SubsystemBase {
             case RAMPING:
                 // we are ramping to curret Speed
                 double currActualPower = CanSpark_launcher.get();
-                if (CommonLogic.isInRange(currActualPower, currRequestedPower, .06) ){
+                if (CommonLogic.isInRange(currActualPower, currRequestedPower, STEP_RANGE) ){
                     //We are close to running speed go to pid control
                     currLauncherMode = LauncherModes.RUNNING;
                     PIDcalc.resetErrors();
