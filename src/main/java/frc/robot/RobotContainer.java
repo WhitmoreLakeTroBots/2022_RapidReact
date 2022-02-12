@@ -179,18 +179,20 @@ public class RobotContainer {
 
     Xbox.rightStick.whenPressed(new AModeEmStop());
 
-    Xbox.lt.whenHeld(new CmdReverseRoller());
-    Xbox.lt.whenReleased(new CmdForwardRoller());
+    //Xbox.lt.whenHeld(new CmdReverseRoller());
+    //Xbox.lt.whenReleased(new CmdForwardRoller());
+    
+    Xbox.lt.whenPressed(new CmdStopRoller());
 
-    Xbox.lb.whenPressed(new CmdStopRoller());
-    //Xbox.lb.whenHeld(new CmdReverseRoller());
-    //Xbox.lb.whenReleased(new CmdForwardRoller());
+    //Xbox.lb.whenPressed(new CmdStopRoller());
+    Xbox.lb.whenHeld(new CmdReverseRoller());
+    Xbox.lb.whenReleased(new CmdForwardRoller());
 
 
     Xbox.dPad.up.whenPressed(new CmdLauncherRun(2000.0));
     Xbox.dPad.left.whenPressed(new CmdLauncherRun(1500.0));
     Xbox.dPad.right.whenPressed(new CmdLauncherRun(2700.0));
-    Xbox.dPad.down.whenPressed(new CmdMoveExtender(3000.0));
+    Xbox.dPad.down.whenPressed(new CmdLauncherRun(3000.0));
 
     /**
      * 
@@ -273,8 +275,6 @@ public class RobotContainer {
     SmartDashboard.putNumber("launcher RPM", subLauncher.CanSpark_launcher.getVelocity());
     SmartDashboard.putNumber("launcher Power", subLauncher.CanSpark_launcher.get());
     SmartDashboard.putNumber("PID", subLauncher.getPIDv());
-
-System.err.flush();
 
   }
 
