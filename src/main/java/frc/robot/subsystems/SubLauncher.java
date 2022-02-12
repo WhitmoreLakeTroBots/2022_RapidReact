@@ -34,7 +34,7 @@ public class SubLauncher extends SubsystemBase {
     private double currRequestedPower = 0;  // current power requests
     private double currPowerStep = 0;  // how large of steps to take for ramping
     private double PIDv = 0;
-    private final double LAUNCHER_MAX_RPM = 5000;
+    private final double LAUNCHER_MAX_RPM = 5676;
     private final int RAMP_STEPS = 50;
     public enum LauncherModes {
         RAMPING,

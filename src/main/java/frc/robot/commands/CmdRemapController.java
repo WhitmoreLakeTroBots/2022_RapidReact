@@ -14,14 +14,18 @@ package frc.robot.commands;
 
 import javax.swing.plaf.basic.BasicComboPopup.InvocationKeyHandler;
 
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.ScheduleCommand;
 import frc.robot.Robot;
 import frc.robot.RobotContainer;
 import frc.robot.Constants.ControllerConstants;
 import frc.robot.subsystems.SubLauncher;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.*;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 
-public class CmdRemapController extends CommandBase {
+public class CmdRemapController extends ParallelCommandGroup {
 
     private boolean bDone = true;
 
@@ -51,7 +55,8 @@ public class CmdRemapController extends CommandBase {
             }
 
             if(RobotContainer.getInstance().Xbox.getBButton()){ //B button held
-                //then do something 
+                //then do something
+                addCommands(new CmdMoveExtender()); 
             }
 
             break;

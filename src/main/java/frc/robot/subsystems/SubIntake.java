@@ -34,7 +34,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class SubIntake extends SubsystemBase {
     // *****Add Constants here.....
     // need a doube for rollerPower
-    private double RollerSpeed = 0.4;
+    private double RollerSpeed = 0.6;
     // need double maxPostion set to max value
     private float MaxPostion = 70;
     // need double Tolerance
@@ -44,7 +44,7 @@ public class SubIntake extends SubsystemBase {
     // Need double fullExtentedPos set to fully extended position (need to test)
     private double FullExtendedPos = 60;
     // need double retractedPos set to 250
-    private double RetractedPos = 10;
+    private double RetractedPos = 0;
     // need double retractorSpeed set 0.4
     private double RetractorSpeed = 0.4;
     // set targetPosition = RetractedPos // make sure this is a private

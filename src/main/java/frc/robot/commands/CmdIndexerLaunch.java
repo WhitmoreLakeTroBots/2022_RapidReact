@@ -68,13 +68,13 @@ public class CmdIndexerLaunch extends CommandBase {
         System.err.println("IndexerLaunch"); 
 
         RunningTime = RobotMath.getTime();
-        IdleTime = RunningTime + DelayTime;
-        TargetTime = RunningTime + (2*DelayTime);
-        RestartTime =  RunningTime + (3*DelayTime);
+        IdleTime = RunningTime + (DelayTime);
+        TargetTime = IdleTime + (8*DelayTime);
+        RestartTime =  TargetTime + (5*DelayTime);
 
         addRequirements(RobotContainer.getInstance().subIndexer);
         RobotContainer.getInstance().subIndexer.FeederStop();
-        bdone = true;
+        bdone = false;
     }
 
     // Called every time the scheduler runs while the command is scheduled.
@@ -83,15 +83,15 @@ public class CmdIndexerLaunch extends CommandBase {
         //System.err.println(String.format("launcherExecute flyWeelSpeedRPMz:%1$.3d",flyWeelSpeedRPM));
         System.err.println("IncdexerLaunch - Execute");
         double CurrentTime =  RobotMath.getTime();
-        if (CurrentTime >= IdleTime && CurrentTime < DelayTime){
+        if (CurrentTime >= IdleTime && CurrentTime < TargetTime){
             RobotContainer.getInstance().subIndexer.FeederLaunch();
 
         }  
-        else if(CurrentTime >= DelayTime  && CurrentTime < RestartTime){
+        else if(CurrentTime >= TargetTime  && CurrentTime < RestartTime){
             RobotContainer.getInstance().subIndexer.FeederStop();
         }
         else if(CurrentTime >= RestartTime){
-            RobotContainer.getInstance().subIndexer.FeederHolding();
+            
             bdone = true;
         }
 
@@ -101,6 +101,7 @@ public class CmdIndexerLaunch extends CommandBase {
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
+        RobotContainer.getInstance().subIndexer.FeederHolding();
         bdone = true;
     }
 

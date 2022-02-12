@@ -37,13 +37,13 @@ public class SubIndexer extends SubsystemBase {
     private WL_Spark CanSpark_FeederMotor;
 
     // feeder collection power
-    private double FeederCollectionPower = 0.4;
+    private double FeederCollectionPower = 0.15;
 
     // feeder launcher power - this should be reverse of collection power
-    private double FeederLauncherPower = -1*FeederCollectionPower;
+    private double FeederLauncherPower = -0.5;
 
     // track power
-    private double TrackMotorPower = 0.4;
+    private double TrackMotorPower = 0.6;
 
 
     public SubIndexer() {
@@ -68,7 +68,7 @@ public class SubIndexer extends SubsystemBase {
         
         // set inverted to false
         CanSpark_TrackMotor.setInverted(false);
-        CanSpark_FeederMotor.setInverted(false);
+        CanSpark_FeederMotor.setInverted(true);
 
         // finish intialization by burning the flash
         CanSpark_FeederMotor.burnFlash();

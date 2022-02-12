@@ -19,7 +19,10 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.ScheduleCommand;
 import frc.robot.commands.CmdTeleDrive;
+import frc.robot.commands.CmdMoveExtender;
+import frc.robot.commands.CmdRemapController;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -122,9 +125,12 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopPeriodic() {
 
-        System.err.println("***TeleopPeriodic");
+        //System.err.println("***TeleopPeriodic");
+
+
         RobotContainer.getInstance().subDriveTrain.Drive(RobotContainer.getInstance().joyRc);
         RobotContainer.getInstance().updateSmartDash();
+
     }
 
     @Override
