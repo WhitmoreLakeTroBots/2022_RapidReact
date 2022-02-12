@@ -41,6 +41,10 @@ public class CmdLauncherRun extends CommandBase {
 
     }
 
+    public CmdLauncherRun (int RPM){
+        flyWeelSpeedRPM = (double) RPM;
+    }
+
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
