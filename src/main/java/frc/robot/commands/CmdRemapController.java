@@ -24,22 +24,24 @@ import frc.robot.subsystems.SubLauncher;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.*;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import frc.robot.BillController;
 
-public class CmdRemapController extends ParallelCommandGroup {
+public class CmdRemapController extends CommandBase {
 
     private boolean bDone = true;
 
-
+    private BillController xboxCon;
     //**Xbox buttons  */
     
 
     private ControllerConstants.RobotMode CurrentMode;
 
 
-    public CmdRemapController(ControllerConstants.RobotMode RunMode) {
+    public CmdRemapController(ControllerConstants.RobotMode RunMode, BillController newController) {
         CurrentMode = RunMode;
 
-
+        //xboxCon = newController;
+        //xboxCon =  RobotContainer.getInstance().Xbox;
     }
 
     // Called when the command is initially scheduled.
@@ -49,27 +51,24 @@ public class CmdRemapController extends ParallelCommandGroup {
 
         switch(CurrentMode){
             case Intake:
-
-            if(RobotContainer.getInstance().Xbox.getAButton()){ //A button held
-                //then do something 
-            }
-
-            if(RobotContainer.getInstance().Xbox.getBButton()){ //B button held
-                //then do something
-                addCommands(new CmdMoveExtender()); 
-            }
-
+            System.err.println("Remap Controller Intake");
+            RobotContainer.getInstance().Xbox.dPad.up.whenPressed(new CmdMoveExtender());
+            RobotContainer.getInstance().Xbox.dPad.down.whenPressed(new CmdMoveExtender(0));
             break;
 
             case Carry:
-
+            System.err.println("Remap Controller - Carry");
             break;
 
             case Launching:
+            System.err.println("Remap Controller - Launching");
+            xboxCon.dPad.up.whenPressed(new CmdLauncherRun(2750.0));
+            xboxCon.dPad.down.whenPressed(new CmdLauncherStop());
 
             break;
 
             case Climb:
+            System.err.println("Remap Controller - Climb");
 
             break;
 

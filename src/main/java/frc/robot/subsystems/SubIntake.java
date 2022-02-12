@@ -155,6 +155,10 @@ CanSpark_Retractor.burnFlash();
         return CanSpark_Retractor.getPosition();
     }
 
+    public double GetRetractedPosition(){
+        return RetractedPos;
+    }
+
     @Override
     public void simulationPeriodic() {
         // This method will be called once per scheduler run when in simulation
