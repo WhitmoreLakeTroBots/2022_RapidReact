@@ -46,7 +46,7 @@ public class SubLauncher extends SubsystemBase {
     private LauncherModes currLauncherMode = LauncherModes.STOPPED;
 
     public SubLauncher() {
-        kP = 7e-3;
+        kP = 7e-2;
         // kI = 3e-7;
         kI = 0.0;
         //kD = 3e-8;
