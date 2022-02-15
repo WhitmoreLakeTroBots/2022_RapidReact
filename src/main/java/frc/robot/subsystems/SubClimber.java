@@ -140,6 +140,10 @@ public class SubClimber extends SubsystemBase {
         return Climb_RetractPOS;
     }
 
+    public double getClimbTolPos(){
+        return Climb_Tol;
+    }
+
     public double getTransverseCurPos() {
         return CanSpark_Transverse.getPosition();
     }
@@ -154,6 +158,10 @@ public class SubClimber extends SubsystemBase {
 
     public double getTransverseRetractPos() {
         return Transverse_RetractPOS;
+    }
+
+    public double getTransverseTolPos(){
+        return Transverse_Tol;
     }
 
     public void SetClimbPos(double newTargetPosition){
