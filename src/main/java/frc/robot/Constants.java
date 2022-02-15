@@ -44,19 +44,11 @@ public class Constants {
 
         public static final int kCanID_Feeder = 4;
 
-        // public static final int kCanID_Climber_1 = 7;
-        // public static final int kCanID_Climber_2 = 8;
+         public static final int kCanID_Climber_1 = 12;
+         public static final int kCanID_Climber_2 = 13;
 
-        // fake numbers do not use
-
-        // public static final int kCanID_DriveTrain_left_2 = 16;
-        // public static final int kCanID_DriveTrain_right_2 = 13;
-
-        // public static final int kCanID_Launcher_1 = 44;
-        // public static final int kCanID_launcher_2 = 20;
-
-        // public static final int kCanID_Climber_1 = 13;
-        // public static final int kCanID_Climber_2 = 16;
+         public static final int kCanID_Climb_Transversal = 3;
+   
 
     }
 
