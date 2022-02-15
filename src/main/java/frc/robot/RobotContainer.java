@@ -74,8 +74,8 @@ public class RobotContainer {
   // public final Joystick joy3 = new Joystick(2);
 
   public final Joystick joy2 = new Joystick(1);
-  public final Joystick joyRc = new Joystick(2);
-  public final BillController Xbox = new BillController(0);
+  public final Joystick joyRc = new Joystick(0);
+  public final BillController Xbox = new BillController(2);
 
   public static Boolean bLogging = false;
 
