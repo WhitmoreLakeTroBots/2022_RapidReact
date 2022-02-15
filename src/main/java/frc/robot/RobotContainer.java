@@ -110,19 +110,23 @@ public class RobotContainer {
     // SmartDashboard.putData("AutoDriveProvileByGyro", new
     // AutoDriveProfileGyro(72.0, 72.0, 0.0, 72));
 
-    CommandBase defaultCmd = new CmdCommandStart();
-    SmartDashboard.putData("CmdDriveStraightByGyro", defaultCmd);
-    SmartDashboard.putData("DriveStraght", new CmdAutoDriveStraght(36, 0, 0.15));
-    SmartDashboard.putData("CmdRobotInit", new CmdRobotInit());
-    SmartDashboard.putData("autogrouptestdrive", new autoGroupTestDrive());
-    SmartDashboard.putData("Turn Left", new CmdTurnByGyro(-45.0, -.15, .15));
-    SmartDashboard.putData("Turn Right", new CmdTurnByGyro(45.0, .15, -.15));
-    SmartDashboard.putData("aGrpDrive180", new aGrpDrive180());
+    
+    //SmartDashboard.putData("CmdDriveStraightByGyro", defaultCmd);
+    //SmartDashboard.putData("DriveStraght", new CmdAutoDriveStraght(36, 0, 0.15));
+    
+    //SmartDashboard.putData("Turn Left", new CmdTurnByGyro(-45.0, -.15, .15));
+    //SmartDashboard.putData("Turn Right", new CmdTurnByGyro(45.0, .15, -.15));
+    //SmartDashboard.putData("aGrpDrive180", new aGrpDrive180());
+    
     // *****uncomment for full robot*******/
     // SmartDashboard.putData("CmdLauncherStop", new CmdLauncherStop());
     // SmartDashboard.putData("CmdLauncherRun", new CmdLauncherRun( 3000 ));
     // *************** see above****//
 
+    CommandBase defaultCmd = new CmdCommandStart();
+    SmartDashboard.putData("CmdRobotInit", new CmdRobotInit());
+    SmartDashboard.putData("autogrouptestdrive", new autoGroupTestDrive());
+    SmartDashboard.putData("AutoGrp_2Balls", new AutoGrp_2Balls());
     SmartDashboard.putData("CmdTeleDrive", new CmdTeleDrive());
 
     // Configure the button bindings
@@ -141,6 +145,10 @@ public class RobotContainer {
     // (defaultCmd.getName().replace(' ', '')),(
     // m_${name.substring(0,1).toLowerCase()}${name.substring(1).replace(' ', '')}
     // ));
+
+
+    //Add Auton's to Selection dropdown. 
+    m_chooser.addOption("AutoGrp_2Balls", new AutoGrp_2Balls());
 
     m_chooser.setDefaultOption(defaultCmd.getName().replace(' ', '_'), defaultCmd);
 
