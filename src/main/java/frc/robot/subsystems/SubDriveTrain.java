@@ -149,12 +149,15 @@ public class SubDriveTrain extends SubsystemBase {
     public void Drive(Joystick stick) {
          double joyX = CommonLogic.joyDeadBand(stick.getX(), JoyStick_Constants.DriveDeadband);
          double joyY = CommonLogic.joyDeadBand(-stick.getY(), JoyStick_Constants.DriveDeadband);
-        Drive((joyY - joyX), (joyY + joyX));
         
         //car turn go burrrrrr
        /* if(joyY <= -0.05){
             joyX = joyX * -1;
         }*/
+         
+         Drive((joyY - joyX), (joyY + joyX));
+        
+        
     }
 
     /**

@@ -129,6 +129,8 @@ public class Robot extends TimedRobot {
 
 
         RobotContainer.getInstance().subDriveTrain.Drive(RobotContainer.getInstance().joyRc);
+       // RobotContainer.getInstance().subClimber.climbMan(RobotContainer.getInstance().Xbox.leftStick.getY());
+       // RobotContainer.getInstance().subClimber.transverseMan(RobotContainer.getInstance().Xbox.rightStick.getX());
         RobotContainer.getInstance().updateSmartDash();
 
     }

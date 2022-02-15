@@ -55,7 +55,7 @@ public class SubClimber extends SubsystemBase {
         // for full chassis uncomment other motors
         CanSpark_Climber_1 = new WL_Spark(CAN_ID_Constants.kCanID_Climber_1, WL_Spark.MotorType.kBrushless);
         CanSpark_Climber_2 = new WL_Spark(CAN_ID_Constants.kCanID_Climber_2, WL_Spark.MotorType.kBrushless);
-        CanSpark_Transverse = new WL_Spark(CAN_ID_Constants.kCanID_Climb_Transversal, WL_Spark.MotorType.kBrushless);
+       // CanSpark_Transverse = new WL_Spark(CAN_ID_Constants.kCanID_Climb_Transversal, WL_Spark.MotorType.kBrushless);
 
         CanSpark_Climber_1.restoreFactoryDefaults();
         CanSpark_Climber_2.restoreFactoryDefaults();
@@ -211,5 +211,30 @@ public class SubClimber extends SubsystemBase {
             CanSpark_Transverse.set(Transverse_power);
         }
     }
+
+public void climbMan(double direction){
+    
+    if (direction >= 0.1){
+     
+     
+        SetClimbPos(getClimbTarPos() + (direction * 0.001));
+    }else if(direction <= 0.1){
+
+        SetClimbPos(getClimbTarPos() - (direction * 0.001));   
+    }
+}
+
+public void transverseMan(double direction){
+    
+    if (direction >= 0.1){
+     
+     
+        SetClimbPos(getTransverseCurPos() + (direction * 0.001));
+    }else if(direction <= 0.1){
+
+        SetClimbPos(getTransverseCurPos() - (direction * 0.001));   
+    }
+}
+
 
 }

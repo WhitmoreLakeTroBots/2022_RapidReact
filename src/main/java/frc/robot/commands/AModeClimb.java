@@ -20,7 +20,7 @@ public class AModeClimb extends ParallelCommandGroup {
 
         
         //set CLimb condition
-
+        addCommands(new CmdClimbEnable());
 
 
         //addRequirements(RobotContainer.getInstance().subIntake);

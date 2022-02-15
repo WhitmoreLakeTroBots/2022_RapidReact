@@ -36,7 +36,8 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.BillController;
 import frc.robot.Constants.ControllerConstants.RobotMode;
 import frc.robot.Constants;
-//import frc.robot.subsystems.SubClimber;
+import frc.robot.subsystems.SubClimber;
+import frc.robot.subsystems.SubClimber;
 import frc.robot.subsystems.SubDriveTrain;
 import frc.robot.subsystems.SubGyro;
 import frc.robot.subsystems.SubIndexer;
@@ -70,6 +71,7 @@ public class RobotContainer {
   public final SubLauncher subLauncher;
   public final SubIndexer subIndexer;
   public final SubIntake subIntake;
+  public final SubClimber subClimber;
   // Joysticks
   // public final Joystick joy3 = new Joystick(2);
 
@@ -102,7 +104,7 @@ public class RobotContainer {
     subGyro.resetNavx();
     subIndexer = new SubIndexer();
     subIntake = new SubIntake();
-
+    subClimber = new SubClimber();
     // SmartDashboard Buttons
 
     // **uncomment for full robot */
@@ -202,6 +204,7 @@ public class RobotContainer {
     Xbox.dPad.right.whenPressed(new CmdLauncherRun(2700.0));
     Xbox.dPad.down.whenPressed(new CmdLauncherRun(3000.0));
 
+    
     /**
      * 
      * final JoystickButton btnLowFLaunch = new JoystickButton(joy2, 5);

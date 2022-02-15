@@ -21,7 +21,7 @@ public class AModeStart extends ParallelCommandGroup {
 
         
         //set CLimb condition
-
+        addCommands(new CmdClimbDisable());
 
         //addRequirements(RobotContainer.getInstance().subIntake);
         //addRequirements(RobotContainer.getInstance().subIndexer);

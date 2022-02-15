@@ -20,7 +20,7 @@ public class AModeEmStop extends ParallelCommandGroup {
 
         
         //set CLimb condition
-
+        addCommands(new CmdClimbDisable());
 
 
        // addRequirements(RobotContainer.getInstance().subIntake);
