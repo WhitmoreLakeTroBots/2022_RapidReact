@@ -169,6 +169,11 @@ public class SubClimber extends SubsystemBase {
 
     }
 
+    public void SeTransversePos(double newTargetPosition){
+        Transverse_TargetPos = CommonLogic.CapMotorPower(newTargetPosition, Transverse_MinPos, Transverse_MaxPos );
+
+    }
+
     private void gotoPositonClimb() {
         // if current position is less than targetPostion
         if (CommonLogic.isInRange(CanSpark_Climber_1.getPosition(), Climb_TargetPos, Climb_Tol)) {
