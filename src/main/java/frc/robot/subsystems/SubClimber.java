@@ -25,14 +25,14 @@ public class SubClimber extends SubsystemBase {
 
     private WL_Spark CanSpark_Transverse;
 
-    private double Climb_MaxPos = 3;
+    private double Climb_MaxPos = 110;
     private double Climb_MinPos = 0;
 
     private double Climb_RetractPOS = 0;
-    private double Climb_ExtendPos = 3;
+    private double Climb_ExtendPos = 110;
 
     private double Climb_TargetPos = 0;
-    private double Climb_Tol = 10;
+    private double Climb_Tol = 3;
     private double Climb_power = 0.5;
     private boolean bClimb = false;
 
@@ -55,7 +55,7 @@ public class SubClimber extends SubsystemBase {
         // for full chassis uncomment other motors
         CanSpark_Climber_1 = new WL_Spark(CAN_ID_Constants.kCanID_Climber_1, WL_Spark.MotorType.kBrushless);
         CanSpark_Climber_2 = new WL_Spark(CAN_ID_Constants.kCanID_Climber_2, WL_Spark.MotorType.kBrushless);
-       // CanSpark_Transverse = new WL_Spark(CAN_ID_Constants.kCanID_Climb_Transversal, WL_Spark.MotorType.kBrushless);
+        CanSpark_Transverse = new WL_Spark(CAN_ID_Constants.kCanID_Climb_Transversal, WL_Spark.MotorType.kBrushless);
 
         CanSpark_Climber_1.restoreFactoryDefaults();
         CanSpark_Climber_2.restoreFactoryDefaults();
@@ -214,13 +214,14 @@ public class SubClimber extends SubsystemBase {
 
 public void climbMan(double direction){
     
+    System.err.print(" **climb*** " + getClimbTarPos());
     if (direction >= 0.1){
      
      
-        SetClimbPos(getClimbTarPos() + (direction * 0.001));
-    }else if(direction <= 0.1){
+        SetClimbPos(getClimbTarPos() + (direction * 0.01));
+    }else if(direction <= -0.1){
 
-        SetClimbPos(getClimbTarPos() - (direction * 0.001));   
+        SetClimbPos(getClimbTarPos() - (direction * 0.01));   
     }
 }
 
@@ -230,7 +231,7 @@ public void transverseMan(double direction){
      
      
         SetClimbPos(getTransverseCurPos() + (direction * 0.001));
-    }else if(direction <= 0.1){
+    }else if(direction <= -0.1){
 
         SetClimbPos(getTransverseCurPos() - (direction * 0.001));   
     }

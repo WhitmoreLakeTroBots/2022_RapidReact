@@ -30,6 +30,6 @@ public class AutoGrp_2Balls extends SequentialCommandGroup {
         addCommands(new CmdIndexerLaunch());
         addCommands(new CmdDelay(.5));
         addCommands(new CmdLauncherStop());
-        addCommands(new CmdMoveExtender(RobotContainer.getInstance().subIntake.GetRetractorPosition()));
+        addCommands(new CmdMoveExtender(0));
     }
 }
