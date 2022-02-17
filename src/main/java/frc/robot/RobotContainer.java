@@ -182,7 +182,8 @@ public class RobotContainer {
     Xbox.x.whenPressed(new AModeLaunch());
     Xbox.a.whenPressed(new AModeIntake());
     Xbox.b.whenPressed(new AModeCarry());
-    Xbox.start.whenPressed(new AModeClimb());
+    //Xbox.start.whenPressed(new AModeClimb());
+    Xbox.start.whenPressed(new CmdClimbEnable());
 
     Xbox.rb.whenPressed(new CmdIndexerLaunch());
     Xbox.rt.whenPressed(new CmdIndexerLaunch());

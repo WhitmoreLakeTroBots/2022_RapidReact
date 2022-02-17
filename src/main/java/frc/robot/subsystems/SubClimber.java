@@ -187,7 +187,7 @@ public class SubClimber extends SubsystemBase {
             CanSpark_Climber_1.set(-1 * Climb_power);
         }
         // else if if current position is commonlogic inRange
-        else if (CanSpark_Climber_1.getPosition() < Climb_power - Climb_Tol) {
+        else if (CanSpark_Climber_1.getPosition() < Climb_TargetPos - Climb_Tol) {
             // then apply RetractorPower
             CanSpark_Climber_1.set(Climb_power);
         }
@@ -206,7 +206,7 @@ public class SubClimber extends SubsystemBase {
             CanSpark_Transverse.set(-1 * Transverse_power);
         }
         // else if if current position is commonlogic inRange
-        else if (CanSpark_Transverse.getPosition() < Transverse_power - Transverse_Tol) {
+        else if (CanSpark_Transverse.getPosition() < Transverse_TargetPos - Transverse_Tol) {
             // then apply RetractorPower
             CanSpark_Transverse.set(Transverse_power);
         }
