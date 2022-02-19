@@ -10,10 +10,13 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
+import frc.robot.Constants.limelightConstants;
+import frc.robot.Constants.limelightConstants.cameras;
 
 public class SubLimelight extends SubsystemBase {
     public static NetworkTableInstance inst = null;
-    //public static NetworkTable highTable = null;
+    //public static NetworkTable llTable = null;
     public static NetworkTableEntry ltx = null;
     public static NetworkTableEntry lty = null;
     public static NetworkTableEntry lta = null;
@@ -23,26 +26,36 @@ public class SubLimelight extends SubsystemBase {
     public static NetworkTableEntry ltcm = null;
     public static NetworkTableEntry ltlm = null;
     public static NetworkTableEntry ltp = null;
-    public static NetworkTable highTable = null;
+    public static NetworkTable llTable = null;
 
+    public String limelight_high = "limelight-high";
+    public String limelight_low = "limelight-low";
 
-    //private NetworkTable highTable = NetworkTableInstance.getDefault().getTable("limelight");
-    public SubLimelight() {
+    //private NetworkTable llTable = NetworkTableInstance.getDefault().getTable("limelight");
+    public SubLimelight(limelightConstants.cameras cam) {
+
+if(cam == cameras.limelight_high){
+    llTable = inst.getTable("limelight-high");
+
+}else if (cam == cameras.limelight_low){
+    llTable = inst.getTable("limelight-low");
+}
+
     inst = NetworkTableInstance.getDefault();
-    highTable = inst.getTable("limelight-high");
-    ltx = highTable.getEntry("tx");
-    lty = highTable.getEntry("ty");
-    lta = highTable.getEntry("ta");
-    ltv = highTable.getEntry("tv");
-    lts = highTable.getEntry("ts");
-    ltl = highTable.getEntry("tl");
-    ltcm = highTable.getEntry("camMode");
-    ltlm = highTable.getEntry("ledMode");
-    ltp = highTable.getEntry("pipeline");
+    
+    ltx = llTable.getEntry("tx");
+    lty = llTable.getEntry("ty");
+    lta = llTable.getEntry("ta");
+    ltv = llTable.getEntry("tv");
+    lts = llTable.getEntry("ts");
+    ltl = llTable.getEntry("tl");
+    ltcm = llTable.getEntry("camMode");
+    ltlm = llTable.getEntry("ledMode");
+    ltp = llTable.getEntry("pipeline");
     }
     /*
     public subLimelight() {
-        highTable.getEntry("camMode").setNumber(CAM_MODE.VISION_PROCESSING.val);
+        llTable.getEntry("camMode").setNumber(CAM_MODE.VISION_PROCESSING.val);
 
     }
 */
@@ -56,20 +69,20 @@ public class SubLimelight extends SubsystemBase {
 
     //Whether the limelight has any valid targets (0 or 1)
     public boolean hasTarget() {
-        NetworkTableEntry tv = highTable.getEntry("tv");
+        NetworkTableEntry tv = llTable.getEntry("tv");
         return tv.getDouble(0) == 1;
     }
 
     public void setLEDMode(LED_MODE ledMode) {
-        highTable.getEntry("ledMode").setNumber(ledMode.val);
+        llTable.getEntry("ledMode").setNumber(ledMode.val);
     }
 
     public void setCamMode(CAM_MODE camMode) {
-        highTable.getEntry("camMode").setNumber(camMode.val);
+        llTable.getEntry("camMode").setNumber(camMode.val);
     }
 
     public void setPipeline(int pipeline) {
-        highTable.getEntry("pipeline").setNumber(pipeline);
+        llTable.getEntry("pipeline").setNumber(pipeline);
     }
 
     public enum LED_MODE {

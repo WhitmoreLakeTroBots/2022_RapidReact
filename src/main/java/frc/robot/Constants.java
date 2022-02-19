@@ -90,5 +90,11 @@ public class Constants {
         }
 
     }
+    public static final class limelightConstants {
+        public enum cameras{
+            limelight_high,
+            limelight_low;
 
+        }
+    }
 }
