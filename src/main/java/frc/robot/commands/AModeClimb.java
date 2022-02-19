@@ -10,13 +10,13 @@ public class AModeClimb extends ParallelCommandGroup {
         //addCommands(new CmdRobotInit());
 
         //set retractor conditon
-        //addCommands(new CmdMoveExtender(0));
+        addCommands(new CmdMoveExtender(0));
         
         //set indexer condition
-        //addCommands(new CmdIndexerStop());
+        addCommands(new CmdIndexerStop());
 
         //set launcher condition
-        //addCommands(new CmdLauncherStop());
+        addCommands(new CmdLauncherStop());
 
         
         //set CLimb condition

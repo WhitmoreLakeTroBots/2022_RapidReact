@@ -182,8 +182,8 @@ public class RobotContainer {
     Xbox.x.whenPressed(new AModeLaunch());
     Xbox.a.whenPressed(new AModeIntake());
     Xbox.b.whenPressed(new AModeCarry());
-    //Xbox.start.whenPressed(new AModeClimb());
-    Xbox.start.whenPressed(new CmdClimbEnable());
+    Xbox.start.whenPressed(new AModeClimb());
+    //Xbox.start.whenPressed(new CmdClimbEnable());
 
     Xbox.rb.whenPressed(new CmdIndexerLaunch());
     Xbox.rt.whenPressed(new CmdIndexerLaunch());
@@ -287,7 +287,10 @@ public class RobotContainer {
     SmartDashboard.putNumber("launcher RPM", subLauncher.CanSpark_launcher.getVelocity());
     SmartDashboard.putNumber("launcher Power", subLauncher.CanSpark_launcher.get());
     SmartDashboard.putNumber("PID", subLauncher.getPIDv());
-
+    SmartDashboard.putNumber("climbTarPos", subClimber.getClimbTarPos());
+    SmartDashboard.putNumber("climbPos", subClimber.getClimbCurPos());
+    SmartDashboard.putBoolean("climbEnable", subClimber.getbclimb());
+    
   }
 
 }

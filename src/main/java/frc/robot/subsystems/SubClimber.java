@@ -25,15 +25,15 @@ public class SubClimber extends SubsystemBase {
 
     private WL_Spark CanSpark_Transverse;
 
-    private double Climb_MaxPos = 110;
+    private double Climb_MaxPos = 108;
     private double Climb_MinPos = 0;
 
     private double Climb_RetractPOS = 0;
-    private double Climb_ExtendPos = 110;
+    private double Climb_ExtendPos = 100;
 
     private double Climb_TargetPos = 0;
     private double Climb_Tol = 3;
-    private double Climb_power = 0.5;
+    private double Climb_power = 0.3;
     private boolean bClimb = false;
 
     private double Transverse_MaxPos = 3;
@@ -75,7 +75,7 @@ public class SubClimber extends SubsystemBase {
 
         CanSpark_Transverse.setIdleMode(WL_Spark.IdleMode.kBrake);
 
-        CanSpark_Climber_2.follow(CanSpark_Climber_1);
+        //CanSpark_Climber_2.follow(CanSpark_Climber_1);
 
         // burn new settings in to survive a brownout
         CanSpark_Climber_1.burnFlash();
@@ -95,6 +95,7 @@ public class SubClimber extends SubsystemBase {
         } else {
             Climb_TargetPos = CanSpark_Climber_1.getPosition();
             CanSpark_Climber_1.set(0);
+            CanSpark_Climber_2.set(0);
         }
         if (bTransverse) {
             gotoPositonTraversal();
@@ -144,6 +145,11 @@ public class SubClimber extends SubsystemBase {
         return Climb_Tol;
     }
 
+public boolean getbclimb(){
+ return bClimb;   
+}
+
+
     public double getTransverseCurPos() {
         return CanSpark_Transverse.getPosition();
     }
@@ -179,17 +185,21 @@ public class SubClimber extends SubsystemBase {
         if (CommonLogic.isInRange(CanSpark_Climber_1.getPosition(), Climb_TargetPos, Climb_Tol)) {
             // than stop
             CanSpark_Climber_1.set(0);
+            CanSpark_Climber_2.set(0);
         }
 
         // else if current positon is greater than target postion
         else if (CanSpark_Climber_1.getPosition() > Climb_TargetPos + Climb_Tol) {
             // then apply (-) RetractorPower
             CanSpark_Climber_1.set(-1 * Climb_power);
+            CanSpark_Climber_2.set(-1 * Climb_power);
         }
         // else if if current position is commonlogic inRange
         else if (CanSpark_Climber_1.getPosition() < Climb_TargetPos - Climb_Tol) {
             // then apply RetractorPower
             CanSpark_Climber_1.set(Climb_power);
+            CanSpark_Climber_2.set(Climb_power);
+            System.err.print("add power");
         }
     }
 
@@ -214,14 +224,14 @@ public class SubClimber extends SubsystemBase {
 
 public void climbMan(double direction){
     
-    System.err.print(" **climb*** " + getClimbTarPos());
+    
     if (direction >= 0.1){
      
      
-        SetClimbPos(getClimbTarPos() + (direction * 0.01));
+        SetClimbPos(getClimbTarPos() + (direction * 0.6));
     }else if(direction <= -0.1){
 
-        SetClimbPos(getClimbTarPos() - (direction * 0.01));   
+        SetClimbPos(getClimbTarPos() + (direction * 0.6));   
     }
 }
 
@@ -230,10 +240,10 @@ public void transverseMan(double direction){
     if (direction >= 0.1){
      
      
-        SetClimbPos(getTransverseCurPos() + (direction * 0.001));
+        SetClimbPos(getTransverseCurPos() + (direction * 0.1));
     }else if(direction <= -0.1){
 
-        SetClimbPos(getTransverseCurPos() - (direction * 0.001));   
+        SetClimbPos(getTransverseCurPos() + (direction * 0.1));   
     }
 }
 
