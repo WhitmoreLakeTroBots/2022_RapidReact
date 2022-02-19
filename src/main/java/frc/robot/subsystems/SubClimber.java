@@ -228,10 +228,12 @@ public void climbMan(double direction){
     if (direction >= 0.1){
      
      
-        SetClimbPos(getClimbTarPos() + (direction * 0.6));
+        //SetClimbPos(getClimbTarPos() + (direction * 0.6));
+        SetClimbPos(Climb_ExtendPos);
     }else if(direction <= -0.1){
 
-        SetClimbPos(getClimbTarPos() + (direction * 0.6));   
+        //SetClimbPos(getClimbTarPos() + (direction * 0.6));   
+        SetClimbPos(Climb_RetractPOS);
     }
 }
 

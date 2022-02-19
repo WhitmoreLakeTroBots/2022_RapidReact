@@ -31,7 +31,7 @@ public class CmdTurnByGyro extends CommandBase {
     private double _requestedHeading = 0.0;
     private double _left_throttle = 0.0;
     private double _right_throttle = 0.0;
-    private double tol = 3.0;
+    private double tol = 5.0;
 
     public CmdTurnByGyro(double heading_deg, double left_throttle, double right_throttle) {
 
