@@ -1,43 +1,30 @@
 package frc.robot.commands;
 
-import java.lang.module.ModuleDescriptor.Requires;
-
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Robot;
 import frc.robot.RobotContainer;
 import frc.robot.RobotMath;
 import frc.robot.subsystems.SubDriveTrain;
+import frc.robot.subsystems.SubGyro;
 import frc.robot.subsystems.SubLimelight;
 import frc.robot.Constants.limelightConstants.cameras;
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.networktables.NetworkTableInstance;
 
 public class CmdAutoDriveStraghtByLime extends CommandBase {
 
   private double targetPosinch = 36;
   private double speedPercent = .15;
-  private double Heading = 0;
+  private double desiredHeadingDeg = 0;
   private boolean bDone = false;
   private final double overShoot = 4;
   private SubDriveTrain subDriveTrain = null;
+  private SubGyro subGyro = null;
   private cameras camera2lookthrough = null;
   private int camPipeline = 0;
   private SubLimelight camera = null;
-  private int targetCounter = 0;
-
-  private enum TARGET_STATUS{
-    NeverSeen,            // We have yet to see the target
-    CurrentlyTracking,    // We are currently able to see it
-    Lost                  // We were tracking it but it has been lost
-  }
-
-  private final int MINTARGETHITS = 5;  // We have to see the target 5 times to say we can really see it
 
   public CmdAutoDriveStraghtByLime(double distanceIn, double headingDeg, double powerPer, cameras cam, int pipeline) {
 
     targetPosinch = distanceIn;
-    Heading = headingDeg;
+    desiredHeadingDeg = headingDeg;
     speedPercent = powerPer;
     camera2lookthrough = cam;
     camPipeline = pipeline;
@@ -53,22 +40,18 @@ public class CmdAutoDriveStraghtByLime extends CommandBase {
     bDone = false;
 
     subDriveTrain = RobotContainer.getInstance().subDriveTrain;
+    subGyro = RobotContainer.getInstance().subGyro;
     subDriveTrain.resetBothEncoders();
     subDriveTrain.Drive(speedPercent, speedPercent);
 
-
-    if(camera2lookthrough == cameras.limelight_high){
-        //RobotContainer.getInstance().subLimelightHigh.setPipeline(camPipeline);
-        //RobotContainer.getInstance().subLimelightHigh.setCamMode(SubLimelight.CAM_MODE.VISION_PROCESSING);
-        //Get the Limelight table within that instance that contains the data. There can
-        //camera = RobotContainer.getInstance().subLimelightHigh;
-    }
-    else if (camera2lookthrough == cameras.limelight_low){
-        //RobotContainer.getInstance().subLimelightLow.setPipeline(camPipeline);
-        //RobotContainer.getInstance().subLimelightLow.setCamMode(SubLimelight.CAM_MODE.VISION_PROCESSING);
-        //camera = RobotContainer.getInstance().subLimelightLow;
+    if (camera2lookthrough == cameras.limelight_high) {
+      camera = RobotContainer.getInstance().subLimelightHigh;
+    } else if (camera2lookthrough == cameras.limelight_low) {
+      camera = RobotContainer.getInstance().subLimelightLow;
     }
 
+    camera.setPipeline(camPipeline);
+    camera.setCamMode(SubLimelight.CAM_MODE.VISION_PROCESSING);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -76,39 +59,14 @@ public class CmdAutoDriveStraghtByLime extends CommandBase {
   public void execute() {
     System.err.println("execute");
 
-    //If target detected count it as being seen
-    
-
-    if ((int) camera.getTV() > 0) {
-      targetCounter = targetCounter + 1;
+    if (camera.hasTarget()) {
+      //https://docs.limelightvision.io/en/latest/getting_started.html
+      desiredHeadingDeg = subGyro.gyroNormalize(subGyro.getNormaliziedNavxAngle() + camera.getTX());
     }
 
-    if (targetCounter > MINTARGETHITS)  and {
-
-    }
-
-    // We have not yet seen the target drive by gyro only
-    if (targetCounter < MINTARGETHITS) {
-      double headingDelta = calcTurnRate(RobotContainer.getInstance().subGyro.getNormaliziedNavxAngle());
-      subDriveTrain.Drive(speedPercent + headingDelta, speedPercent - headingDelta);
-      System.err.println(
-        "Drive " + RobotContainer.getInstance().subDriveTrain.getEncoderPosLeft_Inches() + " of " + targetPosinch);
-      System.err.println("power " + RobotContainer.getInstance().subDriveTrain.getpower());
-    }
-    else if () {
-
-    }
-
-
-
-
-    // If the camera has a target then drive towards the target.
-
-    // else if the camera does not have a target then drive by gyro incase of the following
-    //  1) We are too far away from the target to reconize it.
-    //  2) we are now too close to the target and it has gone out of frame.
-
-
+    double headingDelta = calcTurnRate(subGyro.getNormaliziedNavxAngle());
+    subDriveTrain.Drive(speedPercent + headingDelta, speedPercent - headingDelta);
+    // Stop if we are done driving the required distance.
     if (Math.abs(subDriveTrain.getEncoder_Inches_LR()) >= Math.abs(targetPosinch - overShoot)) {
       bDone = true;
       end(false);
@@ -123,7 +81,7 @@ public class CmdAutoDriveStraghtByLime extends CommandBase {
     System.err.println("end");
     System.err.println(
         "Drive " + subDriveTrain.getEncoderPosLeft_Inches() + " of " + targetPosinch);
-    subDriveTrain.stop();
+    stop();
   }
 
   // Returns true when the command should end.
@@ -146,7 +104,7 @@ public class CmdAutoDriveStraghtByLime extends CommandBase {
   }
 
   protected double calcTurnRate(double currentHeading) {
-    double turnRate = RobotMath.calcTurnRate(currentHeading, Heading, subDriveTrain.kp_DriveStraightGyro);
+    double turnRate = RobotMath.calcTurnRate(currentHeading, desiredHeadingDeg, subDriveTrain.kp_DriveStraightGyro);
     return turnRate;
   }
 
