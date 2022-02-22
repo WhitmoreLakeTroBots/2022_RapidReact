@@ -16,7 +16,7 @@ public class AModeIntake extends ParallelCommandGroup {
         addCommands(new CmdIndexerStartCollecting());
 
         //set launcher condition
-        addCommands(new CmdLauncherStop());
+        //addCommands(new CmdLauncherStop());
 
         
         //set CLimb condition

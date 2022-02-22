@@ -36,17 +36,17 @@ public class SubIntake extends SubsystemBase {
     // need a doube for rollerPower
     private double RollerSpeed = 0.6;
     // need double maxPostion set to max value
-    private float MaxPostion = 70;
+    private float MaxPostion = 75;
     // need double Tolerance
     public  final double Tolerance = 5;
     // need double MinPosition set to 0
     private float MinPosition = 0;
     // Need double fullExtentedPos set to fully extended position (need to test)
-    private double FullExtendedPos = 60;
+    private double FullExtendedPos = 75;
     // need double retractedPos set to 250
     private double RetractedPos = 0;
     // need double retractorSpeed set 0.4
-    private double RetractorSpeed = 0.4;
+    private double RetractorSpeed = 0.55;
     // set targetPosition = RetractedPos // make sure this is a private
     private double TargetPosition = MinPosition;
     // bEnabled

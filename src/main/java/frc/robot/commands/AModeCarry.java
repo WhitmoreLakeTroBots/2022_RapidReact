@@ -10,13 +10,13 @@ public class AModeCarry extends ParallelCommandGroup {
         //addCommands(new CmdRobotInit());
 
         //set retractor conditon
-        addCommands(new CmdMoveExtender(16));
+        addCommands(new CmdMoveExtender(22));
         
         //set indexer condition
         addCommands(new CmdIndexerStartCollecting());
 
         //set launcher condition
-        addCommands(new CmdLauncherStop());
+       // addCommands(new CmdLauncherStop());
 
         
         //set CLimb condition
