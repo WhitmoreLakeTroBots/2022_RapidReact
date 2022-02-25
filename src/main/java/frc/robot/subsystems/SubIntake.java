@@ -46,7 +46,7 @@ public class SubIntake extends SubsystemBase {
     // need double retractedPos set to 250
     private double RetractedPos = 0;
     // need double retractorSpeed set 0.4
-    private double RetractorSpeed = 0.55;
+    private double RetractorSpeed = 0.65;
     // set targetPosition = RetractedPos // make sure this is a private
     private double TargetPosition = MinPosition;
     // bEnabled
@@ -55,6 +55,8 @@ public class SubIntake extends SubsystemBase {
     private WL_Spark CanSpark_Roller;
     // Need to define object (Motor) for the retractor
     private WL_Spark CanSpark_Retractor;
+
+    private double AutoStartRollerPos = 40;
 
     public SubIntake() {
  //*****Initialize constants here*****
@@ -96,6 +98,7 @@ CanSpark_Retractor.burnFlash();
         // This method will be called once per scheduler run
         if (bEnabled) {
             gotoPositon();
+            autoRoller();
         } else {
             stopRoller();
             TargetPosition = CanSpark_Roller.getPosition();
@@ -162,6 +165,16 @@ CanSpark_Retractor.burnFlash();
     @Override
     public void simulationPeriodic() {
         // This method will be called once per scheduler run when in simulation
+
+    }
+
+    private void autoRoller() {
+        double currentPosition = RobotContainer.getInstance().subIntake.GetRetractorPosition();
+        if (currentPosition > AutoStartRollerPos) {
+            RobotContainer.getInstance().subIntake.startRoller();
+        } else if (currentPosition <= AutoStartRollerPos) {
+            RobotContainer.getInstance().subIntake.stopRoller();
+        }
 
     }
 
