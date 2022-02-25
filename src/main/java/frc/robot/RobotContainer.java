@@ -140,10 +140,10 @@ public class RobotContainer {
     // *************** see above****//
 
     CommandBase defaultCmd = new CmdCommandStart();
-    SmartDashboard.putData("CmdRobotInit", new CmdRobotInit());
-    SmartDashboard.putData("autogrouptestdrive", new autoGroupTestDrive());
-    SmartDashboard.putData("AutoGrp_2Balls", new AutoGrp_2Balls());
-    SmartDashboard.putData("CmdTeleDrive", new CmdTeleDrive());
+    //SmartDashboard.putData("CmdRobotInit", new CmdRobotInit());
+    //SmartDashboard.putData("autogrouptestdrive", new autoGroupTestDrive());
+    //SmartDashboard.putData("AutoGrp_2Balls", new AutoGrp_2Balls());
+    //SmartDashboard.putData("CmdTeleDrive", new CmdTeleDrive());
     // SmartDashboard.putData(getInstance().subLauncher);
     // SmartDashboard.putData(CommandScheduler.getInstance());
     Shuffleboard.getTab("Camera").add("PID1", subLauncher.getPIDv());
