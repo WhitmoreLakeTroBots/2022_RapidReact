@@ -297,8 +297,11 @@ public class RobotContainer {
 
   public void updateSmartDash() {
 
-    SmartDashboard.putNumber("launcher RPM", subLauncher.CanSpark_launcher.getVelocity());
-    SmartDashboard.putNumber("Norm Angle", subGyro.getNormaliziedNavxAngle());
+    SmartDashboard.putNumber("launcher RPM", subLauncher.CanSpark_launcher.getVelocity());   
+    SmartDashboard.putNumber("launcher Power",
+    subLauncher.CanSpark_launcher.get());
+  
+    // SmartDashboard.putNumber("Norm Angle", subGyro.getNormaliziedNavxAngle());
 
    // Work_Data.add("Left Encoder", subDriveTrain.getEncoderPosLeft());
    // Work_Data.add("Right Encoder", subDriveTrain.getEncoderPosRight());
@@ -310,9 +313,7 @@ public class RobotContainer {
     // SmartDashboard.putNumber("Left Encoder", subDriveTrain.getEncoderPosLeft());
     // SmartDashboard.putNumber("Right Encoder",
     // subDriveTrain.getEncoderPosRight());
-    // SmartDashboard.putNumber("launcher Power",
-    // subLauncher.CanSpark_launcher.get());
-    // SmartDashboard.putNumber("PID", subLauncher.getPIDv());
+         // SmartDashboard.putNumber("PID", subLauncher.getPIDv());
     // SmartDashboard.putNumber("climbTarPos", subClimber.getClimbTarPos());
     // SmartDashboard.putNumber("climbPos", subClimber.getClimbCurPos());
     // SmartDashboard.putBoolean("climbEnable", subClimber.getbclimb());

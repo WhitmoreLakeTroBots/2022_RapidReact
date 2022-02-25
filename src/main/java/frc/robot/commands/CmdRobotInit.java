@@ -25,6 +25,7 @@ public class CmdRobotInit extends CommandBase {
     public void initialize() {
         System.err.println("CmdRobotInit");
         RobotContainer.getInstance().subDriveTrain.resetBothEncoders();
+        
         RobotContainer.getInstance().subGyro.resetNavx();
     }
 
