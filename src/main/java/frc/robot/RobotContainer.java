@@ -300,12 +300,12 @@ public class RobotContainer {
     SmartDashboard.putNumber("launcher RPM", subLauncher.CanSpark_launcher.getVelocity());
     SmartDashboard.putNumber("Norm Angle", subGyro.getNormaliziedNavxAngle());
 
-    Work_Data.add("Left Encoder", subDriveTrain.getEncoderPosLeft());
-    Work_Data.add("Right Encoder", subDriveTrain.getEncoderPosRight());
-    Work_Data.add("launcher Power", subLauncher.CanSpark_launcher.get());
-    Work_Data.add("PID", subLauncher.getPIDv());
-    Work_Data.add("launcher RPM", subLauncher.CanSpark_launcher.getVelocity());
-    Work_Data.add("Norm Angle", subGyro.getNormaliziedNavxAngle());
+   // Work_Data.add("Left Encoder", subDriveTrain.getEncoderPosLeft());
+   // Work_Data.add("Right Encoder", subDriveTrain.getEncoderPosRight());
+   // Work_Data.add("launcher Power", subLauncher.CanSpark_launcher.get());
+   // Work_Data.add("PID", subLauncher.getPIDv());
+   // Work_Data.add("launcher RPM", subLauncher.CanSpark_launcher.getVelocity());
+   // Work_Data.add("Norm Angle", subGyro.getNormaliziedNavxAngle());
 
     // SmartDashboard.putNumber("Left Encoder", subDriveTrain.getEncoderPosLeft());
     // SmartDashboard.putNumber("Right Encoder",
