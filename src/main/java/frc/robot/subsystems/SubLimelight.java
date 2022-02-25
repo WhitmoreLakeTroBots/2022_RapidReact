@@ -53,6 +53,7 @@ public class SubLimelight extends SubsystemBase {
         ltcm = llTable.getEntry("camMode");
         ltlm = llTable.getEntry("ledMode");
         ltp = llTable.getEntry("pipeline");
+        setCamMode(CAM_MODE.DRIVERSTATION_FEEDBACK);        
     }
 
     /*

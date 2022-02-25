@@ -46,7 +46,7 @@ public class SubIntake extends SubsystemBase {
     // need double retractedPos set to 250
     private double RetractedPos = 0;
     // need double retractorSpeed set 0.4
-    private double RetractorSpeed = 0.4;
+    private double RetractorSpeed = 0.55;
     // set targetPosition = RetractedPos // make sure this is a private
     private double TargetPosition = MinPosition;
     // bEnabled
