@@ -78,8 +78,8 @@ public class RobotContainer {
   public final SubIndexer subIndexer;
   public final SubIntake subIntake;
   public final SubClimber subClimber;
-  // public final SubLimelight subLimelightHigh;
-  // public final SubLimelight subLimelightLow;
+  public final SubLimelight subLimelightHigh;
+  public final SubLimelight subLimelightLow;
   // Joysticks
   // public final Joystick joy3 = new Joystick(2);
 
@@ -115,8 +115,8 @@ public class RobotContainer {
     subIndexer = new SubIndexer();
     subIntake = new SubIntake();
     subClimber = new SubClimber();
-    // subLimelightHigh = new SubLimelight(cameras.limelight_high);
-    // subLimelightLow = new SubLimelight(cameras.limelight_low);
+    subLimelightHigh = new SubLimelight(cameras.limelight_high);
+    subLimelightLow = new SubLimelight(cameras.limelight_low);
 
     ShuffleboardTab camTab = Shuffleboard.getTab("Camera");
     ShuffleboardTab Work_Data = Shuffleboard.getTab("Work_Data");
