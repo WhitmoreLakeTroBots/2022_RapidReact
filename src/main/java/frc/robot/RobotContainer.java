@@ -174,8 +174,9 @@ public class RobotContainer {
     // ));
 
     // Add Auton's to Selection dropdown.
-    m_chooser.addOption("AutoGrp_2Balls", new AutoGrp_2Balls());
+    m_chooser.addOption("V1AutoGrp_2Balls", new AutoGrp_2BallsV1());
     m_chooser.addOption("V2AutoGrp_2Balls", new AutoGrp_2BallsV2());
+    m_chooser.addOption("V3AutoGrp_2Balls", new AutoGrp_2BallsV3());
 
     m_chooser.setDefaultOption(defaultCmd.getName().replace(' ', '_'), defaultCmd);
 
