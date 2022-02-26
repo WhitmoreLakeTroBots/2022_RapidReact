@@ -34,14 +34,14 @@ private SubLimelight.CAM_MODE CMode;
         System.err.println("CmdToggleCamara");
         
         //update specified cam with 
-        /*if(cCam == cameras.limelight_high){
+        if(cCam == cameras.limelight_high){
             RobotContainer.getInstance().subLimelightHigh.setPipeline(pipe);
             RobotContainer.getInstance().subLimelightHigh.setCamMode(CMode);
         }
         else if (cCam == cameras.limelight_low){
             RobotContainer.getInstance().subLimelightLow.setPipeline(pipe);
             RobotContainer.getInstance().subLimelightLow.setCamMode(CMode);
-        }*/
+        }
         
         //update to specificed pipline
 
