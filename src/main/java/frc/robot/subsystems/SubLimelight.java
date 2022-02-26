@@ -18,16 +18,16 @@ import frc.robot.Constants.limelightConstants.cameras;
 public class SubLimelight extends SubsystemBase {
     public static NetworkTableInstance inst = null;
     // public static NetworkTable llTable = null;
-    public static NetworkTableEntry ltx = null;
-    public static NetworkTableEntry lty = null;
-    public static NetworkTableEntry lta = null;
-    public static NetworkTableEntry ltv = null;
-    public static NetworkTableEntry lts = null;
-    public static NetworkTableEntry ltl = null;
-    public static NetworkTableEntry ltcm = null;
-    public static NetworkTableEntry ltlm = null;
-    public static NetworkTableEntry ltp = null;
-    public static NetworkTable llTable = null;
+    public NetworkTableEntry ltx = null;
+    public NetworkTableEntry lty = null;
+    public NetworkTableEntry lta = null;
+    public NetworkTableEntry ltv = null;
+    public NetworkTableEntry lts = null;
+    public NetworkTableEntry ltl = null;
+    public NetworkTableEntry ltcm = null;
+    public NetworkTableEntry ltlm = null;
+    public NetworkTableEntry ltp = null;
+    public NetworkTable llTable = null;
 
     public String limelight_high = "limelight-high";
     public String limelight_low = "limelight-low";
