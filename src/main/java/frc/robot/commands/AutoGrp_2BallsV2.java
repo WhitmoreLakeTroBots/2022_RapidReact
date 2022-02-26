@@ -20,11 +20,11 @@ public class AutoGrp_2BallsV2 extends SequentialCommandGroup {
 
         
         addCommands(new CmdIndexerStartCollecting());
-        addCommands(new CmdLauncherRun(2900));
+        addCommands(new CmdLauncherRun(3000));
         addCommands(new CmdMoveExtender());
         addCommands(new CmdAutoDriveStraght(60, 0, STRAIGHT_SPEED));
-        addCommands(new CmdMoveExtender(22));
-        addCommands(new CmdTurnByGyro(180,-TURN_SPEED, TURN_SPEED));
+        addCommands(new CmdMoveExtender(16));
+        addCommands(new CmdTurnByGyro(-170,-TURN_SPEED, TURN_SPEED));
         
        
         addCommands(new CmdIndexerLaunch());
