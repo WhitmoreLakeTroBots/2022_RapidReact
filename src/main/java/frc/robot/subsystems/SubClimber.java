@@ -33,7 +33,7 @@ public class SubClimber extends SubsystemBase {
 
     private double Climb_TargetPos = 0;
     private double Climb_Tol = 3;
-    private double Climb_power = 0.3;
+    private double Climb_power = 0.6;
     private boolean bClimb = false;
 
     private double Transverse_MaxPos = 3;

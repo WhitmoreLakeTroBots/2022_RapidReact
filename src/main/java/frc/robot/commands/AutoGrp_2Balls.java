@@ -16,7 +16,7 @@ public class AutoGrp_2Balls extends SequentialCommandGroup {
     public AutoGrp_2Balls() {
         addCommands(new CmdRobotInit());
         //Start flywheel
-        addCommands(new CmdLauncherRun(2900));
+        addCommands(new CmdLauncherRun(3000));
         addCommands(new CmdDelay(1.0));
         addCommands(new CmdIndexerStartCollecting());
         addCommands(new CmdDelay(.25));
