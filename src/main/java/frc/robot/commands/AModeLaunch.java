@@ -10,7 +10,7 @@ public class AModeLaunch extends ParallelCommandGroup {
         //addCommands(new CmdRobotInit());
 
         //set retractor conditon
-        addCommands(new CmdMoveExtender(22));
+        addCommands(new CmdMoveExtender(16));
         
         //set indexer condition
         addCommands(new CmdIndexerStartCollecting());

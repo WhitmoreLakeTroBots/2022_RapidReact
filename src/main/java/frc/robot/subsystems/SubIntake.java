@@ -34,7 +34,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class SubIntake extends SubsystemBase {
     // *****Add Constants here.....
     // need a doube for rollerPower
-    private double RollerSpeed = 0.6;
+    private double RollerSpeed = 1.0;
     // need double maxPostion set to max value
     private float MaxPostion = 75;
     // need double Tolerance

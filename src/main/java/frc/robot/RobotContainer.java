@@ -302,7 +302,7 @@ public class RobotContainer {
     
     
     //update Camera tab
-    Shuffleboard.getTab("Camera").add("PID1", subLauncher.getPIDv());
+    //Shuffleboard.getTab("Camera").add("PID1", subLauncher.getPIDv());
   
     // SmartDashboard.putNumber("Norm Angle", subGyro.getNormaliziedNavxAngle());
 
