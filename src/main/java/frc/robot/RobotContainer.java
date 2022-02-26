@@ -146,7 +146,6 @@ public class RobotContainer {
     //SmartDashboard.putData("CmdTeleDrive", new CmdTeleDrive());
     // SmartDashboard.putData(getInstance().subLauncher);
     // SmartDashboard.putData(CommandScheduler.getInstance());
-    Shuffleboard.getTab("Camera").add("PID1", subLauncher.getPIDv());
     // RobotContainer.camTab.add("PID2", subLauncher.getPIDv());
 
     // Configure the button bindings
@@ -300,6 +299,10 @@ public class RobotContainer {
     SmartDashboard.putNumber("launcher RPM", subLauncher.CanSpark_launcher.getVelocity());   
     SmartDashboard.putNumber("launcher Power",
     subLauncher.CanSpark_launcher.get());
+    
+    
+    //update Camera tab
+    Shuffleboard.getTab("Camera").add("PID1", subLauncher.getPIDv());
   
     // SmartDashboard.putNumber("Norm Angle", subGyro.getNormaliziedNavxAngle());
 
