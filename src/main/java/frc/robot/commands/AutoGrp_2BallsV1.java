@@ -24,7 +24,7 @@ public class AutoGrp_2BallsV1 extends SequentialCommandGroup {
         addCommands(new CmdMoveExtender());
         addCommands(new CmdAutoDriveStraght(60, 0, STRAIGHT_SPEED));
         addCommands(new CmdMoveExtender(16));
-        addCommands(new CmdTurnByGyro(-173,-TURN_SPEED, TURN_SPEED));
+        addCommands(new CmdTurnByGyro2(180,-TURN_SPEED, TURN_SPEED));
         
        
         addCommands(new CmdIndexerLaunch());
