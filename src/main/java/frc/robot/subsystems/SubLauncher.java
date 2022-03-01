@@ -68,7 +68,7 @@ public class SubLauncher extends SubsystemBase {
         // memory
         CanSpark_launcher.restoreFactoryDefaults();
         CanSpark_launcher.setInverted(false);
-        CanSpark_launcher.setSmartCurrentLimit(100);
+        CanSpark_launcher.setSmartCurrentLimit(80);
         CanSpark_launcher.setIdleMode(WL_Spark.IdleMode.kCoast);
       
     }
