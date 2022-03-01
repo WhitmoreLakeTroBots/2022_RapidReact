@@ -33,6 +33,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import com.ctre.phoenix.schedulers.SequentialScheduler;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies.SnakeCaseStrategy;
 
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Joystick;
@@ -121,6 +122,11 @@ public class RobotContainer {
     ShuffleboardTab camTab = Shuffleboard.getTab("Camera");
     ShuffleboardTab Work_Data = Shuffleboard.getTab("Work_Data");
     // SmartDashboard Buttons
+
+    camTab.addCamera("LimeLight", "limelight-high", "http://10.36.68.12:5800");
+  
+    //camTab.getComponents().remove(index);
+
 
     // **uncomment for full robot */
     // SmartDashboard.putData("CmdTurnByGyro", new CmdTurnByGyro(0.0,.25, .25));
