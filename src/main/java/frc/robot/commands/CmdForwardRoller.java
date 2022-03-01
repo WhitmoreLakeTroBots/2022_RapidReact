@@ -81,7 +81,10 @@ public class CmdForwardRoller extends CommandBase {
         //System.err.println(String.format("launcherExecute flyWeelSpeedRPMz:%1$.3d",flyWeelSpeedRPM));
         System.err.println("RollerReversal- Execute");
         if (RobotMath.getTime() >= TargetTime){
+            bdone = true;
             RobotContainer.getInstance().subIntake.startRoller();
+
+            
         }   
     }
 
