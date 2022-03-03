@@ -1,5 +1,7 @@
 package frc.robot.commands;
 
+import com.fasterxml.jackson.databind.deser.std.ContainerDeserializerBase;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import frc.robot.RobotMath;
@@ -11,19 +13,18 @@ import frc.robot.subsystems.SubLimelight;
 import frc.robot.subsystems.SubLimelight.CAM_MODE;
 import frc.robot.Constants.limelightConstants.cameras;
 
-public class CmdTurnByLime extends CommandBase {
+public class CmdTurnByLimeAim extends CommandBase {
 
     // private final SubDriveTrain subDriveTrain;
     private boolean bDone = false;
     private SubDriveTrain subDriveTrain = null;
     private SubGyro subGyro = null;
 
-    private double _requestedHeading = 0.0;
-    private double _currHeading = 0.0;
+    private int NoTargetCounter = 0;
     private double _leftTargetThrottle = 0.0;
     private double _rightTargetThrottle = 0.0;
-    private double TOL = 1.0;
-    private final double MIN_THROTTLE = Constants.robotPysicalProperties.minTurnSpeed;
+    private double TOL = 2.0;
+    private final double MIN_THROTTLE = 0.04;
     private double _KPLeft = 0.0;
     private double _KPRight = 0.0;
     private double _minLeftThrottle = 0.0;
@@ -32,20 +33,15 @@ public class CmdTurnByLime extends CommandBase {
     private cameras camera2lookthrough = null;
     private SubLimelight camera = null;
 
-    public CmdTurnByLime(double heading_deg, double left_throttle, double right_throttle, cameras cam, int pipeline) {
-
-        _requestedHeading = heading_deg;
-        _leftTargetThrottle = left_throttle;
-        _rightTargetThrottle = right_throttle;
+    public CmdTurnByLimeAim(cameras cam, int pipeline) {
         camPipeline = pipeline;
         camera2lookthrough = cam;
 
     }
 
-    public CmdTurnByLime(double heading_deg, double left_throttle, double right_throttle, cameras cam, int pipeline,
+    public CmdTurnByLimeAim(double left_throttle, double right_throttle, cameras cam, int pipeline,
             double tol_degrees) {
 
-        _requestedHeading = heading_deg;
         _leftTargetThrottle = left_throttle;
         _rightTargetThrottle = right_throttle;
         camPipeline = pipeline;
@@ -71,10 +67,8 @@ public class CmdTurnByLime extends CommandBase {
         _minLeftThrottle = calcMinThrottle(_leftTargetThrottle, MIN_THROTTLE);
         _minRightThrottle = calcMinThrottle(_rightTargetThrottle, MIN_THROTTLE);
 
-        double headingDelta = RobotMath.headingDelta(_currHeading, _requestedHeading);
-        _KPLeft = calcKP(_leftTargetThrottle, _minLeftThrottle, headingDelta);
-        _KPRight = calcKP(_rightTargetThrottle, _minRightThrottle, headingDelta);
-
+        _KPLeft = calcKP(_leftTargetThrottle, _minLeftThrottle);
+        _KPRight = calcKP(_rightTargetThrottle, _minRightThrottle);
 
     }
 
@@ -83,23 +77,45 @@ public class CmdTurnByLime extends CommandBase {
     public void execute() {
         System.err.println("cmdTurnByLime");
 
+        double cameraAngle = 0;
         if (camera.hasTarget()) {
             // https://docs.limelightvision.io/en/latest/getting_started.html
-            _requestedHeading = subGyro.gyroNormalize(subGyro.getNormaliziedNavxAngle() + camera.getTX());
+            cameraAngle = camera.getTX();
+            NoTargetCounter = 0;
+
+            // Might need to pub logic here to cause the robot to spin in the other
+            // direction
+            // AKA reverse the direction of spin if the new _requested heading in getting
+            // larger...
+
+            if (cameraAngle > 0) {
+                _leftTargetThrottle = .2;
+                _minLeftThrottle = Constants.robotPysicalProperties.minTurnSpeed;
+                _rightTargetThrottle = -_leftTargetThrottle;
+                _minRightThrottle = -_minLeftThrottle;
+            } else if (cameraAngle < 0) {
+                _leftTargetThrottle = -.2;
+                _minLeftThrottle = -Constants.robotPysicalProperties.minTurnSpeed;
+                _rightTargetThrottle = -_leftTargetThrottle;
+                _minRightThrottle = -_minLeftThrottle;
+            } else {
+                bDone = true;
+            }
+
+            double powerLeft = calcMotorPower(_leftTargetThrottle, _minLeftThrottle, _KPLeft, cameraAngle);
+            double powerRight = calcMotorPower(_rightTargetThrottle, _minRightThrottle, _KPRight, cameraAngle);
+            subDriveTrain.Drive(powerLeft, powerRight);
+
+            if (CommonLogic.isInRange(cameraAngle, 0, TOL)) {
+                bDone = true;
+                end(false);
+            }
+        } else {
+            NoTargetCounter = NoTargetCounter + 1;
         }
-
-        // Might need to pub logic here to cause the robot to spin in the other direction 
-        // AKA reverse the direction of spin if the new _requested heading in getting larger...
-
-        
-        double currHeading = subGyro.getNormaliziedNavxAngle();
-        double headingDelta = RobotMath.headingDelta(currHeading, _requestedHeading);
-        double powerLeft = calcMotorPower(_leftTargetThrottle, _minLeftThrottle, _KPLeft, headingDelta);
-        double powerRight = calcMotorPower(_rightTargetThrottle, _minRightThrottle, _KPRight, headingDelta);
-        subDriveTrain.Drive(powerLeft, powerRight);
-
-        if (subGyro.gyroInTol(subGyro.getNormaliziedNavxAngle(), _requestedHeading, TOL)) {
-            bDone = true;
+        // If we fail to see the target in 25 scans that is 1/2 second.   We may have 
+        // lost the aim we might have had.
+        if (NoTargetCounter > 25){
             end(false);
         }
 
@@ -130,7 +146,7 @@ public class CmdTurnByLime extends CommandBase {
     }
 
     // calculates a KP based on (throttle - min throttle) / heading delta
-    private double calcKP(double throttle, double minThrottle, double deltaHeading) {
+    private double calcKP(double throttle, double minThrottle) {
         // Math Time.... Based on 1 second for 360 degree turns.
 
         // Assume robot has 14ft/sec = (14*12)in/sec = 168 inch/sec
@@ -139,10 +155,8 @@ public class CmdTurnByLime extends CommandBase {
         // 75.4 / 168 means that motor power of .448 should give us a 1 second 360
         // degree turn.
 
-        double theroyMaxSpeed = 14 * 12;
-        double trackwidth = 24;
-        double full360turndist = trackwidth * Math.PI;
-        double full360throttle = full360turndist / theroyMaxSpeed;
+        double full360turndist = Constants.robotPysicalProperties.robotTrackWidth * Math.PI;
+        double full360throttle = full360turndist / Constants.robotPysicalProperties.theoreticalMaxSpeedInches;
 
         double retValue = Math.signum(throttle) * Math.abs(full360throttle / 360);
 
