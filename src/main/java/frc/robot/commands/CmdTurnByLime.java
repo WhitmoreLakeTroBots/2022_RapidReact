@@ -83,26 +83,26 @@ public class CmdTurnByLime extends CommandBase {
     public void execute() {
         System.err.println("cmdTurnByLime");
 
-        if (camera.hasTarget()) {
-            // https://docs.limelightvision.io/en/latest/getting_started.html
-            _requestedHeading = subGyro.gyroNormalize(subGyro.getNormaliziedNavxAngle() + camera.getTX());
-        }
-
-        // Might need to pub logic here to cause the robot to spin in the other direction 
-        // AKA reverse the direction of spin if the new _requested heading in getting larger...
-
-        
         double currHeading = subGyro.getNormaliziedNavxAngle();
+        //https://docs.limelightvision.io/en/latest/networktables_api.html
+        // limelight 2 has 29 degrees limelight1 is 27 degrees
+        // +-18 degrees should mean that our target is in the middle 2/3 or so of the screen
+        if (subGyro.gyroInTol(currHeading, _requestedHeading, 18)) {
+            if (camera.hasTarget()) {
+                // https://docs.limelightvision.io/en/latest/getting_started.html
+                _requestedHeading = subGyro.gyroNormalize(currHeading + camera.getTX());
+            }
+        }
+        
         double headingDelta = RobotMath.headingDelta(currHeading, _requestedHeading);
         double powerLeft = calcMotorPower(_leftTargetThrottle, _minLeftThrottle, _KPLeft, headingDelta);
         double powerRight = calcMotorPower(_rightTargetThrottle, _minRightThrottle, _KPRight, headingDelta);
         subDriveTrain.Drive(powerLeft, powerRight);
 
-        if (subGyro.gyroInTol(subGyro.getNormaliziedNavxAngle(), _requestedHeading, TOL)) {
+        if (subGyro.gyroInTol(currHeading, _requestedHeading, TOL)) {
             bDone = true;
             end(false);
         }
-
     }
 
     // Called once the command ends or is interrupted.
