@@ -85,12 +85,12 @@ public class CmdTurnByLime extends CommandBase {
 
         double currHeading = subGyro.getNormaliziedNavxAngle();
         //https://docs.limelightvision.io/en/latest/networktables_api.html
-        // limelight 2 has 29 degrees limelight1 is 27 degrees
+        // limelight 2 has +-29 degrees limelight1 is +-27 degrees
         // +-18 degrees should mean that our target is in the middle 2/3 or so of the screen
         if (subGyro.gyroInTol(currHeading, _requestedHeading, 18)) {
             if (camera.hasTarget()) {
                 // https://docs.limelightvision.io/en/latest/getting_started.html
-                _requestedHeading = subGyro.gyroNormalize(currHeading + camera.getTX());
+                _requestedHeading = subGyro.gyroNormalize(addGyroAngles (currHeading, camera.getTX()));
             }
         }
         
@@ -123,6 +123,16 @@ public class CmdTurnByLime extends CommandBase {
         // this always returns false;
         return false;
     }
+
+
+    // when adding normalized angles funny things happen at 180 degrees
+    // assume that 100 full revs is out of scope for real robots
+	public double addGyroAngles (double angle1, double angle2){
+		double a1 = angle1 * 360 * 100;
+		double a2 = angle2 * 360 * 100;
+		double retValue = a1 + a2;
+		return (retValue / 360 / 100);
+	}
 
     // converts everything to a min throttle keeping the original sign
     private double calcMinThrottle(double throttle, double minThrottle) {
