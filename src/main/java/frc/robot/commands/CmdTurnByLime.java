@@ -128,10 +128,10 @@ public class CmdTurnByLime extends CommandBase {
     // when adding normalized angles funny things happen at 180 degrees
     // assume that 100 full revs is out of scope for real robots
 	public double addGyroAngles (double angle1, double angle2){
-		double a1 = angle1 + (360 * 100);
-		double a2 = angle2 + (360 * 100);
+		double a1 = angle1 + (36000);
+		double a2 = angle2 + (36000);
 		double retValue = a1 + a2;
-		return (retValue / 360 / 100);
+		return (retValue - 36000);
 	}
 
     // converts everything to a min throttle keeping the original sign
