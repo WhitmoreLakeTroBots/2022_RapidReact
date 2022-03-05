@@ -115,7 +115,8 @@ public class CmdTurnByLimeAim extends CommandBase {
         }
         // If we fail to see the target in 25 scans that is 1/2 second.   We may have 
         // lost the aim we might have had.
-        if (NoTargetCounter > 25){
+        if (NoTargetCounter > 10){
+            bDone = true;
             end(false);
         }
 
