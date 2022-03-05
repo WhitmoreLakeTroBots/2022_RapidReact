@@ -47,7 +47,7 @@ public class Constants {
          public static final int kCanID_Climber_1 = 12;
          public static final int kCanID_Climber_2 = 13;
 
-         public static final int kCanID_Climb_Transversal = 44;
+         public static final int kCanID_Climb_Transversal = 3;
    
 
     }
