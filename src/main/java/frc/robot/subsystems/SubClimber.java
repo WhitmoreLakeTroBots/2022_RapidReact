@@ -36,11 +36,11 @@ public class SubClimber extends SubsystemBase {
     private double Climb_power = 0.6;
     private boolean bClimb = false;
 
-    private double Transverse_MaxPos = 3;
-    private double Transverse_MinPos = 0;
+    private double Transverse_MaxPos = 110;
+    private double Transverse_MinPos = -110;
 
     private double Transverse_RetractPOS = 0;
-    private double Transverse_ExtendPos = 3;
+    private double Transverse_ExtendPos = 50;
 
     private double Transverse_TargetPos = 0;
     private double Transverse_Tol = 10;
@@ -242,10 +242,10 @@ public void transverseMan(double direction){
     if (direction >= 0.1){
      
      
-        SetClimbPos(getTransverseCurPos() + (direction * 0.1));
+        SetClimbPos(getTransverseCurPos() + (direction * 0.6));
     }else if(direction <= -0.1){
 
-        SetClimbPos(getTransverseCurPos() + (direction * 0.1));   
+        SetClimbPos(getTransverseCurPos() + (direction * 0.6));   
     }
 }
 
