@@ -30,10 +30,7 @@ public class AutoGrp_4BallsV2 extends SequentialCommandGroup {
         addCommands(new CmdTurnByLime(158,-TURN_SPEED, TURN_SPEED, cameras.limelight_high, 0 ));
 
         //shoot
-        addCommands(new CmdIndexerLaunch());
-        addCommands(new CmdDelay(0.5));
-        addCommands(new CmdIndexerLaunch());
-        addCommands(new CmdDelay(.5));
+        addCommands(new Agrp_Launch());
         
         //move and get two more balls
         addCommands(new CmdTurnByGyro2(30,-TURN_SPEED, TURN_SPEED));
@@ -49,10 +46,7 @@ public class AutoGrp_4BallsV2 extends SequentialCommandGroup {
         addCommands(new CmdTurnByLime(160,-TURN_SPEED, TURN_SPEED, cameras.limelight_high, 0 ));
 
         //shoot
-        addCommands(new CmdIndexerLaunch());
-        addCommands(new CmdDelay(.5));
-        addCommands(new CmdIndexerLaunch());
-        addCommands(new CmdDelay(.5));
+        addCommands(new Agrp_Launch());
 
         //stop
         addCommands(new CmdLauncherStop());

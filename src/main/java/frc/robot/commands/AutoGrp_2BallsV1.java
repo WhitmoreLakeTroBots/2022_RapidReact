@@ -24,12 +24,9 @@ public class AutoGrp_2BallsV1 extends SequentialCommandGroup {
         addCommands(new CmdMoveExtender(16));
         addCommands(new CmdTurnByLime(180, TURN_SPEED, -TURN_SPEED,
                 Constants.limelightConstants.cameras.limelight_high, 0));
-
-        addCommands(new CmdIndexerLaunch());
-        addCommands(new CmdDelay(.75));
-        addCommands(new CmdDelay(0.5));
-        addCommands(new CmdIndexerLaunch());
-        addCommands(new CmdDelay(.5));
+        addCommands(new CmdDelay(6.0));
+        addCommands(new Agrp_Launch());
+        
         addCommands(new CmdLauncherStop());
         addCommands(new CmdMoveExtender(0));
         addCommands(new CmdIndexerStop());
