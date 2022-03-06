@@ -101,6 +101,14 @@ public class SubDriveTrain extends SubsystemBase {
         CanSpark_driveRight_2.setIdleMode(WL_Spark.IdleMode.kBrake);
 
 
+        
+        // https://codedocs.revrobotics.com/java/com/revrobotics/cansparkmax#setOpenLoopRampRate(double)
+        double rampRate = 1;
+        CanSpark_driveLeft_1.setOpenLoopRampRate(rampRate);
+        CanSpark_driveLeft_2.setOpenLoopRampRate(rampRate);
+        CanSpark_driveRight_1.setOpenLoopRampRate(rampRate);
+        CanSpark_driveRight_2.setOpenLoopRampRate(rampRate);
+
         // Set the 2's to follow the 1's
         CanSpark_driveLeft_2.follow(CanSpark_driveLeft_1);
         CanSpark_driveRight_2.follow(CanSpark_driveRight_1);

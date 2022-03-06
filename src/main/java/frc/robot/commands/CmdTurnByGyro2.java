@@ -3,10 +3,12 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import frc.robot.RobotMath;
+import frc.robot.hardware.WL_Spark;
 import frc.robot.subsystems.SubDriveTrain;
 import frc.robot.subsystems.SubGyro;
 import frc.robot.CommonLogic;
 import frc.robot.Constants;
+import frc.robot.hardware.WL_Spark;
 
 public class CmdTurnByGyro2 extends CommandBase {
 
@@ -25,6 +27,7 @@ public class CmdTurnByGyro2 extends CommandBase {
     private double _KPRight = 0.0;
     private double _minLeftThrottle = 0.0;
     private double _minRightThrottle = 0.0;
+    private WL_Spark.IdleMode idleMode = WL_Spark.IdleMode.kBrake;
 
     public CmdTurnByGyro2(double heading_deg, double left_throttle, double right_throttle) {
         _requestedHeading = heading_deg;
@@ -32,11 +35,21 @@ public class CmdTurnByGyro2 extends CommandBase {
         _rightTargetThrottle = right_throttle;
     }
 
+
+    public CmdTurnByGyro2(double heading_deg, double left_throttle, double right_throttle,
+         WL_Spark.IdleMode brakeMode) {
+        _requestedHeading = heading_deg;
+        _leftTargetThrottle = left_throttle;
+        _rightTargetThrottle = right_throttle;
+        idleMode = brakeMode;
+    }
+
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
         bDone = false;
         subDriveTrain = RobotContainer.getInstance().subDriveTrain;
+        subDriveTrain.SetBrakeMode(idleMode);
         subGyro = RobotContainer.getInstance().subGyro;
         _currHeading = subGyro.getNormaliziedNavxAngle();
         _minLeftThrottle = calcMinThrottle(_leftTargetThrottle, MIN_THROTTLE);
