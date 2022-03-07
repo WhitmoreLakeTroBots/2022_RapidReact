@@ -123,7 +123,7 @@ public class RobotContainer {
     ShuffleboardTab Work_Data = Shuffleboard.getTab("Work_Data");
     // SmartDashboard Buttons
 
-    camTab.addCamera("LimeLight", "limelight-high", "http://10.36.68.12:5800");
+    //camTab.addCamera("LimeLight", "limelight-high", "http://10.36.68.12:5800");
   
     //camTab.getComponents().remove(index);
 
@@ -183,6 +183,7 @@ public class RobotContainer {
     m_chooser.addOption("V1AutoGrp_2Balls", new AutoGrp_2BallsV1());
     m_chooser.addOption("V2AutoGrp_2Balls", new AutoGrp_2BallsV2());
     m_chooser.addOption("V3AutoGrp_2Balls", new AutoGrp_2BallsV3());
+    m_chooser.addOption("4Ball", new AutoGrp_4BallsV2());
 
     m_chooser.setDefaultOption(defaultCmd.getName().replace(' ', '_'), defaultCmd);
 

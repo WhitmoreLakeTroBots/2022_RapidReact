@@ -10,10 +10,12 @@ package frc.robot.subsystems;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Constants.limelightConstants;
 import frc.robot.Constants.limelightConstants.cameras;
+import frc.robot.commands.CmdTurnByLimeAim;
 
 public class SubLimelight extends SubsystemBase {
     public static NetworkTableInstance inst = null;
@@ -97,6 +99,12 @@ public class SubLimelight extends SubsystemBase {
             val = i;
         }
     }
+
+//    public void TeleAim(Joystick stick){
+//        if(stick.getZ() > 50){
+//            CmdTurnByLimeAim(cameras.limelight_high,0);
+//        }
+//    }
 
     public enum CAM_MODE {
         VISION_PROCESSING(0), DRIVERSTATION_FEEDBACK(1);

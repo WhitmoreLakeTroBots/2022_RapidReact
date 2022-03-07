@@ -36,7 +36,7 @@ public class CmdExstendTravs extends CommandBase {
         bdone = false;
         addRequirements(RobotContainer.getInstance().subClimber);
     //extend climb 
-        RobotContainer.getInstance().subClimber.SeTransversePos(RobotContainer.getInstance().subClimber.getTransverseExtenPos());
+        RobotContainer.getInstance().subClimber.SetTransversePos(RobotContainer.getInstance().subClimber.getTransverseExtenPos());
 
     }
 

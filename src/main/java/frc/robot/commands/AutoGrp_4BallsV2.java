@@ -13,8 +13,8 @@ import frc.robot.subsystems.SubIntake;
 
 
 public class AutoGrp_4BallsV2 extends SequentialCommandGroup {
-    public final double TURN_SPEED = 0.2;
-    public final double STRAIGHT_SPEED = 0.3;
+    public final double TURN_SPEED = 0.3;
+    public final double STRAIGHT_SPEED = 0.35;
     
     public AutoGrp_4BallsV2() {
         addCommands(new CmdRobotInit());
@@ -27,26 +27,28 @@ public class AutoGrp_4BallsV2 extends SequentialCommandGroup {
         addCommands(new CmdMoveExtender());
         addCommands(new CmdAutoDriveStraght(60, 0, STRAIGHT_SPEED));
         addCommands(new CmdMoveExtender(16));
-        addCommands(new CmdTurnByLime(158,-TURN_SPEED, TURN_SPEED, cameras.limelight_high, 0 ));
-
+        addCommands(new CmdTurnByLime(158,TURN_SPEED, -TURN_SPEED, cameras.limelight_high, 0 ));   
+       
         //shoot
         addCommands(new Agrp_Launch());
         
         //move and get two more balls
-        addCommands(new CmdTurnByGyro2(30,-TURN_SPEED, TURN_SPEED));
-        addCommands(new CmdAutoDriveStraght(120, 30, STRAIGHT_SPEED));
-        addCommands(new CmdTurnByGyro2(75,-TURN_SPEED, TURN_SPEED));
+        addCommands(new CmdTurnByGyro2(16,-TURN_SPEED, TURN_SPEED));
+        addCommands(new CmdAutoDriveStraght(150, 16, .65));
+        addCommands(new CmdTurnByGyro2(-29,-TURN_SPEED, TURN_SPEED));
         addCommands(new CmdMoveExtender());
-        addCommands(new CmdAutoDriveStraght(10, 75, STRAIGHT_SPEED));
-        addCommands(new CmdLauncherRun(3500));
+        addCommands(new CmdAutoDriveStraght(50, -29, STRAIGHT_SPEED));
+        addCommands(new CmdLauncherRun(2900));
+        addCommands(new CmdDelay(1.5));
         addCommands(new CmdMoveExtender(16));
-        addCommands(new CmdAutoDriveStraght(10, -105, -STRAIGHT_SPEED));
-        addCommands(new CmdTurnByGyro2(-150,TURN_SPEED, -TURN_SPEED));
-        addCommands(new CmdAutoDriveStraght(54, -150, STRAIGHT_SPEED));
-        addCommands(new CmdTurnByLime(160,-TURN_SPEED, TURN_SPEED, cameras.limelight_high, 0 ));
+        //addCommands(new CmdAutoDriveStraght(20, -29, -STRAIGHT_SPEED));
+        //addCommands(new CmdTurnByGyro2(180,TURN_SPEED, -TURN_SPEED));
+       //addCommands(new CmdAutoDriveStraght(140, 180, .65));
+        //addCommands(new CmdTurnByLime(180,-TURN_SPEED, TURN_SPEED, cameras.limelight_high, 0 ));
 
         //shoot
-        addCommands(new Agrp_Launch());
+        //addCommands(new CmdDelay(.25));
+        //addCommands(new Agrp_Launch());
 
         //stop
         addCommands(new CmdLauncherStop());

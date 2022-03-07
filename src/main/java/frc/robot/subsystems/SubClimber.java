@@ -36,15 +36,15 @@ public class SubClimber extends SubsystemBase {
     private double Climb_power = 0.6;
     private boolean bClimb = false;
 
-    private double Transverse_MaxPos = 69;
-    private double Transverse_MinPos = -53;
+    private double Transverse_MaxPos = 92;
+    private double Transverse_MinPos = -81;
 
     private double Transverse_RetractPOS = 0;
     private double Transverse_ExtendPos = 50;
 
     private double Transverse_TargetPos = 0;
-    private double Transverse_Tol = 10;
-    private double Transverse_power = 0.5;
+    private double Transverse_Tol = 3;
+    private double Transverse_power = 0.4;
     private boolean bTransverse = false;
 
     /**
@@ -175,7 +175,7 @@ public boolean getbclimb(){
 
     }
 
-    public void SeTransversePos(double newTargetPosition){
+    public void SetTransversePos(double newTargetPosition){
         Transverse_TargetPos = CommonLogic.CapMotorPower(newTargetPosition, Transverse_MinPos, Transverse_MaxPos );
 
     }
@@ -228,24 +228,24 @@ public void climbMan(double direction){
     if (direction >= 0.1){
      
      
-        //SetClimbPos(getClimbTarPos() + (direction * 0.6));
-        SetClimbPos(Climb_ExtendPos);
+        SetClimbPos(getClimbTarPos() + (direction ));
+        //SetClimbPos(Climb_ExtendPos);
     }else if(direction <= -0.1){
 
-        //SetClimbPos(getClimbTarPos() + (direction * 0.6));   
-        SetClimbPos(Climb_RetractPOS);
+        SetClimbPos(getClimbTarPos() + (direction ));   
+        //SetClimbPos(Climb_RetractPOS);
     }
 }
 
 public void transverseMan(double direction){
-    
+   System.err.print("trans " + Transverse_TargetPos); 
     if (direction >= 0.1){
      
      
-        SetClimbPos(getTransverseCurPos() + (direction * 0.6));
+        SetTransversePos(getTransverseTarPos() + (direction));
     }else if(direction <= -0.1){
 
-        SetClimbPos(getTransverseCurPos() + (direction * 0.6));   
+        SetTransversePos(getTransverseTarPos() + (direction )); 
     }
 }
 

@@ -36,7 +36,7 @@ public class CmdRetractTravs extends CommandBase {
         bdone = false;
         addRequirements(RobotContainer.getInstance().subClimber);
     //extend climb 
-        RobotContainer.getInstance().subClimber.SeTransversePos(RobotContainer.getInstance().subClimber.getTransverseRetractPos());
+        RobotContainer.getInstance().subClimber.SetTransversePos(RobotContainer.getInstance().subClimber.getTransverseRetractPos());
 
     }
 
