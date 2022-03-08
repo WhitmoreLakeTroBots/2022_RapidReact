@@ -96,6 +96,11 @@ public class Constants {
             limelight_low;
 
         }
+        // camera pipeline constants
+        // High cam constants
+        public static final int UpperHubShootingPipe = 0;
+        public static final int LowerBlueCargoPipe = 0;
+        public static final int LowerRedCargoPipe = 1;
     }
 
     public static final class robotPysicalProperties {
