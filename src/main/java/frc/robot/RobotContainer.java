@@ -316,7 +316,7 @@ public class RobotContainer {
     SmartDashboard.putNumber("launcher Power",
     subLauncher.CanSpark_launcher.get());
 
-    SmartDashboard.putNumber(("Transverse Pos"), subClimber.getTransverseCurPos());
+   // SmartDashboard.putNumber(("Transverse Pos"), subClimber.getTransverseCurPos());
     
     
     //update Camera tab
