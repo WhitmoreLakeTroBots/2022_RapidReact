@@ -218,7 +218,7 @@ public class RobotContainer {
     Xbox.start.whenPressed(new AModeClimb());
     // Xbox.start.whenPressed(new CmdClimbEnable());
 
-    Xbox.rb.whenPressed(new CmdIndexerLaunch());
+    Xbox.rb.whenPressed(new CmdIndexerLaunchv2());
     Xbox.rt.whenPressed(new CmdIndexerLaunch());
 
     Xbox.rightStick.whenPressed(new AModeEmStop());
