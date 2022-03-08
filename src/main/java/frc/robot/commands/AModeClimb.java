@@ -11,6 +11,7 @@ public class AModeClimb extends ParallelCommandGroup {
 
         //set retractor conditon
         addCommands(new CmdMoveExtender(0));
+        addCommands(new CmdIntakeModeSet(true));
         
         //set indexer condition
         addCommands(new CmdIndexerStop());

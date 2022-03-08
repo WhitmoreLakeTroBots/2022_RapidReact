@@ -18,6 +18,7 @@ import frc.robot.Constants.*;
 import frc.robot.hardware.WL_Spark;
 
 import java.lang.annotation.Target;
+import java.util.concurrent.BrokenBarrierException;
 
 import com.revrobotics.SparkMaxPIDController;
 import frc.robot.PID;
@@ -35,6 +36,7 @@ public class SubIntake extends SubsystemBase {
     // *****Add Constants here.....
     // need a doube for rollerPower
     private double RollerSpeed = 1.0;
+    private boolean bRollerClimb = false;
     // need double maxPostion set to max value
     private float MaxPostion = 75;
     // need double Tolerance
@@ -123,6 +125,14 @@ CanSpark_Retractor.burnFlash();
         CanSpark_Roller.set(0);
     }
 
+    public void climbMode(){
+        bRollerClimb = true;
+    }
+
+    public void driveMode(){
+        bRollerClimb = false;
+    }
+
     private void gotoPositon() {
         // if current position is less than targetPostion
         if (CommonLogic.isInRange(CanSpark_Retractor.getPosition(), TargetPosition, Tolerance)) {
@@ -169,12 +179,16 @@ CanSpark_Retractor.burnFlash();
     }
 
     private void autoRoller() {
+        if(!bRollerClimb){
+        
         double currentPosition = RobotContainer.getInstance().subIntake.GetRetractorPosition();
         if (currentPosition > AutoStartRollerPos) {
             RobotContainer.getInstance().subIntake.startRoller();
         } else if (currentPosition <= AutoStartRollerPos) {
             RobotContainer.getInstance().subIntake.stopRoller();
         }
+        
+    }
 
     }
 

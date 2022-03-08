@@ -11,6 +11,7 @@ public class AModeIntake extends ParallelCommandGroup {
 
         //set retractor conditon
         addCommands(new CmdMoveExtender());
+        addCommands(new CmdIntakeModeSet(false));
         
         //set indexer condition
         addCommands(new CmdIndexerStartCollecting());

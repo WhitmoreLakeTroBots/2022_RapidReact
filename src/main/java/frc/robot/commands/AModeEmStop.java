@@ -11,6 +11,7 @@ public class AModeEmStop extends ParallelCommandGroup {
 
         //set retractor conditon
         addCommands(new CmdStopRoller());
+        addCommands(new CmdIntakeModeSet(false));
 
         //set indexer condition
         addCommands(new CmdIndexerStop());

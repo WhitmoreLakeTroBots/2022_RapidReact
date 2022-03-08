@@ -12,6 +12,7 @@ public class AModeStart extends ParallelCommandGroup {
 
         //set retractor conditon
         addCommands(new CmdMoveExtender(0));
+        addCommands(new CmdIntakeModeSet(false));
         
         //set indexer condition
         addCommands(new CmdIndexerStop());
