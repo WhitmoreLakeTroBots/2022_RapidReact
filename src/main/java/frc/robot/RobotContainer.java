@@ -124,6 +124,7 @@ public class RobotContainer {
     // SmartDashboard Buttons
 
     //camTab.addCamera("LimeLight", "limelight-high", "http://10.36.68.12:5800");
+    //camTab.add(title, video)
   
     //camTab.getComponents().remove(index);
 
@@ -336,7 +337,7 @@ public class RobotContainer {
     // subDriveTrain.getEncoderPosRight());
          // SmartDashboard.putNumber("PID", subLauncher.getPIDv());
     // SmartDashboard.putNumber("climbTarPos", subClimber.getClimbTarPos());
-    // SmartDashboard.putNumber("climbPos", subClimber.getClimbCurPos());
+     SmartDashboard.putNumber("climbPos", subClimber.getClimbCurPos());
     // SmartDashboard.putBoolean("climbEnable", subClimber.getbclimb());
 
   }
