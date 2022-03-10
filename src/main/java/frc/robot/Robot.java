@@ -24,6 +24,7 @@ import frc.robot.commands.CmdTeleDrive;
 import frc.robot.commands.CmdMoveExtender;
 import frc.robot.commands.CmdRemapController;
 
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -34,9 +35,10 @@ import frc.robot.commands.CmdRemapController;
 public class Robot extends TimedRobot {
 
     private Command m_autonomousCommand;
-
     private Command m_teleCommand;
 
+    private boolean bTargetSeen = false;
+    private boolean bTargetLock = false;
     private RobotContainer m_robotContainer;
 
     /**
@@ -128,7 +130,22 @@ public class Robot extends TimedRobot {
         //System.err.println("***TeleopPeriodic");
 
         
-        RobotContainer.getInstance().subDriveTrain.Drive(RobotContainer.getInstance().joyRc);
+        bTargetSeen = RobotContainer.getInstance().subLimelightHigh.hasTarget();
+        bTargetLock = false;
+        double cameraAngle = 0.0;
+        //Target is locked if we have tx=0 and tol=2 degrees
+        if (bTargetSeen){
+            cameraAngle = RobotContainer.getInstance().subLimelightHigh.getTX();
+            bTargetLock = CommonLogic.isInRange(cameraAngle, 0, 2);
+        }
+        double aimTrigger = 0;
+        if ((aimTrigger > .5) && bTargetSeen) {
+            RobotContainer.getInstance().subDriveTrain.aimLaunchger(cameraAngle);
+        }
+        else {
+            RobotContainer.getInstance().subDriveTrain.Drive(RobotContainer.getInstance().joyRc);
+        }
+        
         RobotContainer.getInstance().subClimber.climbMan(RobotContainer.getInstance().Xbox.leftStick.getY());
         RobotContainer.getInstance().subClimber.transverseMan(RobotContainer.getInstance().Xbox.rightStick.getX());
         RobotContainer.getInstance().updateSmartDash();
