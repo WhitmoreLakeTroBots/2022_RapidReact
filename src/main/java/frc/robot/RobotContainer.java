@@ -337,7 +337,7 @@ public class RobotContainer {
     // subDriveTrain.getEncoderPosRight());
          // SmartDashboard.putNumber("PID", subLauncher.getPIDv());
     // SmartDashboard.putNumber("climbTarPos", subClimber.getClimbTarPos());
-    // SmartDashboard.putNumber("climbPos", subClimber.getClimbCurPos());
+     SmartDashboard.putNumber("climbPos", subClimber.getClimbCurPos());
     // SmartDashboard.putBoolean("climbEnable", subClimber.getbclimb());
 
   }
