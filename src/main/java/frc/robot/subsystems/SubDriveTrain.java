@@ -105,6 +105,13 @@ public class SubDriveTrain extends SubsystemBase {
         CanSpark_driveLeft_2.follow(CanSpark_driveLeft_1);
         CanSpark_driveRight_2.follow(CanSpark_driveRight_1);
 
+        //https://codedocs.revrobotics.com/java/com/revrobotics/cansparkmax#setOpenLoopRampRate(double)
+        double ramprate = 0.40;
+        CanSpark_driveLeft_1.setOpenLoopRampRate(ramprate);
+        CanSpark_driveLeft_2.setOpenLoopRampRate(ramprate);
+        CanSpark_driveRight_1.setOpenLoopRampRate(ramprate);
+        CanSpark_driveRight_2.setOpenLoopRampRate(ramprate);
+
         // burn new settings in to survive a brownout
         CanSpark_driveLeft_1.burnFlash();
         CanSpark_driveLeft_2.burnFlash();
