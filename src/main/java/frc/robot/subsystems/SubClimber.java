@@ -25,15 +25,15 @@ public class SubClimber extends SubsystemBase {
 
     private WL_Spark CanSpark_Transverse;
 
-    private double Climb_MaxPos = 108;
+    private double Climb_MaxPos = 106;
     private double Climb_MinPos = 0;
 
     private double Climb_RetractPOS = 0;
-    private double Climb_ExtendPos = 108;
+    private double Climb_ExtendPos = 102;
 
     private double Climb_TargetPos = 0;
     private double Climb_Tol = 3;
-    private double Climb_power = 0.6;
+    private double Climb_power = 0.75;
     private boolean bClimb = false;
 
     private double Transverse_MaxPos = 92;
@@ -228,12 +228,12 @@ public void climbMan(double direction){
     if (direction >= 0.1){
      
      
-        SetClimbPos(getClimbTarPos() + (direction ));
-        //SetClimbPos(Climb_ExtendPos);
+        //SetClimbPos(getClimbTarPos() + (direction ));
+        SetClimbPos(Climb_ExtendPos);
     }else if(direction <= -0.1){
 
-        SetClimbPos(getClimbTarPos() + (direction ));   
-        //SetClimbPos(Climb_RetractPOS);
+        //SetClimbPos(getClimbTarPos() + (direction ));   
+        SetClimbPos(Climb_RetractPOS);
     }
 }
 
