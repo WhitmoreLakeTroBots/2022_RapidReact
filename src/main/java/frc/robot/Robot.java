@@ -37,8 +37,6 @@ public class Robot extends TimedRobot {
     private Command m_autonomousCommand;
     private Command m_teleCommand;
 
-    private boolean bTargetSeen = false;
-    private boolean bTargetLock = false;
     private RobotContainer m_robotContainer;
 
     /**
@@ -130,16 +128,16 @@ public class Robot extends TimedRobot {
         //System.err.println("***TeleopPeriodic");
 
         
-        bTargetSeen = RobotContainer.getInstance().subLimelightHigh.hasTarget();
-        bTargetLock = false;
+        RobotContainer.getInstance().bTargetSeen = RobotContainer.getInstance().subLimelightHigh.hasTarget();
+        RobotContainer.getInstance().bTargetLock = false;
         double cameraAngle = 0.0;
         //Target is locked if we have tx=0 and tol=2 degrees
-        if (bTargetSeen){
+        if (RobotContainer.getInstance().bTargetSeen){
             cameraAngle = RobotContainer.getInstance().subLimelightHigh.getTX();
-            bTargetLock = CommonLogic.isInRange(cameraAngle, 0, 2);
+            RobotContainer.getInstance().bTargetLock = CommonLogic.isInRange(cameraAngle, 0, 2);
         }
-        double aimTrigger = 0;
-        if ((aimTrigger > .5) && bTargetSeen) {
+        double aimTrigger = RobotContainer.getInstance().joyRc.getZ();
+        if ((aimTrigger > .5) && RobotContainer.getInstance().bTargetSeen) {
             RobotContainer.getInstance().subDriveTrain.aimLaunchger(cameraAngle);
         }
         else {
