@@ -10,7 +10,7 @@ public class AModeCarry extends ParallelCommandGroup {
         //addCommands(new CmdRobotInit());
 
         //set retractor conditon
-        addCommands(new CmdMoveExtender(22));
+        addCommands(new CmdMoveExtender(20));
         addCommands(new CmdIntakeModeSet(false));
         
         //set indexer condition
