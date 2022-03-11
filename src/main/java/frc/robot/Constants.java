@@ -106,7 +106,7 @@ public class Constants {
     public static final class robotPysicalProperties {
         public static final double theoreticalMaxSpeedInches = 168.0;
         public static final double robotTrackWidth = 24.0; 
-        public static final double minTurnSpeed = 0.04;
-        //public static final double minTurnSpeed = 0.120;
+        //public static final double minTurnSpeed = 0.04;
+        public static final double minTurnSpeed = 0.120;
     }
 }
