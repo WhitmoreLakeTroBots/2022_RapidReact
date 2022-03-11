@@ -28,12 +28,12 @@ public class SubClimber extends SubsystemBase {
     private double Climb_MaxPos = 106;
     private double Climb_MinPos = 0;
 
-    private double Climb_RetractPOS = 0;
+    private double Climb_RetractPOS = 5;
     private double Climb_ExtendPos = 102;
 
     private double Climb_TargetPos = 0;
     private double Climb_Tol = 3;
-    private double Climb_power = 0.75;
+    private double Climb_power = 0.9;
     private boolean bClimb = false;
 
     private double Transverse_MaxPos = 92;

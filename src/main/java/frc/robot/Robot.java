@@ -137,6 +137,7 @@ public class Robot extends TimedRobot {
             RobotContainer.getInstance().bTargetLock = CommonLogic.isInRange(cameraAngle, 0, 2);
         }
         double aimTrigger = RobotContainer.getInstance().joyRc.getZ();
+        //double aimTrigger = 0;
         if ((aimTrigger > .5) && RobotContainer.getInstance().bTargetSeen) {
             RobotContainer.getInstance().subDriveTrain.aimLaunchger(cameraAngle);
         }

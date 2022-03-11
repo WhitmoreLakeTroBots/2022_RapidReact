@@ -18,7 +18,7 @@ public class AutoGrp_2BallsV1 extends SequentialCommandGroup {
         // Start flywheel
 
         addCommands(new CmdIndexerStartCollecting());
-        addCommands(new CmdLauncherRun(2800));
+        addCommands(new CmdLauncherRun(2850));
         addCommands(new CmdMoveExtender());
         addCommands(new CmdAutoDriveStraght(60, 0, STRAIGHT_SPEED));
         addCommands(new CmdMoveExtender(16));

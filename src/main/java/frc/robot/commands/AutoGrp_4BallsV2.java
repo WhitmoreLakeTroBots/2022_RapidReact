@@ -13,8 +13,8 @@ import frc.robot.subsystems.SubIntake;
 
 
 public class AutoGrp_4BallsV2 extends SequentialCommandGroup {
-    public final double TURN_SPEED = 0.3;
-    public final double STRAIGHT_SPEED = 0.35;
+    public final double TURN_SPEED = 0.2;
+    public final double STRAIGHT_SPEED = 0.3;
     
     public AutoGrp_4BallsV2() {
         addCommands(new CmdRobotInit());
@@ -34,10 +34,10 @@ public class AutoGrp_4BallsV2 extends SequentialCommandGroup {
         
         //move and get two more balls
         addCommands(new CmdTurnByGyro2(16,-TURN_SPEED, TURN_SPEED));
-        addCommands(new CmdAutoDriveStraght(150, 16, .65));
+        addCommands(new CmdAutoDriveStraght(150, 16, STRAIGHT_SPEED));
         addCommands(new CmdTurnByGyro2(-29,-TURN_SPEED, TURN_SPEED));
         addCommands(new CmdMoveExtender());
-        addCommands(new CmdAutoDriveStraght(50, -29, STRAIGHT_SPEED));
+        addCommands(new CmdAutoDriveStraght(30, -29, STRAIGHT_SPEED));
         addCommands(new CmdLauncherRun(2900));
         addCommands(new CmdDelay(1.5));
         addCommands(new CmdMoveExtender(16));

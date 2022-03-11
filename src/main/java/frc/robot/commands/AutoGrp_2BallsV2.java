@@ -21,7 +21,7 @@ public class AutoGrp_2BallsV2 extends SequentialCommandGroup {
 
         
         addCommands(new CmdIndexerStartCollecting());
-        addCommands(new CmdLauncherRun(2800));
+        addCommands(new CmdLauncherRun(2850));
         addCommands(new CmdMoveExtender());
         addCommands(new CmdAutoDriveStraght(60, 0, STRAIGHT_SPEED));
         addCommands(new CmdMoveExtender(16));
