@@ -40,15 +40,15 @@ public class SubIntake extends SubsystemBase {
     // need double maxPostion set to max value
     private float MaxPostion = 75;
     // need double Tolerance
-    public  final double Tolerance = 5;
+    public  final double Tolerance = 3;
     // need double MinPosition set to 0
     private float MinPosition = 0;
     // Need double fullExtentedPos set to fully extended position (need to test)
-    private double FullExtendedPos = 75;
+    private double FullExtendedPos = 73;
     // need double retractedPos set to 250
     private double RetractedPos = 0;
     // need double retractorSpeed set 0.4
-    private double RetractorSpeed = 0.65;
+    private double RetractorSpeed = 0.80;
     // set targetPosition = RetractedPos // make sure this is a private
     private double TargetPosition = MinPosition;
     // bEnabled
