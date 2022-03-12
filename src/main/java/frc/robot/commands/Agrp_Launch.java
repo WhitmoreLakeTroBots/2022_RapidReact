@@ -8,9 +8,9 @@ public class Agrp_Launch extends SequentialCommandGroup {
 
         addCommands(new CmdTurnByLimeAim(cameras.limelight_high,0));
         addCommands(new CmdDelay(.25));
-        addCommands(new CmdIndexerLaunchv2());
-        addCommands(new CmdDelay(.25));
-        addCommands(new CmdIndexerLaunchv2());
+        addCommands(new CmdIndexerLaunch());
+        addCommands(new CmdIndexerLaunch());
+    
         addCommands(new CmdDelay(.25));
 
     }
