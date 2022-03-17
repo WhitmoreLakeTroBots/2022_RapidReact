@@ -13,17 +13,14 @@
 package frc.robot.subsystems;
 
 import frc.robot.CommonLogic;
-import frc.robot.RobotContainer;
 import frc.robot.Constants.*;
 import frc.robot.hardware.WL_Spark;
 import com.revrobotics.SparkMaxPIDController;
 import frc.robot.PID;
-//import frc.robot.commands.*;
-//import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class SubLauncher extends SubsystemBase {
-    public double kP, kI, kD, kIz, kFF,  maxRPM, minVEL, maxACC;
+    public double kP, kI, kD, kIz, kFF,  maxRPM, minVEL;
     public final double kMaxOutput = 1.0;
     public final double kMinOutput = -1.0;
     public PID PIDcalc;
@@ -54,9 +51,7 @@ public class SubLauncher extends SubsystemBase {
         kIz = 0;
         kFF = 0;
         
-        
-        maxACC = 3000;
-
+       
         // ****For full chassis uncomment
         CanSpark_launcher = new WL_Spark(CAN_ID_Constants.kCanID_Launcher_1, WL_Spark.MotorType.kBrushless);
         PIDcalc = new PID(kP, kI, kD);
@@ -146,5 +141,10 @@ public class SubLauncher extends SubsystemBase {
     private double calcpowrdiff(Double curentSpeed, double targetSpeed) {
         return PIDcalc.calcPID(targetSpeed, curentSpeed) / LAUNCHER_MAX_RPM;
 
+    }
+
+    // IS the launcher RPM in a small tight range of values
+    public boolean IsVelocityInTol(){
+        return CommonLogic.isInRange(CanSpark_launcher.getVelocity(), iTargetRPM, 15);
     }
 }
