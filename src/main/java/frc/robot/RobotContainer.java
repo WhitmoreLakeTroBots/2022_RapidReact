@@ -312,9 +312,14 @@ public class RobotContainer {
 
   public void updateSmartDash() {
     // get the RPM and Range from the camera 
-    
+    double cameraAngle =  50;
     if (subLimelightHigh.hasTarget()){
-      double cameraAngle = subLimelightHigh.getTY();
+      cameraAngle = subLimelightHigh.getTY();
+      SmartDashboard.putNumber("LimeRPM", LaunchValues.getRPM(cameraAngle));
+      SmartDashboard.putNumber("LimeDist", LaunchValues.getRange(cameraAngle));
+      subLauncher.setTargetRPM(LaunchValues.getRPM(cameraAngle));
+    }
+    else {
       SmartDashboard.putNumber("LimeRPM", LaunchValues.getRPM(cameraAngle));
       SmartDashboard.putNumber("LimeDist", LaunchValues.getRange(cameraAngle));
       subLauncher.setTargetRPM(LaunchValues.getRPM(cameraAngle));
