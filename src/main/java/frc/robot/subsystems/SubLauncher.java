@@ -26,7 +26,7 @@ public class SubLauncher extends SubsystemBase {
     public PID PIDcalc;
 
     private double iTargetRPM = 0;
-    
+    private double iActualRPM = 0;    
     public WL_Spark CanSpark_launcher;
     private double currRequestedPower = 0;  // current power requests
     private double currPowerStep = 0;  // how large of steps to take for ramping
@@ -72,6 +72,7 @@ public class SubLauncher extends SubsystemBase {
     public void periodic() {
         // This method will be called once per scheduler run
         // This method will be called once per scheduler run when in simulation
+        iActualRPM = CanSpark_launcher.getVelocity();
         switch (currLauncherMode) {
             case RAMPING:
                 // we are ramping to curret Speed
@@ -88,7 +89,7 @@ public class SubLauncher extends SubsystemBase {
                 break;
             case RUNNING:
                 // we are running under PID Control
-                PIDv = calcpowrdiff(CanSpark_launcher.getVelocity(), iTargetRPM);
+                PIDv = calcpowrdiff(iActualRPM, iTargetRPM);
                 setpower(CommonLogic.CapMotorPower(PIDv + currRequestedPower, kMinOutput, kMaxOutput));
                 break;
             case STOPPED:
@@ -115,6 +116,15 @@ public class SubLauncher extends SubsystemBase {
         currLauncherMode = LauncherModes.RAMPING;
         currPowerStep = (currRequestedPower - CanSpark_launcher.get()) / RAMP_STEPS;
     }
+
+    public double getTargetRPM (){
+        return iTargetRPM;
+    }
+
+    public double getActualRPM (){
+        return iActualRPM;
+    }
+
 
     private void setpower(double power) {
         CanSpark_launcher.set(power);
@@ -145,6 +155,6 @@ public class SubLauncher extends SubsystemBase {
 
     // IS the launcher RPM in a small tight range of values
     public boolean IsVelocityInTol(){
-        return CommonLogic.isInRange(CanSpark_launcher.getVelocity(), iTargetRPM, 15);
+        return CommonLogic.isInRange(iActualRPM, iTargetRPM, 15);
     }
 }

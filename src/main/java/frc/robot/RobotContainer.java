@@ -44,6 +44,7 @@ import frc.robot.BillController;
 import frc.robot.Constants.ControllerConstants.RobotMode;
 import frc.robot.Constants.limelightConstants.cameras;
 import frc.robot.Constants;
+import frc.robot.LaunchValues;
 import frc.robot.BillController.HAND;
 import frc.robot.subsystems.SubClimber;
 import frc.robot.subsystems.SubDriveTrain;
@@ -154,6 +155,8 @@ public class RobotContainer {
     SmartDashboard.setDefaultBoolean("TargetSeen", false);
     SmartDashboard.setDefaultBoolean("TargetLock", false);
     SmartDashboard.setDefaultBoolean("LauncherVelocity",false);
+    SmartDashboard.setDefaultNumber("LimeRPM",0.0);
+    SmartDashboard.setDefaultNumber("LimeDist", 0.0);
 
     SmartDashboard.putData("CamHigh Driver",new LChCamPipline(cameras.limelight_high, 0, SubLimelight.CAM_MODE.DRIVERSTATION_FEEDBACK));
     SmartDashboard.putData("CamHigh Target",new LChCamPipline(cameras.limelight_high, 0, SubLimelight.CAM_MODE.VISION_PROCESSING));
@@ -308,10 +311,20 @@ public class RobotContainer {
   }
 
   public void updateSmartDash() {
+    // get the RPM and Range from the camera 
+    
+    if (subLimelightHigh.hasTarget()){
+      double cameraAngle = subLimelightHigh.getTY();
+      SmartDashboard.putNumber("LimeRPM", LaunchValues.getRPM(cameraAngle));
+      SmartDashboard.putNumber("LimeDist", LaunchValues.getRange(cameraAngle));
+      subLauncher.setTargetRPM(LaunchValues.getRPM(cameraAngle));
+    }
     SmartDashboard.putBoolean("TargetSeen", bTargetSeen);
     SmartDashboard.putBoolean("TargetLock", bTargetLock);
     bLauncherVelocityInTol = subLauncher.IsVelocityInTol();
     SmartDashboard.putBoolean("LauncherVelocity", bLauncherVelocityInTol);
+
+
 
     //Target Locked to crosshair
     if (bTargetLock ) {
