@@ -79,10 +79,14 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void disabledInit() {
+        RobotContainer.getInstance().subLauncher.stop();
+        RobotContainer.getInstance().subDriveTrain.stop();
+        //RobotContainer.getInstance().subIndexer.FeederStop();
     }
 
     @Override
     public void disabledPeriodic() {
+        
     }
 
     /**

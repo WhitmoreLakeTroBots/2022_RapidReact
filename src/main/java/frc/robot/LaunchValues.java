@@ -42,7 +42,7 @@ public class LaunchValues {
         return (LaunchCodes[lcv][1]);
     }
 
-    public static int getRange(double cameraAngle){
+    public static int getRange(double cameraAngle) {
         // retruns the number of feet we are out from center of hub
         int lcv = 0;
         for (lcv = 0; lcv < LaunchCodes.length - 1; lcv++) {
@@ -50,8 +50,8 @@ public class LaunchValues {
                 break;
             }
         }
-        
-        return (lcv +5);
+
+        return (lcv + 5);
     }
 
     public static void testLaunchValues() {
@@ -63,8 +63,7 @@ public class LaunchValues {
         }
     }
 
-
-    public static void testRange (){
+    public static void testRange() {
         int lcv = 0;
         int range = 0;
         for (lcv = 40; lcv > -39; lcv--) {
@@ -72,7 +71,6 @@ public class LaunchValues {
             System.out.println(lcv + "\t:" + range);
         }
     }
-
 
     public static void main(String[] arg) {
 
