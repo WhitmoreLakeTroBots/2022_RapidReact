@@ -72,12 +72,15 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void disabledInit() {
+
+        // stop things so they do not take off again when enabled next time
         RobotContainer.getInstance().subLauncher.AutoRPM_set(false);
         RobotContainer.getInstance().subLauncher.stop();
         RobotContainer.getInstance().subDriveTrain.SetBrakeMode(WL_Spark.IdleMode.kBrake);
         RobotContainer.getInstance().subDriveTrain.stop();
-
-        //RobotContainer.getInstance().subIndexer.FeederStop();
+        RobotContainer.getInstance().subIndexer.stopTrack();
+        RobotContainer.getInstance().subIndexer.FeederStop();
+        RobotContainer.getInstance().subIntake.stopRoller();
     }
 
     @Override
