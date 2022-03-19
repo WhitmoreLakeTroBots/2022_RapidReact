@@ -45,7 +45,7 @@ public class SubClimber extends SubsystemBase {
 
     private double Transverse_TargetPos = 0;
     private double Transverse_Tol = 3;
-    private double Transverse_power = 0.4;
+    private double Transverse_power = 0.7;
     private boolean bTransverse = false;
 
     public SubClimber() {
