@@ -22,6 +22,8 @@ import java.lang.System.Logger.Level;
 import java.time.Duration;
 import java.util.concurrent.locks.Condition;
 
+import javax.swing.text.AbstractDocument.LeafElement;
+
 import com.revrobotics.SparkMaxPIDController;
 import frc.robot.PID;
 import frc.robot.Robot;
@@ -54,6 +56,14 @@ public class WL_SubVibration extends SubsystemBase {
     private static double MediumDuration = 0.4;
     private static double LongDuration = 0.6;
 
+    private double StartTime ;
+
+    private double lEndTime;
+    private double rEndTime;
+    
+    private double lIntensity;
+    private double rIntensity;
+
     private VibType vType;
 
     public WL_SubVibration() {
@@ -68,6 +78,9 @@ public class WL_SubVibration extends SubsystemBase {
         // This method will be called once per scheduler run
 
         RunVibration();
+
+        ExecVibLeft();
+        ExecVibRight();
 
     }
 
@@ -85,20 +98,35 @@ public class WL_SubVibration extends SubsystemBase {
 
     }
 
-    private void ExecVib(BillController.HAND VHand, double Intensity, double EndTime) {
+    private void ExecVibLeft(){
+        if (RobotMath.getTime() <= lEndTime) {
 
-        if (RobotMath.getTime() <= EndTime) {
-
-            RobotContainer.getInstance().Xbox.setRumble(VHand, Intensity);
+            RobotContainer.getInstance().Xbox.setRumble(HAND.LEFT, lIntensity);
+        }
+        else {
+            RobotContainer.getInstance().Xbox.setRumble(HAND.LEFT, 0.0);
         }
     }
 
+    private void ExecVibRight(){
+        if (RobotMath.getTime() <= rEndTime) {
+
+            RobotContainer.getInstance().Xbox.setRumble(HAND.RIGHT, rIntensity);
+        }
+        else{
+            RobotContainer.getInstance().Xbox.setRumble(HAND.RIGHT, 0.0);
+        }
+
+    }
+
+    
     public double CalcEndtime(double ActDuration) {
-        return RobotMath.getTime() + ActDuration;
+        return StartTime + ActDuration;
     }
 
     public void SetVib(VibType VMode) {
         vType = VMode;
+        StartTime = RobotMath.getTime();
     }
 
     private void RunVibration() {
@@ -107,39 +135,53 @@ public class WL_SubVibration extends SubsystemBase {
 
             case STOP:
                 // StopVib
-                ExecVib(HAND.LEFT, 0.0, CalcEndtime(0));
-                ExecVib(HAND.RIGHT, 0.0, CalcEndtime(0));
+                //ExecVib(HAND.LEFT, 0.0, CalcEndtime(0));
+                lIntensity = 0.0;
+                lEndTime = CalcEndtime(0.0);
+                //ExecVib(HAND.RIGHT, 0.0, CalcEndtime(0));
+                rIntensity = 0.0;
+                rEndTime = CalcEndtime(0.0);
                 break;
 
             case TargetSeen:
                 // vib target sean
                 // lowIntensity, LongDuration LeftSide;
-                ExecVib(HAND.LEFT, lowIntensity, CalcEndtime(LongDuration));
+                //ExecVib(HAND.LEFT, lowIntensity, CalcEndtime(LongDuration));
+                lIntensity = lowIntensity;
+                lEndTime = CalcEndtime(LongDuration);
                 break;
 
             case TargetLock:
                 // vib target lock
                 // medIntensity, MedDuration RightSide
-                ExecVib(HAND.RIGHT, MedIntensity, CalcEndtime(MediumDuration));
+                //ExecVib(HAND.RIGHT, MedIntensity, CalcEndtime(MediumDuration));
+                rIntensity = MedIntensity;
+                rEndTime = CalcEndtime(MediumDuration);
                 break;
 
             case LauncherAutoSpeed:
                 // vib speed audo
                 // HighIntensity, ShortDuration, LeftSide
-                ExecVib(HAND.LEFT, HighIntensity, CalcEndtime(ShortDuration));
+                //ExecVib(HAND.LEFT, HighIntensity, CalcEndtime(ShortDuration));
+                lIntensity = HighIntensity;
+                lEndTime = CalcEndtime(ShortDuration);
                 break;
 
             case LauncherFixedSpeed:
                 // vib speed fixed
                 // MedIntensity, MedDuration, LeftSide
-                ExecVib(HAND.LEFT, MedIntensity, CalcEndtime(MediumDuration));
+                //ExecVib(HAND.LEFT, MedIntensity, CalcEndtime(MediumDuration));
+                lIntensity = MedIntensity;
+                lEndTime = CalcEndtime(MediumDuration);
                 break;
 
             case LauncherSpeedSet:
 
                 // vib speed set
                 // MedIntensity, MedDuration, RightSide
-                ExecVib(HAND.RIGHT, MedIntensity, CalcEndtime(MediumDuration));
+                //ExecVib(HAND.RIGHT, MedIntensity, CalcEndtime(MediumDuration));
+                rIntensity = MedIntensity;
+                rEndTime =CalcEndtime(MediumDuration);
                 break;
 
         }
