@@ -28,12 +28,13 @@ public class SubClimber extends SubsystemBase {
     private double Climb_MaxPos = 106;
     private double Climb_MinPos = 0;
 
-    private double Climb_RetractPOS = 5;
+    private double Climb_RetractPOS = 0;
     private double Climb_ExtendPos = 102;
 
     private double Climb_TargetPos = 0;
     private double Climb_Tol = 3;
-    private double Climb_power = 0.9;
+    private double Climb_hold_power = .03;
+    private double Climb_power = 0.4;
     private boolean bClimb = false;
 
     private double Transverse_MaxPos = 92;
@@ -47,9 +48,6 @@ public class SubClimber extends SubsystemBase {
     private double Transverse_power = 0.4;
     private boolean bTransverse = false;
 
-    /**
-    *
-    */
     public SubClimber() {
 
         // for full chassis uncomment other motors
@@ -75,7 +73,7 @@ public class SubClimber extends SubsystemBase {
 
         CanSpark_Transverse.setIdleMode(WL_Spark.IdleMode.kBrake);
 
-        //CanSpark_Climber_2.follow(CanSpark_Climber_1);
+        // CanSpark_Climber_2.follow(CanSpark_Climber_1);
 
         // burn new settings in to survive a brownout
         CanSpark_Climber_1.burnFlash();
@@ -141,14 +139,13 @@ public class SubClimber extends SubsystemBase {
         return Climb_RetractPOS;
     }
 
-    public double getClimbTolPos(){
+    public double getClimbTolPos() {
         return Climb_Tol;
     }
 
-public boolean getbclimb(){
- return bClimb;   
-}
-
+    public boolean getbclimb() {
+        return bClimb;
+    }
 
     public double getTransverseCurPos() {
         return CanSpark_Transverse.getPosition();
@@ -166,17 +163,17 @@ public boolean getbclimb(){
         return Transverse_RetractPOS;
     }
 
-    public double getTransverseTolPos(){
+    public double getTransverseTolPos() {
         return Transverse_Tol;
     }
 
-    public void SetClimbPos(double newTargetPosition){
-        Climb_TargetPos = CommonLogic.CapMotorPower(newTargetPosition, Climb_MinPos, Climb_MaxPos );
+    public void SetClimbPos(double newTargetPosition) {
+        Climb_TargetPos = CommonLogic.CapMotorPower(newTargetPosition, Climb_MinPos, Climb_MaxPos);
 
     }
 
-    public void SetTransversePos(double newTargetPosition){
-        Transverse_TargetPos = CommonLogic.CapMotorPower(newTargetPosition, Transverse_MinPos, Transverse_MaxPos );
+    public void SetTransversePos(double newTargetPosition) {
+        Transverse_TargetPos = CommonLogic.CapMotorPower(newTargetPosition, Transverse_MinPos, Transverse_MaxPos);
 
     }
 
@@ -184,8 +181,8 @@ public boolean getbclimb(){
         // if current position is less than targetPostion
         if (CommonLogic.isInRange(CanSpark_Climber_1.getPosition(), Climb_TargetPos, Climb_Tol)) {
             // than stop
-            CanSpark_Climber_1.set(0);
-            CanSpark_Climber_2.set(0);
+            CanSpark_Climber_1.set(Climb_hold_power);
+            CanSpark_Climber_2.set(Climb_hold_power);
         }
 
         // else if current positon is greater than target postion
@@ -222,32 +219,33 @@ public boolean getbclimb(){
         }
     }
 
-public void climbMan(double direction){
-    
-    
-    if (direction >= 0.1){
-     
-     
-        //SetClimbPos(getClimbTarPos() + (direction ));
-        SetClimbPos(Climb_ExtendPos);
-    }else if(direction <= -0.1){
+    public void climbMan(double direction) {
 
-        //SetClimbPos(getClimbTarPos() + (direction ));   
-        SetClimbPos(Climb_RetractPOS);
+        if (direction >= 0.1) {
+
+            // SetClimbPos(getClimbTarPos() + (direction ));
+            SetClimbPos(Climb_ExtendPos);
+        } else if (direction <= -0.1) {
+
+            // SetClimbPos(getClimbTarPos() + (direction ));
+            SetClimbPos(Climb_RetractPOS);
+        }
     }
-}
 
-public void transverseMan(double direction){
-   System.err.print("trans " + Transverse_TargetPos); 
-    if (direction >= 0.1){
-     
-     
-        SetTransversePos(getTransverseTarPos() + (direction));
-    }else if(direction <= -0.1){
+    public void transverseMan(double direction) {
+        System.err.print("trans " + Transverse_TargetPos);
+        if (direction >= 0.1) {
 
-        SetTransversePos(getTransverseTarPos() + (direction )); 
+            SetTransversePos(getTransverseTarPos() + (direction));
+        } else if (direction <= -0.1) {
+
+            SetTransversePos(getTransverseTarPos() + (direction));
+        }
+
     }
-}
 
-
+    public void zeroHoldPower() {
+        CanSpark_Climber_1.set(0);
+        CanSpark_Climber_2.set(0);
+    }
 }

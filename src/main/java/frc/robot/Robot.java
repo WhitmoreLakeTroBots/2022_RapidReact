@@ -16,7 +16,8 @@ import frc.robot.commands.CmdTeleDrive;
 import frc.robot.commands.CmdMoveExtender;
 import frc.robot.commands.CmdRemapController;
 import frc.robot.hardware.WL_Spark;
-
+import frc.robot.subsystems.SubLimelight;
+import frc.robot.subsystems.SubLimelight.LED_MODE;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -81,6 +82,9 @@ public class Robot extends TimedRobot {
         RobotContainer.getInstance().subIndexer.stopTrack();
         RobotContainer.getInstance().subIndexer.FeederStop();
         RobotContainer.getInstance().subIntake.stopRoller();
+        RobotContainer.getInstance().subClimber.zeroHoldPower();
+        RobotContainer.getInstance().subLimelightHigh.setLEDMode(LED_MODE.OFF);
+        RobotContainer.getInstance().subLimelightLow.setLEDMode(LED_MODE.OFF);        
     }
 
     @Override
@@ -96,7 +100,7 @@ public class Robot extends TimedRobot {
     public void autonomousInit() {
         m_autonomousCommand = m_robotContainer.getAutonomousCommand();
         m_teleCommand = m_robotContainer.getteleCommand();
-
+        RobotContainer.getInstance().subLimelightHigh.setLEDMode(LED_MODE.ON);
         // schedule the autonomous command (example)
         if (m_autonomousCommand != null) {
             m_autonomousCommand.schedule();
@@ -120,6 +124,8 @@ public class Robot extends TimedRobot {
         if (m_autonomousCommand != null) {
             m_autonomousCommand.cancel();
         }
+        RobotContainer.getInstance().subLimelightHigh.setLEDMode(LED_MODE.ON);
+        
     }
 
     /**

@@ -11,6 +11,7 @@ import frc.robot.CommonLogic;
 import frc.robot.Constants;
 import frc.robot.subsystems.SubLimelight;
 import frc.robot.subsystems.SubLimelight.CAM_MODE;
+import frc.robot.subsystems.SubLimelight.LED_MODE;
 import frc.robot.Constants.limelightConstants.cameras;
 
 public class CmdTurnByLimeAim extends CommandBase {
@@ -58,6 +59,7 @@ public class CmdTurnByLimeAim extends CommandBase {
 
         if (camera2lookthrough == cameras.limelight_high) {
             camera = RobotContainer.getInstance().subLimelightHigh;
+            camera.setLEDMode(LED_MODE.ON);
         } else if (camera2lookthrough == cameras.limelight_low) {
             camera = RobotContainer.getInstance().subLimelightLow;
         }
