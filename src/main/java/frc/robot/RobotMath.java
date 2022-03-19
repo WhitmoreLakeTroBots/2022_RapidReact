@@ -2,7 +2,8 @@ package frc.robot;
 
 
 public class RobotMath {
-	public static double getTime() {
+    //returns time in whole seconds
+	public static double getTime() {     
 		return (System.nanoTime() / Math.pow(10, 9));
 	}
 	public static double headingDelta(double currentHeading, double targetHeading) {
