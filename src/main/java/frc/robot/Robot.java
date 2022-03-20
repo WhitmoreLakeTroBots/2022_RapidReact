@@ -84,12 +84,12 @@ public class Robot extends TimedRobot {
         RobotContainer.getInstance().subIntake.stopRoller();
         RobotContainer.getInstance().subClimber.zeroHoldPower();
         RobotContainer.getInstance().subLimelightHigh.setLEDMode(LED_MODE.OFF);
-        RobotContainer.getInstance().subLimelightLow.setLEDMode(LED_MODE.OFF);        
+        RobotContainer.getInstance().subLimelightLow.setLEDMode(LED_MODE.OFF);
     }
 
     @Override
     public void disabledPeriodic() {
-        
+
     }
 
     /**
@@ -125,7 +125,7 @@ public class Robot extends TimedRobot {
             m_autonomousCommand.cancel();
         }
         RobotContainer.getInstance().subLimelightHigh.setLEDMode(LED_MODE.ON);
-        
+
     }
 
     /**
@@ -133,27 +133,26 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void teleopPeriodic() {
+        // System.err.println("***TeleopPeriodic");
 
-        //System.err.println("***TeleopPeriodic");
-
-        
         RobotContainer.getInstance().bTargetSeen = RobotContainer.getInstance().subLimelightHigh.hasTarget();
-        RobotContainer.getInstance().bTargetLock = false;
+
         double cameraAngle = 0.0;
-        //Target is locked if we have tx=0 and tol=2 degrees
-        if (RobotContainer.getInstance().bTargetSeen){
+        // Target is locked if we have tx=0 and tol=2 degrees
+        if (RobotContainer.getInstance().bTargetSeen) {
             cameraAngle = RobotContainer.getInstance().subLimelightHigh.getTX();
             RobotContainer.getInstance().bTargetLock = CommonLogic.isInRange(cameraAngle, 0, 2);
+        } else {
+            RobotContainer.getInstance().bTargetLock = false;
         }
         double aimTrigger = RobotContainer.getInstance().joyRc.getZ();
-        //double aimTrigger = 0;
+
         if ((aimTrigger > .5) && RobotContainer.getInstance().bTargetSeen) {
             RobotContainer.getInstance().subDriveTrain.aimLaunchger(cameraAngle);
-        }
-        else {
+        } else {
             RobotContainer.getInstance().subDriveTrain.Drive(RobotContainer.getInstance().joyRc);
         }
-        
+
         RobotContainer.getInstance().subClimber.climbMan(RobotContainer.getInstance().Xbox.leftStick.getY());
         RobotContainer.getInstance().subClimber.transverseMan(RobotContainer.getInstance().Xbox.rightStick.getX());
         RobotContainer.getInstance().updateSmartDash();
