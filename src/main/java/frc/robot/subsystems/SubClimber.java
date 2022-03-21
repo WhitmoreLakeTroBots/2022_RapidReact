@@ -35,12 +35,14 @@ public class SubClimber extends SubsystemBase {
 
     private double Climb_TargetPos = 0;
     private double Climb_Tol = 3;
-    private double Climb_hold_power = .03;
+    private double Climb_hold_power = -.03;
     private double Climb_power = 0.4;
     private boolean bClimb = false;
 
     private double Transverse_MaxPos = 133;
-    private double Transverse_MinPos = -115;
+    private double Transverse_MinPos = -119;
+    private double Transverse_Grab = -94;
+    private double Transverse_Release = 118;
 
     private double Transverse_RetractPOS = 0;
     private double Transverse_ExtendPos = 118;
@@ -232,6 +234,19 @@ public class SubClimber extends SubsystemBase {
 
             // SetClimbPos(getClimbTarPos() + (direction ));
             SetClimbPos(Climb_RetractPOS);
+        }
+    }
+
+    public void climbMan2(double direction) {
+
+        if (direction >= 0.1) {
+
+            // SetClimbPos(getClimbTarPos() + (direction ));
+            SetClimbPos(Climb_Grab);
+        } else if (direction <= -0.1) {
+
+            // SetClimbPos(getClimbTarPos() + (direction ));
+            SetClimbPos(Climb_Release);
         }
     }
 

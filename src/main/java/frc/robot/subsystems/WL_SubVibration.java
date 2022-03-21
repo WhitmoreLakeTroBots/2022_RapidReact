@@ -77,10 +77,10 @@ public class WL_SubVibration extends SubsystemBase {
     public void periodic() {
         // This method will be called once per scheduler run
 
-        RunVibration();
+        //RunVibration();
 
-        ExecVibLeft();
-        ExecVibRight();
+        //ExecVibLeft();
+        //ExecVibRight();
 
     }
 

@@ -326,11 +326,11 @@ public class RobotContainer {
     //Target Locked to crosshair
     if (bTargetLock ) {
       //Xbox.setRumble(HAND.LEFT, 1.0); 
-      wl_SubVibration.SetVib(VibType.TargetLock);
+      //wl_SubVibration.SetVib(VibType.TargetLock);
     }
     else{
       //Xbox.setRumble(HAND.LEFT,0);
-      wl_SubVibration.SetVib(VibType.STOP);
+      //wl_SubVibration.SetVib(VibType.STOP);
     }
 
     // Launcher is at velocity
