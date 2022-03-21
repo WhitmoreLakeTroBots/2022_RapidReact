@@ -18,7 +18,7 @@ import frc.robot.commands.CmdRemapController;
 import frc.robot.hardware.WL_Spark;
 import frc.robot.subsystems.SubLimelight;
 import frc.robot.subsystems.SubLimelight.LED_MODE;
-
+import edu.wpi.first.util.net.PortForwarder;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -44,6 +44,22 @@ public class Robot extends TimedRobot {
         // autonomous chooser on the dashboard.
         m_robotContainer = RobotContainer.getInstance();
         HAL.report(tResourceType.kResourceType_Framework, tInstances.kFramework_RobotBuilder);
+
+        // Make sure you only configure port forwarding once in your robot code.
+        // Do not place these function calls in any periodic functions
+        PortForwarder.add(5800, "10.36.68.11", 5800);
+        PortForwarder.add(5801, "10.36.68.11", 5801);
+        PortForwarder.add(5802, "10.36.68.11", 5802);
+        PortForwarder.add(5803, "10.36.68.11", 5803);
+        PortForwarder.add(5804, "10.36.68.11", 5804);
+        PortForwarder.add(5805, "10.36.68.11", 5805);
+
+        PortForwarder.add(5800, "10.36.68.12", 5800);
+        PortForwarder.add(5801, "10.36.68.12", 5801);
+        PortForwarder.add(5802, "10.36.68.12", 5802);
+        PortForwarder.add(5803, "10.36.68.12", 5803);
+        PortForwarder.add(5804, "10.36.68.12", 5804);
+        PortForwarder.add(5805, "10.36.68.12", 5805);
     }
 
     /**
