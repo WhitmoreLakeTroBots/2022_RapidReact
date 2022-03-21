@@ -10,7 +10,7 @@ import frc.robot.Constants;
 import frc.robot.subsystems.SubLimelight;
 //import frc.robot.subsystems.SubLimelight.CAM_MODE;
 import frc.robot.Constants.limelightConstants.cameras;
-
+import frc.robot.subsystems.SubLimelight.LED_MODE;
 public class CmdTurnByLime extends CommandBase {
 
     // private final SubDriveTrain subDriveTrain;
@@ -62,6 +62,7 @@ public class CmdTurnByLime extends CommandBase {
 
         if (camera2lookthrough == cameras.limelight_high) {
             camera = RobotContainer.getInstance().subLimelightHigh;
+            camera.setLEDMode(LED_MODE.ON);
         } else if (camera2lookthrough == cameras.limelight_low) {
             camera = RobotContainer.getInstance().subLimelightLow;
         }

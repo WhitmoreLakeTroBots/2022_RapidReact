@@ -16,8 +16,9 @@ import frc.robot.commands.CmdTeleDrive;
 import frc.robot.commands.CmdMoveExtender;
 import frc.robot.commands.CmdRemapController;
 import frc.robot.hardware.WL_Spark;
-
-
+import frc.robot.subsystems.SubLimelight;
+import frc.robot.subsystems.SubLimelight.LED_MODE;
+import edu.wpi.first.util.net.PortForwarder;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -43,6 +44,22 @@ public class Robot extends TimedRobot {
         // autonomous chooser on the dashboard.
         m_robotContainer = RobotContainer.getInstance();
         HAL.report(tResourceType.kResourceType_Framework, tInstances.kFramework_RobotBuilder);
+
+        // Make sure you only configure port forwarding once in your robot code.
+        // Do not place these function calls in any periodic functions
+        PortForwarder.add(5800, "10.36.68.11", 5800);
+        PortForwarder.add(5801, "10.36.68.11", 5801);
+        PortForwarder.add(5802, "10.36.68.11", 5802);
+        PortForwarder.add(5803, "10.36.68.11", 5803);
+        PortForwarder.add(5804, "10.36.68.11", 5804);
+        PortForwarder.add(5805, "10.36.68.11", 5805);
+
+        PortForwarder.add(5800, "10.36.68.12", 5800);
+        PortForwarder.add(5801, "10.36.68.12", 5801);
+        PortForwarder.add(5802, "10.36.68.12", 5802);
+        PortForwarder.add(5803, "10.36.68.12", 5803);
+        PortForwarder.add(5804, "10.36.68.12", 5804);
+        PortForwarder.add(5805, "10.36.68.12", 5805);
     }
 
     /**
@@ -81,11 +98,14 @@ public class Robot extends TimedRobot {
         RobotContainer.getInstance().subIndexer.stopTrack();
         RobotContainer.getInstance().subIndexer.FeederStop();
         RobotContainer.getInstance().subIntake.stopRoller();
+        RobotContainer.getInstance().subClimber.zeroHoldPower();
+        RobotContainer.getInstance().subLimelightHigh.setLEDMode(LED_MODE.OFF);
+        RobotContainer.getInstance().subLimelightLow.setLEDMode(LED_MODE.OFF);
     }
 
     @Override
     public void disabledPeriodic() {
-        
+
     }
 
     /**
@@ -96,7 +116,7 @@ public class Robot extends TimedRobot {
     public void autonomousInit() {
         m_autonomousCommand = m_robotContainer.getAutonomousCommand();
         m_teleCommand = m_robotContainer.getteleCommand();
-
+        RobotContainer.getInstance().subLimelightHigh.setLEDMode(LED_MODE.ON);
         // schedule the autonomous command (example)
         if (m_autonomousCommand != null) {
             m_autonomousCommand.schedule();
@@ -120,6 +140,8 @@ public class Robot extends TimedRobot {
         if (m_autonomousCommand != null) {
             m_autonomousCommand.cancel();
         }
+        RobotContainer.getInstance().subLimelightHigh.setLEDMode(LED_MODE.ON);
+
     }
 
     /**
@@ -127,27 +149,26 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void teleopPeriodic() {
+        // System.err.println("***TeleopPeriodic");
 
-        //System.err.println("***TeleopPeriodic");
-
-        
         RobotContainer.getInstance().bTargetSeen = RobotContainer.getInstance().subLimelightHigh.hasTarget();
-        RobotContainer.getInstance().bTargetLock = false;
+
         double cameraAngle = 0.0;
-        //Target is locked if we have tx=0 and tol=2 degrees
-        if (RobotContainer.getInstance().bTargetSeen){
+        // Target is locked if we have tx=0 and tol=2 degrees
+        if (RobotContainer.getInstance().bTargetSeen) {
             cameraAngle = RobotContainer.getInstance().subLimelightHigh.getTX();
             RobotContainer.getInstance().bTargetLock = CommonLogic.isInRange(cameraAngle, 0, 2);
+        } else {
+            RobotContainer.getInstance().bTargetLock = false;
         }
         double aimTrigger = RobotContainer.getInstance().joyRc.getZ();
-        //double aimTrigger = 0;
+
         if ((aimTrigger > .5) && RobotContainer.getInstance().bTargetSeen) {
             RobotContainer.getInstance().subDriveTrain.aimLaunchger(cameraAngle);
-        }
-        else {
+        } else {
             RobotContainer.getInstance().subDriveTrain.Drive(RobotContainer.getInstance().joyRc);
         }
-        
+
         RobotContainer.getInstance().subClimber.climbMan(RobotContainer.getInstance().Xbox.leftStick.getY());
         RobotContainer.getInstance().subClimber.transverseMan(RobotContainer.getInstance().Xbox.rightStick.getX());
         RobotContainer.getInstance().updateSmartDash();
