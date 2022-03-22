@@ -15,7 +15,7 @@ public class SubLauncher extends SubsystemBase {
     private SubLimelight subLimeLight = null;
     private double iTargetRPM = 0;
     private double iActualRPM = 0;
-    private boolean bAutoRPMEnabled = false;
+    private boolean bAutoRPMEnabled = true;
     public WL_Spark CanSpark_launcher;
     private double currRequestedPower = 0.0; // current power requests
     private double currActualPower = 0.0; 
@@ -74,7 +74,7 @@ public class SubLauncher extends SubsystemBase {
             case RAMPING:
                 // we are ramping to curret Speed
                 // Are we within %5 ?
-                if (IsVelocityInTol(0.05)){
+                if (IsVelocityInTol(0.025)){
                     // if (CommonLogic.isInRange(currActualPower, currRequestedPower, STEP_RANGE)) {
                     // We are close to running speed go to pid control
                     setpower(currRequestedPower);
