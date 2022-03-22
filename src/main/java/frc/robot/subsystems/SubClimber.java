@@ -41,9 +41,9 @@ public class SubClimber extends SubsystemBase {
 
     private double Transverse_MaxPos = 133;
     private double Transverse_MinPos = -119;
+    
     private double Transverse_Grab = -94;
     private double Transverse_Release = 118;
-
     private double Transverse_RetractPOS = 0;
     private double Transverse_ExtendPos = 118;
 
@@ -148,6 +148,22 @@ public class SubClimber extends SubsystemBase {
         return Climb_Tol;
     }
 
+    public double getClimbGrabPos(){
+        return Climb_Grab;
+    }
+
+    public double getClimbReleasePos(){
+        return Climb_Release;
+    }
+
+    public double getTransverseGrabPos(){
+        return Transverse_Grab;
+    }
+
+    public double getTransverseReleasePos(){
+        return Transverse_Release;
+    }
+
     public boolean getbclimb() {
         return bClimb;
     }
@@ -167,6 +183,7 @@ public class SubClimber extends SubsystemBase {
     public double getTransverseRetractPos() {
         return Transverse_RetractPOS;
     }
+    
 
     public double getTransverseTolPos() {
         return Transverse_Tol;
