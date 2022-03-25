@@ -15,7 +15,7 @@ public class SubLauncher extends SubsystemBase {
     private SubLimelight subLimeLight = null;
     private double iTargetRPM = 0;
     private double iActualRPM = 0;
-    private boolean bAutoRPMEnabled = true;
+    private boolean bAutoRPMEnabled = false;
     public WL_Spark CanSpark_launcher;
     private double currRequestedPower = 0.0; // current power requests
     private double currActualPower = 0.0; 
