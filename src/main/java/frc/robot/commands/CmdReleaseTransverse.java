@@ -8,15 +8,14 @@ import frc.robot.Robot;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.SubClimber;
 
-public class CmdSetClimb extends CommandBase {
+public class CmdReleaseTransverse extends CommandBase {
 
     private boolean bdone = false;
 
-    private double Pos = 0;
 
-    public CmdSetClimb(double pos) {
+    public CmdReleaseTransverse() {
 
-Pos = pos;
+
         
 
 
@@ -37,8 +36,7 @@ Pos = pos;
         bdone = false;
         addRequirements(RobotContainer.getInstance().subClimber);
     //extend climb 
-        
-RobotContainer.getInstance().subClimber.SetClimbPos(Pos);
+        RobotContainer.getInstance().subClimber.SetTransversePos(RobotContainer.getInstance().subClimber.getTransverseReleasePos());
 
     }
 
@@ -48,7 +46,9 @@ RobotContainer.getInstance().subClimber.SetClimbPos(Pos);
     
         
 
-        
+        if (CommonLogic.isInRange(RobotContainer.getInstance().subClimber.getTransverseCurPos(), RobotContainer.getInstance().subClimber.getTransverseTarPos(), RobotContainer.getInstance().subClimber.getTransverseTolPos())) {
+            bdone = true;
+        }
 
     }
 

@@ -7,13 +7,19 @@ import frc.robot.subsystems.SubClimber;
 public class Agrp_Transverse extends SequentialCommandGroup {
     public Agrp_Transverse() {
 
-        addCommands(new CmdSetTravs(RobotContainer.getInstance().subClimber.getTransverseGrabPos()));
-        addCommands(new CmdSetClimb(RobotContainer.getInstance().subClimber.getClimbReleasePos()));
-        addCommands(new CmdSetTravs(RobotContainer.getInstance().subClimber.getTransverseReleasePos()));
-        addCommands(new CmdSetClimb(RobotContainer.getInstance().subClimber.getTransverseGrabPos()));
-        addCommands(new CmdSetClimb(RobotContainer.getInstance().subClimber.getClimbReleasePos()));
-        addCommands(new CmdSetTravs(-119));
-        addCommands(new CmdSetClimb(RobotContainer.getInstance().subClimber.getClimbRetractPos()));
-        
+        addCommands(new CmdGrabTransverse());
+        addCommands(new CmdDelay(1));
+        addCommands(new CmdReleaseClimb());
+        addCommands(new CmdDelay(1));
+        addCommands(new CmdReleaseTransverse());
+        addCommands(new CmdDelay(1));
+        addCommands(new CmdGrabClimb());
+        addCommands(new CmdDelay(1));
+        addCommands(new CmdPassClimb());
+        addCommands(new CmdDelay(1));
+        addCommands(new CmdBackTransverse());
+        addCommands(new CmdDelay(1));
+        addCommands(new CmdRetractClimb());
+
     }
 }
