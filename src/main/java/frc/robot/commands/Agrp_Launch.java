@@ -11,7 +11,7 @@ public class Agrp_Launch extends SequentialCommandGroup {
         addCommands(new CmdIndexerLaunch());
         addCommands(new CmdIndexerLaunch());
     
-        addCommands(new CmdDelay(.25));
+        
 
     }
 }

@@ -247,24 +247,37 @@ public class SubClimber extends SubsystemBase {
 
     public void climbMan(double direction) {
 
-        if (direction >= 0.1) {
+        if (direction >= 0.5) {
 
             // SetClimbPos(getClimbTarPos() + (direction ));
             SetClimbPos(Climb_ExtendPos);
-        } else if (direction <= -0.1) {
+        } else if (direction <= -0.5) {
 
             // SetClimbPos(getClimbTarPos() + (direction ));
             SetClimbPos(Climb_RetractPOS);
         }
     }
 
+    public void ClimbIntake(double direction) {
+
+        if (direction >= 0.5) {
+
+            // SetClimbPos(getClimbTarPos() + (direction ));
+            
+        } else if (direction <= -0.5) {
+
+            // SetClimbPos(getClimbTarPos() + (direction ));
+            
+        }
+    }
+
     public void climbMan2(double direction) {
 
-        if (direction >= 0.1) {
+        if (direction >= 0.5) {
 
             // SetClimbPos(getClimbTarPos() + (direction ));
             SetClimbPos(Climb_Grab);
-        } else if (direction <= -0.1) {
+        } else if (direction <= -0.5) {
 
             // SetClimbPos(getClimbTarPos() + (direction ));
             SetClimbPos(Climb_Release);
@@ -273,10 +286,10 @@ public class SubClimber extends SubsystemBase {
 
     public void transverseMan(double direction) {
         System.err.print("trans " + Transverse_TargetPos);
-        if (direction >= 0.1) {
+        if (direction >= 0.5) {
 
             SetTransversePos(getTransverseTarPos() + (direction));
-        } else if (direction <= -0.1) {
+        } else if (direction <= -0.5) {
 
             SetTransversePos(getTransverseTarPos() + (direction));
         }
