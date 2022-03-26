@@ -52,9 +52,9 @@ public class WL_SubVibration extends SubsystemBase {
     private static double MedIntensity = 0.5;
     private static double HighIntensity = 0.8;
 
-    private static double ShortDuration = 0.2; // sec
-    private static double MediumDuration = 0.4;
-    private static double LongDuration = 0.6;
+    private static double ShortDuration = 0.5; // sec
+    private static double MediumDuration = 1.0;
+    private static double LongDuration = 1.5;
 
     //private double StartTime ;
 
