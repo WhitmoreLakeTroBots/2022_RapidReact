@@ -35,7 +35,7 @@ public class CmdVib extends CommandBase {
     @Override
     public void execute() {
 
-        System.err.println("CmdCommandStart");
+        System.err.println("SetVib");
 
     }
 

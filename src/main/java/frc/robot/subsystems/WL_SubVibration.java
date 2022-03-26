@@ -69,7 +69,7 @@ public class WL_SubVibration extends SubsystemBase {
     public WL_SubVibration() {
         // Initialize constants here
 
-        //StartTime = RobotMath.getTime();
+        StartTime = RobotMath.getTime();
 
     }
 
@@ -79,8 +79,8 @@ public class WL_SubVibration extends SubsystemBase {
 
         //RunVibration();
 
-        //ExecVibLeft();
-        //ExecVibRight();
+        ExecVibLeft();
+        ExecVibRight();
 
     }
 
@@ -121,12 +121,13 @@ public class WL_SubVibration extends SubsystemBase {
 
     
     public double CalcEndtime(double ActDuration) {
-        return StartTime + ActDuration;
+        return RobotMath.getTime() + ActDuration;
     }
 
     public void SetVib(VibType VMode) {
         vType = VMode;
         StartTime = RobotMath.getTime();
+        RunVibration();
     }
 
     private void RunVibration() {
@@ -149,6 +150,7 @@ public class WL_SubVibration extends SubsystemBase {
                 //ExecVib(HAND.LEFT, lowIntensity, CalcEndtime(LongDuration));
                 lIntensity = lowIntensity;
                 lEndTime = CalcEndtime(LongDuration);
+                vType = VibType.STOP;
                 break;
 
             case TargetLock:
@@ -157,6 +159,7 @@ public class WL_SubVibration extends SubsystemBase {
                 //ExecVib(HAND.RIGHT, MedIntensity, CalcEndtime(MediumDuration));
                 rIntensity = MedIntensity;
                 rEndTime = CalcEndtime(MediumDuration);
+                vType = VibType.STOP;
                 break;
 
             case LauncherAutoSpeed:
@@ -165,6 +168,7 @@ public class WL_SubVibration extends SubsystemBase {
                 //ExecVib(HAND.LEFT, HighIntensity, CalcEndtime(ShortDuration));
                 lIntensity = HighIntensity;
                 lEndTime = CalcEndtime(ShortDuration);
+                vType = VibType.STOP;
                 break;
 
             case LauncherFixedSpeed:
@@ -173,6 +177,7 @@ public class WL_SubVibration extends SubsystemBase {
                 //ExecVib(HAND.LEFT, MedIntensity, CalcEndtime(MediumDuration));
                 lIntensity = MedIntensity;
                 lEndTime = CalcEndtime(MediumDuration);
+                vType = VibType.STOP;
                 break;
 
             case LauncherSpeedSet:
@@ -182,6 +187,7 @@ public class WL_SubVibration extends SubsystemBase {
                 //ExecVib(HAND.RIGHT, MedIntensity, CalcEndtime(MediumDuration));
                 rIntensity = MedIntensity;
                 rEndTime =CalcEndtime(MediumDuration);
+                vType = VibType.STOP;
                 break;
 
         }
