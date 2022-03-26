@@ -117,8 +117,8 @@ public class RobotContainer {
     wl_SubVibration = new WL_SubVibration();
     
 
-    ShuffleboardTab camTab = Shuffleboard.getTab("Camera");
-    ShuffleboardTab Work_Data = Shuffleboard.getTab("Work_Data");
+    //ShuffleboardTab camTab = Shuffleboard.getTab("Camera");
+    //ShuffleboardTab Work_Data = Shuffleboard.getTab("Work_Data");
     // SmartDashboard Buttons
 
     //camTab.addCamera("LimeLight", "limelight-high", "http://10.36.68.12:5800");

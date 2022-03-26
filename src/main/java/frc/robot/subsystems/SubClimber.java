@@ -27,7 +27,7 @@ public class SubClimber extends SubsystemBase {
 
     private double Climb_MaxPos = 106;
     private double Climb_MinPos = 0;
-    private double Climb_Grab = 86;
+    private double Climb_Grab = 88;
     private double Climb_Release = 18;
     private double Climb_Pass = 31;
 
@@ -37,7 +37,7 @@ public class SubClimber extends SubsystemBase {
     private double Climb_TargetPos = 0;
     private double Climb_Tol = 3;
     private double Climb_hold_power = -.03;
-    private double Climb_power = 0.4;
+    private double Climb_power = 0.7;
     private boolean bClimb = false;
 
     private double Transverse_MaxPos = 133;
@@ -50,7 +50,7 @@ public class SubClimber extends SubsystemBase {
 
     private double Transverse_TargetPos = 0;
     private double Transverse_Tol = 3;
-    private double Transverse_power = 0.7;
+    private double Transverse_power = 0.8;
     private boolean bTransverse = false;
 
     public SubClimber() {
