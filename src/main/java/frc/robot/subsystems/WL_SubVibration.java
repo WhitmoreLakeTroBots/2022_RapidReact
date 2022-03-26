@@ -126,7 +126,7 @@ public class WL_SubVibration extends SubsystemBase {
 
     public void SetVib(VibType VMode) {
         vType = VMode;
-        StartTime = RobotMath.getTime();
+       // StartTime = RobotMath.getTime();
         RunVibration();
     }
 
