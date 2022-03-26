@@ -151,6 +151,7 @@ public class RobotContainer {
     SmartDashboard.setDefaultNumber("LimeRPM",0.0);
     SmartDashboard.setDefaultNumber("LimeDist", 0.0);
 
+
     //SmartDashboard.putData("CamHigh Driver",new LChCamPipline(cameras.limelight_high, 0, SubLimelight.CAM_MODE.DRIVERSTATION_FEEDBACK));
     //SmartDashboard.putData("CamHigh Target",new LChCamPipline(cameras.limelight_high, 0, SubLimelight.CAM_MODE.VISION_PROCESSING));
 
@@ -169,8 +170,11 @@ public class RobotContainer {
     // Configure the button bindings
     configureButtonBindings();
 
-    
-   
+   SmartDashboard.putData("Vib TargSeen Test", new CmdVib(VibType.TargetSeen));
+   SmartDashboard.putData("Vib TargLock Test", new CmdVib(VibType.TargetLock));
+   SmartDashboard.putData("Vib LaunchAutoSpeed Test", new CmdVib(VibType.LauncherAutoSpeed));
+   SmartDashboard.putData("Vib LaunchFixSpeed Test", new CmdVib(VibType.LauncherFixedSpeed));
+   SmartDashboard.putData("Vib LaunchSpeedSet", new CmdVib(VibType.LauncherSpeedSet));
 
     // Add Auton's to Selection dropdown.
     m_chooser.addOption("V1AutoGrp_2Balls", new AutoGrp_2BallsV1());
