@@ -34,14 +34,15 @@ public class AutoGrp_4BallsV2 extends SequentialCommandGroup {
         
         //move and get two more balls
         addCommands(new CmdTurnByGyro2(16,-TURN_SPEED, TURN_SPEED));
-        addCommands(new CmdAutoDriveStraght(150, 16, STRAIGHT_SPEED));
-        addCommands(new CmdTurnByGyro2(-29,-TURN_SPEED, TURN_SPEED));
+        addCommands(new CmdAutoDriveStraght(120, 16, STRAIGHT_SPEED));
         addCommands(new CmdMoveExtender());
         addCommands(new CmdAutoDriveStraght(30, -29, STRAIGHT_SPEED));
+        //addCommands(new CmdTurnByGyro2(-29,-TURN_SPEED, TURN_SPEED));
+        addCommands(new CmdAutoDriveStraght(30, -29, STRAIGHT_SPEED));
         addCommands(new CmdLauncherRun(2900));
-        addCommands(new CmdDelay(1.5));
+        addCommands(new CmdDelay(0.5));
         addCommands(new CmdMoveExtender(16));
-        //addCommands(new CmdAutoDriveStraght(20, -29, -STRAIGHT_SPEED));
+        addCommands(new CmdAutoDriveStraght(20, -29, -STRAIGHT_SPEED));
         //addCommands(new CmdTurnByGyro2(180,TURN_SPEED, -TURN_SPEED));
        //addCommands(new CmdAutoDriveStraght(140, 180, .65));
         //addCommands(new CmdTurnByLime(180,-TURN_SPEED, TURN_SPEED, cameras.limelight_high, 0 ));

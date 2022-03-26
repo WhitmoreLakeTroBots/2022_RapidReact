@@ -151,12 +151,12 @@ public class RobotContainer {
     SmartDashboard.setDefaultNumber("LimeRPM",0.0);
     SmartDashboard.setDefaultNumber("LimeDist", 0.0);
 
-    SmartDashboard.putData("CamHigh Driver",new LChCamPipline(cameras.limelight_high, 0, SubLimelight.CAM_MODE.DRIVERSTATION_FEEDBACK));
-    SmartDashboard.putData("CamHigh Target",new LChCamPipline(cameras.limelight_high, 0, SubLimelight.CAM_MODE.VISION_PROCESSING));
+    //SmartDashboard.putData("CamHigh Driver",new LChCamPipline(cameras.limelight_high, 0, SubLimelight.CAM_MODE.DRIVERSTATION_FEEDBACK));
+    //SmartDashboard.putData("CamHigh Target",new LChCamPipline(cameras.limelight_high, 0, SubLimelight.CAM_MODE.VISION_PROCESSING));
 
-    SmartDashboard.putData("CamLow Blue", new LChCamPipline(cameras.limelight_low, 0, SubLimelight.CAM_MODE.VISION_PROCESSING));
-    SmartDashboard.putData("CamLow Red",new LChCamPipline(cameras.limelight_low, 1, SubLimelight.CAM_MODE.VISION_PROCESSING));
-    SmartDashboard.putData("CamLow Driver",new LChCamPipline(cameras.limelight_low, 1, SubLimelight.CAM_MODE.DRIVERSTATION_FEEDBACK));
+    //SmartDashboard.putData("CamLow Blue", new LChCamPipline(cameras.limelight_low, 0, SubLimelight.CAM_MODE.VISION_PROCESSING));
+    //SmartDashboard.putData("CamLow Red",new LChCamPipline(cameras.limelight_low, 1, SubLimelight.CAM_MODE.VISION_PROCESSING));
+    //SmartDashboard.putData("CamLow Driver",new LChCamPipline(cameras.limelight_low, 1, SubLimelight.CAM_MODE.DRIVERSTATION_FEEDBACK));
 
     //SmartDashboard.putData("CmdRobotInit", new CmdRobotInit());
     //SmartDashboard.putData("autogrouptestdrive", new autoGroupTestDrive());
