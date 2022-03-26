@@ -336,10 +336,10 @@ public class RobotContainer {
 
     // Launcher is at velocity
     if (bLauncherVelocityInTol) {
-      Xbox.setRumble(HAND.RIGHT, 1.0);  
+     // Xbox.setRumble(HAND.RIGHT, 1.0);  
     }
     else{
-      Xbox.setRumble(HAND.RIGHT, 0);
+     // Xbox.setRumble(HAND.RIGHT, 0);
     }
 
     SmartDashboard.putNumber("launcher RPM", subLauncher.CanSpark_launcher.getVelocity());   
