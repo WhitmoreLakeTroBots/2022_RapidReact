@@ -56,7 +56,7 @@ public class WL_SubVibration extends SubsystemBase {
     private static double MediumDuration = 0.4;
     private static double LongDuration = 0.6;
 
-    private double StartTime ;
+    //private double StartTime ;
 
     private double lEndTime;
     private double rEndTime;
@@ -69,7 +69,7 @@ public class WL_SubVibration extends SubsystemBase {
     public WL_SubVibration() {
         // Initialize constants here
 
-        StartTime = RobotMath.getTime();
+       // StartTime = RobotMath.getTime();
 
     }
 
