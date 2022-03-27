@@ -108,5 +108,7 @@ public class Constants {
         public static final double robotTrackWidth = 24.0; 
         public static final double minTurnSpeed = 0.04;
         //public static final double minTurnSpeed = 0.130;
+        public static final double turnTolGyro = 1.5; //Used by both gyro turn tolerance
+        public static final double turnTolLime = 1.5; //Used by both lime turn tolerance 
     }
 }
