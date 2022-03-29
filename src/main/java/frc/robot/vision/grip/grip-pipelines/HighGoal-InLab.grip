@@ -1,7 +1,7 @@
 <grip:Pipeline>
   <sources>
     <grip:Camera>
-      <property name="address" value="http://10.36.68.11:5802/"/>
+      <property name="address" value="http://10.36.68.12:5802/"/>
     </grip:Camera>
   </sources>
   <steps>
@@ -47,12 +47,12 @@
       <grip:Input step="3" socket="1">
         <value>
           <double>22.66187050359712</double>
-          <double>76.96969696969695</double>
+          <double>87.57575757575756</double>
         </value>
       </grip:Input>
       <grip:Input step="3" socket="2">
         <value>
-          <double>64.20863309352518</double>
+          <double>50.44964028776978</double>
           <double>255.0</double>
         </value>
       </grip:Input>
@@ -74,13 +74,13 @@
     <grip:Step name="Filter Contours">
       <grip:Input step="5" socket="0"/>
       <grip:Input step="5" socket="1">
-        <value>5.0</value>
+        <value>3.0</value>
       </grip:Input>
       <grip:Input step="5" socket="2">
         <value>0.0</value>
       </grip:Input>
       <grip:Input step="5" socket="3">
-        <value>20.0</value>
+        <value>19.0</value>
       </grip:Input>
       <grip:Input step="5" socket="4">
         <value>90.0</value>
@@ -114,32 +114,32 @@
   </steps>
   <connections>
     <grip:Connection>
-      <grip:Output step="4" socket="0" previewed="true"/>
-      <grip:Input step="5" socket="0"/>
-    </grip:Connection>
-    <grip:Connection>
       <grip:Output step="2" socket="0" previewed="false"/>
       <grip:Input step="3" socket="0"/>
-    </grip:Connection>
-    <grip:Connection>
-      <grip:Output step="3" socket="0" previewed="true"/>
-      <grip:Input step="4" socket="0"/>
-    </grip:Connection>
-    <grip:Connection>
-      <grip:Output step="1" socket="0" previewed="false"/>
-      <grip:Input step="2" socket="1"/>
     </grip:Connection>
     <grip:Connection>
       <grip:Output step="0" socket="0" previewed="false"/>
       <grip:Input step="1" socket="0"/>
     </grip:Connection>
     <grip:Connection>
+      <grip:Output step="1" socket="0" previewed="false"/>
+      <grip:Input step="2" socket="1"/>
+    </grip:Connection>
+    <grip:Connection>
+      <grip:Output source="0" socket="0" previewed="true"/>
+      <grip:Input step="0" socket="0"/>
+    </grip:Connection>
+    <grip:Connection>
       <grip:Output step="0" socket="0" previewed="false"/>
       <grip:Input step="2" socket="0"/>
     </grip:Connection>
     <grip:Connection>
-      <grip:Output source="0" socket="0" previewed="false"/>
-      <grip:Input step="0" socket="0"/>
+      <grip:Output step="3" socket="0" previewed="true"/>
+      <grip:Input step="4" socket="0"/>
+    </grip:Connection>
+    <grip:Connection>
+      <grip:Output step="4" socket="0" previewed="true"/>
+      <grip:Input step="5" socket="0"/>
     </grip:Connection>
   </connections>
   <settings>
@@ -155,7 +155,7 @@
     <language>Limelight</language>
     <className>HighGoalLab</className>
     <implementWpilibPipeline>false</implementWpilibPipeline>
-    <saveDir>C:\Users\Trobots\GRIP</saveDir>
+    <saveDir>C:\workspace\2022_RapidReact\src\main\java\frc\robot\vision\grip\grip-limelight-pipelines</saveDir>
     <packageName></packageName>
     <moduleName>highgoallab</moduleName>
   </codeGenerationSettings>

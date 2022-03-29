@@ -24,8 +24,8 @@ public class CmdTurnByLimeAim extends CommandBase {
     private int NoTargetCounter = 0;
     private double _leftTargetThrottle = 0.0;
     private double _rightTargetThrottle = 0.0;
-    private double TOL = 2.0;
-    private final double MIN_THROTTLE = 0.04;
+    private double TOL = Constants.robotPysicalProperties.turnTolLime;
+    private final double MIN_THROTTLE = Constants.robotPysicalProperties.minTurnSpeed;
     private double _KPLeft = 0.0;
     private double _KPRight = 0.0;
     private double _minLeftThrottle = 0.0;

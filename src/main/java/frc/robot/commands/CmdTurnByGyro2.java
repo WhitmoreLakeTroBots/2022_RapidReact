@@ -20,7 +20,7 @@ public class CmdTurnByGyro2 extends CommandBase {
     private double _currHeading = 0.0;
     private double _leftTargetThrottle = 0.0;
     private double _rightTargetThrottle = 0.0;
-    private final double TOL = 1.0;
+    private final double TOL = Constants.robotPysicalProperties.turnTolGyro;
     private final double MIN_THROTTLE = Constants.robotPysicalProperties.minTurnSpeed;
     private double _KPLeft = 0.0;
     private double _KPRight = 0.0;
