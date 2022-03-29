@@ -175,6 +175,8 @@ public class RobotContainer {
    SmartDashboard.putData("Vib LaunchAutoSpeed Test", new CmdVib(VibType.LauncherAutoSpeed));
    SmartDashboard.putData("Vib LaunchFixSpeed Test", new CmdVib(VibType.LauncherFixedSpeed));
    SmartDashboard.putData("Vib LaunchSpeedSet", new CmdVib(VibType.LauncherSpeedSet));
+   SmartDashboard.putData("Climb", new Agrp_TransverseFull());
+   SmartDashboard.putData("autoRPM", new CmdEnableDisableAutoRPM());
 
     // Add Auton's to Selection dropdown.
     m_chooser.addOption("V1AutoGrp_2Balls", new AutoGrp_2BallsV1());
@@ -230,11 +232,11 @@ public class RobotContainer {
     Xbox.lb.whenHeld(new CmdReverseRoller());
     Xbox.lb.whenReleased(new CmdForwardRoller());
 
-    Xbox.dPad.up.whenPressed(new CmdLauncherRun(2000.0));
+    Xbox.dPad.up.whenPressed(new CmdLauncherRun(2650.0));
     Xbox.dPad.left.whenPressed(new CmdLauncherRun(1500.0));
     Xbox.dPad.right.whenPressed(new CmdLauncherRun(3000.0));
     Xbox.dPad.down.whenPressed(new CmdLauncherRun(3500.0));
-
+//3500
     /**
      * 
      * final JoystickButton btnLowFLaunch = new JoystickButton(joy2, 5);

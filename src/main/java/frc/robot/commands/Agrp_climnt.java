@@ -7,8 +7,8 @@ public class Agrp_climnt extends SequentialCommandGroup {
 
 
         System.err.print("*BAD*");
-        addCommands(new CmdExstendClimb());
+        addCommands(new CmdExstendClimb(0.7));
         addCommands(new CmdDelay(1.0));
-        addCommands(new CmdRetractClimb());
+        addCommands(new CmdRetractClimb(0.7));
     }
 }

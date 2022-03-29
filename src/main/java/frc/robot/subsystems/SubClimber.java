@@ -12,6 +12,7 @@ import frc.robot.CommonLogic;
 
 import frc.robot.hardware.WL_Spark;
 import frc.robot.Constants.CAN_ID_Constants;
+import frc.robot.commands.CmdMoveExtender;
 
 //import com.revrobotics.SparkMaxPIDController;
 
@@ -37,7 +38,7 @@ public class SubClimber extends SubsystemBase {
     private double Climb_TargetPos = 0;
     private double Climb_Tol = 3;
     private double Climb_hold_power = -.03;
-    private double Climb_power = 0.7;
+    public double Climb_power = 0.7;
     private boolean bClimb = false;
 
     private double Transverse_MaxPos = 133;
@@ -95,6 +96,7 @@ public class SubClimber extends SubsystemBase {
         // This method will be called once per scheduler run
         if (bClimb) {
             gotoPositonClimb();
+
         } else {
             Climb_TargetPos = CanSpark_Climber_1.getPosition();
             CanSpark_Climber_1.set(0);
@@ -262,11 +264,11 @@ public class SubClimber extends SubsystemBase {
 
         if (direction >= 0.5) {
 
-            // SetClimbPos(getClimbTarPos() + (direction ));
+            
             
         } else if (direction <= -0.5) {
 
-            // SetClimbPos(getClimbTarPos() + (direction ));
+            
             
         }
     }

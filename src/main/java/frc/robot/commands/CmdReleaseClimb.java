@@ -11,11 +11,11 @@ import frc.robot.subsystems.SubClimber;
 public class CmdReleaseClimb extends CommandBase {
 
     private boolean bdone = false;
+    private double ClimbSpeed = 0;
 
+    public CmdReleaseClimb(Double climbSpeed) {
 
-    public CmdReleaseClimb() {
-
-
+        ClimbSpeed = climbSpeed;
         
 
 
@@ -35,6 +35,9 @@ public class CmdReleaseClimb extends CommandBase {
  
         bdone = false;
         addRequirements(RobotContainer.getInstance().subClimber);
+
+        RobotContainer.getInstance().subClimber.Climb_power = ClimbSpeed;
+
     //extend climb 
         RobotContainer.getInstance().subClimber.SetClimbPos(RobotContainer.getInstance().subClimber.getClimbReleasePos());
 
