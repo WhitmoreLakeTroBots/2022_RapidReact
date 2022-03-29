@@ -23,7 +23,7 @@ public class SubLauncher extends SubsystemBase {
     private double PIDv = 0;
     private final double LAUNCHER_MAX_RPM = 5676;
     private final int RAMP_STEPS = 25;
-    //private final double STEP_RANGE = 2.0 / RAMP_STEPS;
+    private final double STEP_RANGE = 2.0 / RAMP_STEPS;
 
     public enum LauncherModes {
         RAMPING,
@@ -56,7 +56,6 @@ public class SubLauncher extends SubsystemBase {
 
     @Override
     public void periodic() {
-        // This method will be called once per scheduler run
         // This method will be called once per scheduler run when in simulation
 
         //make sure we have set a camera
@@ -74,8 +73,8 @@ public class SubLauncher extends SubsystemBase {
             case RAMPING:
                 // we are ramping to curret Speed
                 // Are we within %5 ?
-                if (IsVelocityInTol(0.025)){
-                    // if (CommonLogic.isInRange(currActualPower, currRequestedPower, STEP_RANGE)) {
+                //if (IsVelocityInTol(0.025)){
+                if (CommonLogic.isInRange(currActualPower, currRequestedPower, STEP_RANGE)) {
                     // We are close to running speed go to pid control
                     setpower(currRequestedPower);
                     currLauncherMode = LauncherModes.RUNNING;
@@ -150,11 +149,6 @@ public class SubLauncher extends SubsystemBase {
     private double calcpowrdiff(Double curentSpeed, double targetSpeed) {
         return PIDcalc.calcPID(targetSpeed, curentSpeed) / LAUNCHER_MAX_RPM;
 
-    }
-
-    // IS the launcher RPM in a small tight range of values
-    public boolean IsVelocityInTol() {
-        return CommonLogic.isInRange(iActualRPM, iTargetRPM, 20);
     }
 
     // IS the launcher RPM in a small tight range of values
