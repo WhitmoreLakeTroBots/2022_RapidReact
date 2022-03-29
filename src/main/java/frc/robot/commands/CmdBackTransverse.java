@@ -35,8 +35,10 @@ public class CmdBackTransverse extends CommandBase {
  
         bdone = false;
         addRequirements(RobotContainer.getInstance().subClimber);
+
     //extend climb 
         RobotContainer.getInstance().subClimber.SetTransversePos(-119);
+        //RobotContainer.getInstance().subClimber.Climb_power = .4;
 
     }
 

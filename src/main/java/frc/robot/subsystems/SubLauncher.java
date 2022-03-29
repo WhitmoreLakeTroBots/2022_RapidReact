@@ -132,6 +132,7 @@ public class SubLauncher extends SubsystemBase {
     // Stop the flywheel
     public void stop() {
         iTargetRPM = 0.0;
+        AutoRPM_set(false);
         currRequestedPower = 0.0;
         setpower(currRequestedPower);
         currLauncherMode = LauncherModes.STOPPED;

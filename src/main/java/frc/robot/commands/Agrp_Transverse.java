@@ -11,18 +11,18 @@ public class Agrp_Transverse extends SequentialCommandGroup {
         addCommands(new CmdDelay(0.25));
         addCommands(new CmdGrabTransverse());
         addCommands(new CmdDelay(0.25));
-        addCommands(new CmdReleaseClimb());
+        addCommands(new CmdReleaseClimb(0.2));
         addCommands(new CmdDelay(0.1));
         addCommands(new CmdMoveExtender(0));
         addCommands(new CmdReleaseTransverse());
         addCommands(new CmdDelay(0.1));
-        addCommands(new CmdGrabClimb());
+        addCommands(new CmdGrabClimb(0.7));
         addCommands(new CmdDelay(0.1));
-        addCommands(new CmdPassClimb());
+        addCommands(new CmdPassClimb(0.7));
         addCommands(new CmdDelay(0.1));
         addCommands(new CmdBackTransverse());
         addCommands(new CmdDelay(0.1));
-        addCommands(new CmdRetractClimb());
+        addCommands(new CmdRetractClimb(0.7));
 
     }
 }
