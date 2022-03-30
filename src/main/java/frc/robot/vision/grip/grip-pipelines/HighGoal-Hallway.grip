@@ -1,7 +1,7 @@
 <grip:Pipeline>
   <sources>
     <grip:Camera>
-      <property name="address" value="http://10.36.68.11:5802/"/>
+      <property name="address" value="http://10.36.68.12:5802/"/>
     </grip:Camera>
   </sources>
   <steps>

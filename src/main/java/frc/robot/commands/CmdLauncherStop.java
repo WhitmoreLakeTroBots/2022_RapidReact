@@ -27,6 +27,7 @@ public class CmdLauncherStop extends CommandBase {
     @Override
     public void initialize() {
         addRequirements(RobotContainer.getInstance().subLauncher);
+        RobotContainer.getInstance().subLauncher.AutoRPM_set(false);
         RobotContainer.getInstance().subLauncher.stop();
 
     }
