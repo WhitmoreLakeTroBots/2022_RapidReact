@@ -7,7 +7,12 @@ public class LaunchValues {
             // {cameraAngle, RPM},
             // https://docs.google.com/spreadsheets/d/1EMc1xOxHKY0zVEOjFElyHyc4wrLUNXh38YC5TEDD6Ho/edit#gid=0
             // Ball parked the distances with RPM = (145.5)(Dist Feet) + 1448   This is an average of the 3 points
-            // taken from the lab on March 28, 2022.    
+            // taken from the lab on March 28, 2022.
+
+            // Measure from center of the hub to the front bumper of the robot with bumpers ON.
+            // This is done to make it easy to measure while at competions.   Yes I know the camera
+            // is really about 18 inches farther away but the important part is consistency in measurements.
+
             // {LL Ty , RPM},
             // { 35.00, 1500.0 }, // 0 feet from hub
             // { 35.00, 1233.0 }, // 1 feet from hub

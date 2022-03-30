@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
 import frc.robot.LaunchValues;
+
 import frc.robot.CommonLogic;
 import frc.robot.Constants.*;
 import frc.robot.hardware.WL_Spark;
@@ -18,15 +19,19 @@ public class SubLauncher extends SubsystemBase {
     private boolean bAutoRPMEnabled = false;
     public WL_Spark CanSpark_launcher;
     private double currRequestedPower = 0.0; // current power requests
-    private double currActualPower = 0.0; 
-    private double currPowerStep = 0;        // how large of steps to take for ramping
+    private double currActualPower = 0.0;
+    private double currPowerStep = 0; // how large of steps to take for ramping
     private double PIDv = 0;
     private final double LAUNCHER_MAX_RPM = 5676;
     private final int RAMP_STEPS = 25;
     private final double STEP_RANGE = 2.0 / RAMP_STEPS;
 
+    private double rampWaitEndTime = 0.0;
+    private final double rampWaitTime = .5;
+
     public enum LauncherModes {
         RAMPING,
+        RAMP_WAIT,
         RUNNING,
         STOPPED
     }
@@ -58,13 +63,25 @@ public class SubLauncher extends SubsystemBase {
     public void periodic() {
         // This method will be called once per scheduler run when in simulation
 
-        //make sure we have set a camera
+        // make sure we have set a camera
         if (subLimeLight != null) {
             // make sure we are under limelight control
-            double cameraAngle = 0.0;
             if (bAutoRPMEnabled) {
-                cameraAngle = subLimeLight.getTY();
-                setTargetRPM(LaunchValues.getRPM(cameraAngle));
+                double rpm = 0.0;
+                if (subLimeLight.hasTarget()) {
+                    // If we have target then look up correct RPM
+                    rpm = LaunchValues.getRPM(subLimeLight.getTY());
+                } else {
+                    // No target seen... use the short shot in the first
+                    // launchCode
+                    // Look up the first launch code values and use it.
+                    // should be a short shot of roughly 1500 RPM
+                    rpm = LaunchValues.LaunchCodes[0][1];
+                }
+                // only setTargetRPM if we have a new one to set
+                if (rpm != iTargetRPM) {
+                    setTargetRPM(rpm);
+                }
             }
         }
 
@@ -72,16 +89,23 @@ public class SubLauncher extends SubsystemBase {
         switch (currLauncherMode) {
             case RAMPING:
                 // we are ramping to curret Speed
-                // Are we within %5 ?
-                //if (IsVelocityInTol(0.025)){
+                // Are we within 2.5% ?
+                // if (IsVelocityInTol(2.5)){
                 if (CommonLogic.isInRange(currActualPower, currRequestedPower, STEP_RANGE)) {
                     // We are close to running speed go to pid control
                     setpower(currRequestedPower);
-                    currLauncherMode = LauncherModes.RUNNING;
-                    PIDcalc.resetErrors();
+                    currLauncherMode = LauncherModes.RAMP_WAIT;
+                    rampWaitEndTime = CommonLogic.getTime() + rampWaitTime;
+                    //PIDcalc.resetErrors();
                 } else {
-                    // We are not close to requested velocity keep ramping it up
+                    // We are not close to requested velocity keep ramping it
                     setpower(currActualPower + currPowerStep);
+                }
+                break;
+            case RAMP_WAIT:
+                if (CommonLogic.getTime() >= rampWaitEndTime) {
+                    PIDcalc.resetErrors();
+                    currLauncherMode = LauncherModes.RUNNING;
                 }
                 break;
             case RUNNING:
@@ -131,7 +155,7 @@ public class SubLauncher extends SubsystemBase {
     // Stop the flywheel
     public void stop() {
         iTargetRPM = 0.0;
-        AutoRPM_set(false);
+        bAutoRPMEnabled = false;
         currRequestedPower = 0.0;
         setpower(currRequestedPower);
         currLauncherMode = LauncherModes.STOPPED;
@@ -153,10 +177,9 @@ public class SubLauncher extends SubsystemBase {
 
     // IS the launcher RPM in a small tight range of values
     public boolean IsVelocityInTol(double percent) {
-        double pcnt = CommonLogic.CapMotorPower(percent, 0.0, 1.0);
+        double pcnt = CommonLogic.CapMotorPower(Math.abs(percent)/100, 0.0, 1.0);
         return CommonLogic.isInRange(iActualRPM, iTargetRPM, (iTargetRPM * pcnt));
     }
-
 
     // Enable/Disable the AutoRPM Logic
     public boolean AutoRPM_get() {
@@ -170,5 +193,4 @@ public class SubLauncher extends SubsystemBase {
     public void AutoRPM_toggle() {
         bAutoRPMEnabled = !bAutoRPMEnabled;
     }
-
 }

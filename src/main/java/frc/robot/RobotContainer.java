@@ -325,7 +325,7 @@ public class RobotContainer {
     }
     SmartDashboard.putBoolean("TargetSeen", bTargetSeen);
     SmartDashboard.putBoolean("TargetLock", bTargetLock);
-    bLauncherVelocityInTol = subLauncher.IsVelocityInTol(.01);
+    bLauncherVelocityInTol = subLauncher.IsVelocityInTol(1.0);
     SmartDashboard.putBoolean("LauncherVelocity", bLauncherVelocityInTol);
 
 
