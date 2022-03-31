@@ -61,6 +61,7 @@ public class SubLauncher extends SubsystemBase {
 
     @Override
     public void periodic() {
+        iActualRPM = CanSpark_launcher.getVelocity();
         // This method will be called once per scheduler run when in simulation
 
         // make sure we have set a camera
@@ -69,8 +70,15 @@ public class SubLauncher extends SubsystemBase {
             if (bAutoRPMEnabled) {
                 double rpm = 0.0;
                 if (subLimeLight.hasTarget()) {
-                    // If we have target then look up correct RPM
-                    rpm = LaunchValues.getRPM(subLimeLight.getTY());
+                    double ty = subLimeLight.getTY();
+                    if ((ty > -7.0)) {
+                        // If we have target then look up correct RPM
+                        // rpm = LaunchValues.getRPM(ty);
+                        rpm = LaunchValues.calcRPM(ty);
+                    } else {
+                        // We will see nothing valid lower than -7 on image
+                        rpm = LaunchValues.LaunchCodes[0][1];
+                    }
                 } else {
                     // No target seen... use the short shot in the first
                     // launchCode
@@ -78,15 +86,22 @@ public class SubLauncher extends SubsystemBase {
                     // should be a short shot of roughly 1500 RPM
                     rpm = LaunchValues.LaunchCodes[0][1];
                 }
-                // only setTargetRPM if we have a new one to set
-                if (rpm != iTargetRPM) {
+                // If we are within x% of current RPM then use the PID to change
+                // velocity. Else set a new target and use the RAMP to get there
+                if (CommonLogic.isInRange(iActualRPM, rpm, (iActualRPM * .03)) &&
+                        LauncherModes.RUNNING == currLauncherMode) {
+                    // using PID to change to new RPM
+                    iTargetRPM = rpm;
+                } else {
+                    // using the RAMP function to get to new RPM
                     setTargetRPM(rpm);
                 }
             }
         }
 
-        iActualRPM = CanSpark_launcher.getVelocity();
-        switch (currLauncherMode) {
+        switch (currLauncherMode)
+
+        {
             case RAMPING:
                 // we are ramping to curret Speed
                 // Are we within 2.5% ?
@@ -96,7 +111,7 @@ public class SubLauncher extends SubsystemBase {
                     setpower(currRequestedPower);
                     currLauncherMode = LauncherModes.RAMP_WAIT;
                     rampWaitEndTime = CommonLogic.getTime() + rampWaitTime;
-                    //PIDcalc.resetErrors();
+                    // PIDcalc.resetErrors();
                 } else {
                     // We are not close to requested velocity keep ramping it
                     setpower(currActualPower + currPowerStep);
@@ -177,8 +192,10 @@ public class SubLauncher extends SubsystemBase {
 
     // IS the launcher RPM in a small tight range of values
     public boolean IsVelocityInTol(double percent) {
-        double pcnt = CommonLogic.CapMotorPower(Math.abs(percent)/100, 0.0, 1.0);
-        return CommonLogic.isInRange(iActualRPM, iTargetRPM, (iTargetRPM * pcnt));
+        double pcnt = CommonLogic.CapMotorPower(Math.abs(percent) / 100, 0.0, 1.0);
+
+        return (CommonLogic.isInRange(iActualRPM, iTargetRPM, (iTargetRPM * pcnt)) &&
+                LauncherModes.RUNNING == currLauncherMode);
     }
 
     // Enable/Disable the AutoRPM Logic

@@ -1,5 +1,7 @@
 package frc.robot;
 
+import com.fasterxml.jackson.databind.util.ArrayBuilders.DoubleBuilder;
+
 public class LaunchValues {
 
     public static final double[][] LaunchCodes = {
@@ -87,4 +89,41 @@ public class LaunchValues {
         testLaunchValues();
         testRange();
     }
+
+   public static double calcRange (double cameraYDegrees){
+
+     // Target height is 8'8"  or 104 inches
+        // robot camera hieght is 24 inches
+        // practice Lab measurement shows robot camera angled up 24.9 degrees
+        // we took 3 measurements from known distance and used this formula
+        // a1 = Atan(h2 - h2/d) - a2
+
+        // data can be found here 
+        // https://docs.google.com/spreadsheets/d/1EMc1xOxHKY0zVEOjFElyHyc4wrLUNXh38YC5TEDD6Ho/edit#gid=0
+
+
+        // Step 1. convert camera angle to distance in inches
+        // d = (h2 -h1) / tan (a1 + a2)
+
+        double h1 = 2.0; // 24 inches;
+        double h2 = 8.6666; // 104 inches;
+        double a1 = 24.0128;
+
+        double d = (h2-h1) / (Math.tan(Math.toRadians(a1 + cameraYDegrees)));
+        return (d);
+   }
+
+    public static double calcRPM(double cameraYDegrees){
+
+       
+        // Step 2 calculate the RPM using y = mx+ b linear form from spread sheet
+        // 
+        double m = 145.5; // change this value and b value to change just one end
+        double b = 1448;  // change this value to impact both long and short shots
+        double x = calcRange(cameraYDegrees);
+        double rpm = (m * x) + b; 
+        return (CommonLogic.CapMotorPower(rpm, 1500, 4600));
+
+    }
+
 }
