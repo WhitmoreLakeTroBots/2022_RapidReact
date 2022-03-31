@@ -47,12 +47,12 @@ public class Robot extends TimedRobot {
 
         // Make sure you only configure port forwarding once in your robot code.
         // Do not place these function calls in any periodic functions
-        PortForwarder.add(5800, "10.36.68.11", 5800);
-        PortForwarder.add(5801, "10.36.68.11", 5801);
-        PortForwarder.add(5802, "10.36.68.11", 5802);
-        PortForwarder.add(5803, "10.36.68.11", 5803);
-        PortForwarder.add(5804, "10.36.68.11", 5804);
-        PortForwarder.add(5805, "10.36.68.11", 5805);
+        //PortForwarder.add(5800, "10.36.68.11", 5800);
+        //PortForwarder.add(5801, "10.36.68.11", 5801);
+        //PortForwarder.add(5802, "10.36.68.11", 5802);
+        //PortForwarder.add(5803, "10.36.68.11", 5803);
+        //PortForwarder.add(5804, "10.36.68.11", 5804);
+        //PortForwarder.add(5805, "10.36.68.11", 5805);
 
         PortForwarder.add(5800, "10.36.68.12", 5800);
         PortForwarder.add(5801, "10.36.68.12", 5801);
