@@ -194,8 +194,8 @@ public class SubLauncher extends SubsystemBase {
     public boolean IsVelocityInTol(double percent) {
         double pcnt = CommonLogic.CapMotorPower(Math.abs(percent) / 100, 0.0, 1.0);
 
-        return (CommonLogic.isInRange(iActualRPM, iTargetRPM, (iTargetRPM * pcnt)) &&
-                LauncherModes.RUNNING == currLauncherMode);
+        return (CommonLogic.isInRange(iActualRPM, iTargetRPM, (iTargetRPM * pcnt)) /*&&
+                LauncherModes.RUNNING == currLauncherMode*/);
     }
 
     // Enable/Disable the AutoRPM Logic

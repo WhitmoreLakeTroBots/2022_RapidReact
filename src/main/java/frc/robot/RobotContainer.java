@@ -182,7 +182,7 @@ public class RobotContainer {
     SmartDashboard.putData("Vib LaunchFixSpeed Test", new CmdVib(VibType.LauncherFixedSpeed));
     SmartDashboard.putData("Vib LaunchSpeedSet", new CmdVib(VibType.LauncherSpeedSet));
     SmartDashboard.putData("Climb", new Agrp_TransverseFull());
-    SmartDashboard.putData("autoRPM", new CmdEnableDisableAutoRPM());
+    //SmartDashboard.putData("autoRPM", new CmdEnableDisableAutoRPM());
 
     // Add Auton's to Selection dropdown.
     m_chooser.addOption("V1AutoGrp_2Balls", new AutoGrp_2BallsV1());

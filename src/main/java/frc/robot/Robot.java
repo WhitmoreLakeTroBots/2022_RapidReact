@@ -13,11 +13,13 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.ScheduleCommand;
 import frc.robot.commands.CmdTeleDrive;
+import frc.robot.commands.CmdVib;
 import frc.robot.commands.CmdMoveExtender;
 import frc.robot.commands.CmdRemapController;
 import frc.robot.hardware.WL_Spark;
 import frc.robot.subsystems.SubLimelight;
 import frc.robot.subsystems.SubLimelight.LED_MODE;
+import frc.robot.subsystems.WL_SubVibration.VibType;
 import edu.wpi.first.util.net.PortForwarder;
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -164,6 +166,12 @@ public class Robot extends TimedRobot {
         RobotContainer.getInstance().subClimber.climbMan2(RobotContainer.getInstance().Xbox.leftStick.getX());
         RobotContainer.getInstance().subClimber.transverseMan(RobotContainer.getInstance().Xbox.rightStick.getX());
         RobotContainer.getInstance().subClimber.transverseMan2(RobotContainer.getInstance().Xbox.rightStick.getY());
+
+        
+
+        if(RobotContainer.getInstance().bLauncherVelocityInTol == true){
+           //new CmdVib(VibType.LauncherSpeedSet);
+        }
 
     }
 
