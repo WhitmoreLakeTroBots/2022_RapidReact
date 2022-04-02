@@ -118,8 +118,8 @@ public class LaunchValues {
        
         // Step 2 calculate the RPM using y = mx+ b linear form from spread sheet
         // 
-        double m = 145.5; // change this value and b value to change just one end
-        double b = 1448;  // change this value to impact both long and short shots
+        double m = 135; // change this value and b value to change just one end
+        double b = 1725;  // change this value to impact both long and short shots
         double x = calcRange(cameraYDegrees);
         double rpm = (m * x) + b; 
         return (CommonLogic.CapMotorPower(rpm, 1500, 4600));
