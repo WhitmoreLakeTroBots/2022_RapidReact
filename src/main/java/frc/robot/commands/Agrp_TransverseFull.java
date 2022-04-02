@@ -36,11 +36,11 @@ public class Agrp_TransverseFull extends SequentialCommandGroup {
         addCommands(new CmdDelay(0.1));
         addCommands(new CmdGrabClimb(0.7));
         addCommands(new CmdDelay(0.1));
-        addCommands(new CmdPassClimb(0.7));
+       /* addCommands(new CmdPassClimb(0.7));
         addCommands(new CmdDelay(0.1));
         addCommands(new CmdBackTransverse());
         addCommands(new CmdDelay(0.1));
         addCommands(new CmdRetractClimb(0.7));
-
+*/
     }
 }

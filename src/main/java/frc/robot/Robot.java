@@ -47,12 +47,12 @@ public class Robot extends TimedRobot {
 
         // Make sure you only configure port forwarding once in your robot code.
         // Do not place these function calls in any periodic functions
-        PortForwarder.add(5800, "10.36.68.11", 5800);
-        PortForwarder.add(5801, "10.36.68.11", 5801);
-        PortForwarder.add(5802, "10.36.68.11", 5802);
-        PortForwarder.add(5803, "10.36.68.11", 5803);
-        PortForwarder.add(5804, "10.36.68.11", 5804);
-        PortForwarder.add(5805, "10.36.68.11", 5805);
+        //PortForwarder.add(5800, "10.36.68.11", 5800);
+        //PortForwarder.add(5801, "10.36.68.11", 5801);
+        //PortForwarder.add(5802, "10.36.68.11", 5802);
+        //PortForwarder.add(5803, "10.36.68.11", 5803);
+        //PortForwarder.add(5804, "10.36.68.11", 5804);
+        //PortForwarder.add(5805, "10.36.68.11", 5805);
 
         PortForwarder.add(5800, "10.36.68.12", 5800);
         PortForwarder.add(5801, "10.36.68.12", 5801);
@@ -150,17 +150,8 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopPeriodic() {
         // System.err.println("***TeleopPeriodic");
-
-        RobotContainer.getInstance().bTargetSeen = RobotContainer.getInstance().subLimelightHigh.hasTarget();
-
-        double cameraAngle = 0.0;
-        // Target is locked if we have tx=0 and tol=2 degrees
-        if (RobotContainer.getInstance().bTargetSeen) {
-            cameraAngle = RobotContainer.getInstance().subLimelightHigh.getTX();
-            RobotContainer.getInstance().bTargetLock = CommonLogic.isInRange(cameraAngle, 0, 2);
-        } else {
-            RobotContainer.getInstance().bTargetLock = false;
-        }
+        RobotContainer.getInstance().updateSmartDash();
+        double cameraAngle = RobotContainer.getInstance().subLimelightHigh.getTX();
         double aimTrigger = RobotContainer.getInstance().joyRc.getZ();
 
         if ((aimTrigger > .5) && RobotContainer.getInstance().bTargetSeen) {
@@ -172,8 +163,6 @@ public class Robot extends TimedRobot {
         RobotContainer.getInstance().subClimber.climbMan(RobotContainer.getInstance().Xbox.leftStick.getY());
         RobotContainer.getInstance().subClimber.climbMan2(RobotContainer.getInstance().Xbox.leftStick.getX());
         RobotContainer.getInstance().subClimber.transverseMan(RobotContainer.getInstance().Xbox.rightStick.getX());
-        RobotContainer.getInstance().updateSmartDash();
-
     }
 
     @Override
