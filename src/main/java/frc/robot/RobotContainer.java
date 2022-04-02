@@ -239,7 +239,8 @@ public class RobotContainer {
     Xbox.lb.whenReleased(new CmdForwardRoller());
 
     Xbox.dPad.up.whenPressed(new CmdLauncherRun(2650.0));
-    Xbox.dPad.left.whenPressed(new CmdLauncherRun(1500.0));
+    //Xbox.dPad.left.whenPressed(new CmdLauncherRun(1500.0));
+    Xbox.dPad.left.whenPressed(new CmdEnableDisableAutoRPM());
     Xbox.dPad.right.whenPressed(new CmdLauncherRun(3000.0));
     Xbox.dPad.down.whenPressed(new CmdLauncherRun(3500.0));
     // 3500
