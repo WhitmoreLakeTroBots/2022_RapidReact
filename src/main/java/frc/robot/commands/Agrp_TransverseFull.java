@@ -8,10 +8,10 @@ public class Agrp_TransverseFull extends SequentialCommandGroup {
     public Agrp_TransverseFull() {
 
         addCommands(new CmdMoveExtender());
-        addCommands(new CmdDelay(0.25));
+        addCommands(new CmdDelay(0.45));
         addCommands(new CmdGrabTransverse());
-        addCommands(new CmdDelay(0.25));
-        addCommands(new CmdReleaseClimb(0.4));
+        addCommands(new CmdDelay(0.1));
+        addCommands(new CmdReleaseClimb(0.2));
         addCommands(new CmdDelay(0.1));
         addCommands(new CmdMoveExtender(0));
         addCommands(new CmdReleaseTransverse());
@@ -24,23 +24,23 @@ public class Agrp_TransverseFull extends SequentialCommandGroup {
         addCommands(new CmdDelay(0.1));
         addCommands(new CmdRetractClimb(0.7));
 
-        addCommands(new CmdDelay(1));
+        addCommands(new CmdDelay(0.5));
         addCommands(new CmdMoveExtender());
-        addCommands(new CmdDelay(0.25));
+        addCommands(new CmdDelay(0.45));
         addCommands(new CmdGrabTransverse());
-        addCommands(new CmdDelay(0.25));
-        addCommands(new CmdReleaseClimb(0.4));
+        addCommands(new CmdDelay(0.1));
+        addCommands(new CmdReleaseClimb(0.2));
         addCommands(new CmdDelay(0.1));
         addCommands(new CmdMoveExtender(0));
         addCommands(new CmdReleaseTransverse());
         addCommands(new CmdDelay(0.1));
         addCommands(new CmdGrabClimb(0.7));
         addCommands(new CmdDelay(0.1));
-       /* addCommands(new CmdPassClimb(0.7));
+        addCommands(new CmdPassClimb(0.7));
         addCommands(new CmdDelay(0.1));
         addCommands(new CmdBackTransverse());
-        addCommands(new CmdDelay(0.1));
+        addCommands(new CmdDelay(0.1));  
         addCommands(new CmdRetractClimb(0.7));
-*/
+
     }
 }

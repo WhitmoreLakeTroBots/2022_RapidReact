@@ -159,10 +159,12 @@ public class Robot extends TimedRobot {
         } else {
             RobotContainer.getInstance().subDriveTrain.Drive(RobotContainer.getInstance().joyRc);
         }
-        RobotContainer.getInstance().subClimber.ClimbIntake(RobotContainer.getInstance().Xbox.rightStick.getY());
+        //RobotContainer.getInstance().subClimber.ClimbIntake(RobotContainer.getInstance().Xbox.rightStick.getY());
         RobotContainer.getInstance().subClimber.climbMan(RobotContainer.getInstance().Xbox.leftStick.getY());
         RobotContainer.getInstance().subClimber.climbMan2(RobotContainer.getInstance().Xbox.leftStick.getX());
         RobotContainer.getInstance().subClimber.transverseMan(RobotContainer.getInstance().Xbox.rightStick.getX());
+        RobotContainer.getInstance().subClimber.transverseMan2(RobotContainer.getInstance().Xbox.rightStick.getY());
+
     }
 
     @Override

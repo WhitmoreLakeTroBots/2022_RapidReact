@@ -287,13 +287,36 @@ public class SubClimber extends SubsystemBase {
     }
 
     public void transverseMan(double direction) {
-        System.err.print("trans " + Transverse_TargetPos);
+        //System.err.print("trans " + Transverse_TargetPos);
         if (direction >= 0.5) {
 
-            SetTransversePos(getTransverseTarPos() + (direction));
+            SetTransversePos(Transverse_RetractPOS);
+
+            //SetTransversePos(getTransverseTarPos() + (direction));
         } else if (direction <= -0.5) {
 
-            SetTransversePos(getTransverseTarPos() + (direction));
+            SetTransversePos(Transverse_MinPos);
+
+            //SetTransversePos(getTransverseTarPos() + (direction));
+        }
+
+    }
+
+    public void transverseMan2(double direction) {
+        //System.err.print("trans " + Transverse_TargetPos);
+        if (direction >= 0.5) {
+
+            if(!CommonLogic.isInRange(CanSpark_Transverse.getPosition(), 0, 5)){
+                SetTransversePos(Transverse_Release);
+            }
+            
+            //SetTransversePos(getTransverseTarPos() + (direction));
+        } else if (direction <= -0.5) {
+
+            if(!CommonLogic.isInRange(CanSpark_Transverse.getPosition(), 0, 5)){
+            SetTransversePos(Transverse_Grab);
+            }
+            //SetTransversePos(getTransverseTarPos() + (direction));
         }
 
     }
