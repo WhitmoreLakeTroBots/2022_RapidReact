@@ -26,8 +26,8 @@ Outputs
 Step Blur0
 {
     Mat blurInput = source0;
-    BlurType blurType = GAUSSIAN;
-    Double blurRadius = 5.495495495495495;
+    BlurType blurType = BOX;
+    Double blurRadius = 0.9909909909909913;
 
     blur(blurInput, blurType, blurRadius, blurOutput);
 }
@@ -35,9 +35,9 @@ Step Blur0
 Step RGB_Threshold0
 {
     Mat rgbThresholdInput = blurOutput;
-    List rgbThresholdRed = [27.51798561151079, 229.24242424242425];
+    List rgbThresholdRed = [80.26079136690647, 231.38888888888889];
     List rgbThresholdGreen = [6.879496402877698, 255.0];
-    List rgbThresholdBlue = [0.0, 255.0];
+    List rgbThresholdBlue = [52.74280575539568, 190.6060606060606];
 
     rgbThreshold(rgbThresholdInput, rgbThresholdRed, rgbThresholdGreen, rgbThresholdBlue, rgbThresholdOutput);
 }

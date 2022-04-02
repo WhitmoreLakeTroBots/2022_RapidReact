@@ -26,8 +26,8 @@ Outputs
 Step Blur0
 {
     Mat blurInput = source0;
-    BlurType blurType = GAUSSIAN;
-    Double blurRadius = 5.495495495495495;
+    BlurType blurType = BOX;
+    Double blurRadius = 0.990990990990991;
 
     blur(blurInput, blurType, blurRadius, blurOutput);
 }
@@ -35,9 +35,9 @@ Step Blur0
 Step RGB_Threshold0
 {
     Mat rgbThresholdInput = blurOutput;
-    List rgbThresholdRed = [50.44964028776978, 132.65151515151516];
-    List rgbThresholdGreen = [123.83093525179855, 255.0];
-    List rgbThresholdBlue = [0.0, 117.62626262626262];
+    List rgbThresholdRed = [82.55395683453239, 231.38888888888889];
+    List rgbThresholdGreen = [0.0, 255.0];
+    List rgbThresholdBlue = [75.67446043165468, 252.85353535353534];
 
     rgbThreshold(rgbThresholdInput, rgbThresholdRed, rgbThresholdGreen, rgbThresholdBlue, rgbThresholdOutput);
 }
@@ -53,8 +53,8 @@ Step Mask0
 Step HSV_Threshold0
 {
     Mat hsvThresholdInput = maskOutput;
-    List hsvThresholdHue = [22.66187050359712, 76.96969696969695];
-    List hsvThresholdSaturation = [64.20863309352518, 255.0];
+    List hsvThresholdHue = [22.66187050359712, 110.3030303030303];
+    List hsvThresholdSaturation = [50.44964028776978, 255.0];
     List hsvThresholdValue = [192.62589928057554, 255.0];
 
     hsvThreshold(hsvThresholdInput, hsvThresholdHue, hsvThresholdSaturation, hsvThresholdValue, hsvThresholdOutput);
@@ -71,13 +71,13 @@ Step Find_Contours0
 Step Filter_Contours0
 {
     ContoursReport filterContoursContours = findContoursOutput;
-    Double filterContoursMinArea = 5.0;
+    Double filterContoursMinArea = 0.0;
     Double filterContoursMinPerimeter = 0.0;
-    Double filterContoursMinWidth = 20.0;
-    Double filterContoursMaxWidth = 90.0;
+    Double filterContoursMinWidth = 7.0;
+    Double filterContoursMaxWidth = 37.0;
     Double filterContoursMinHeight = 0.0;
-    Double filterContoursMaxHeight = 90.0;
-    List filterContoursSolidity = [0, 100];
+    Double filterContoursMaxHeight = 58.0;
+    List filterContoursSolidity = [0.0, 100.0];
     Double filterContoursMaxVertices = 1000000.0;
     Double filterContoursMinVertices = 0.0;
     Double filterContoursMinRatio = 0.0;
