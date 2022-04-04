@@ -11,8 +11,8 @@ import frc.robot.subsystems.SubIntake;
 
 
 public class AutoGrp_2BallsV2 extends SequentialCommandGroup {
-    public final double TURN_SPEED = 0.2;
-    public final double STRAIGHT_SPEED = 0.3;
+    public final double TURN_SPEED = 0.175;
+    public final double STRAIGHT_SPEED = 0.275;
     
     public AutoGrp_2BallsV2() {
         addCommands(new CmdRobotInit());
@@ -21,13 +21,13 @@ public class AutoGrp_2BallsV2 extends SequentialCommandGroup {
 
         
         addCommands(new CmdIndexerStartCollecting());
-        addCommands(new CmdLauncherRun(2850));
+        addCommands(new CmdLauncherRun(2870));
         addCommands(new CmdMoveExtender());
         addCommands(new CmdAutoDriveStraght(60, 0, STRAIGHT_SPEED));
         addCommands(new CmdMoveExtender(16));
-        addCommands(new CmdTurnByLime(158,-TURN_SPEED, TURN_SPEED, cameras.limelight_high, 0 ));   
+        addCommands(new CmdTurnByGyro2(168,-TURN_SPEED, TURN_SPEED));   
        
-        addCommands(new CmdDelay(4.0));
+        addCommands(new CmdDelay(.5));
         addCommands(new Agrp_Launch());
 
         addCommands(new CmdLauncherStop());

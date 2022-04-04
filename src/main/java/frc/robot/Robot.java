@@ -101,8 +101,8 @@ public class Robot extends TimedRobot {
         RobotContainer.getInstance().subIndexer.FeederStop();
         RobotContainer.getInstance().subIntake.stopRoller();
         RobotContainer.getInstance().subClimber.zeroHoldPower();
-        RobotContainer.getInstance().subLimelightHigh.setLEDMode(LED_MODE.OFF);
-        RobotContainer.getInstance().subLimelightLow.setLEDMode(LED_MODE.OFF);
+        //RobotContainer.getInstance().subLimelightHigh.setLEDMode(LED_MODE.OFF);
+        //RobotContainer.getInstance().subLimelightLow.setLEDMode(LED_MODE.OFF);
     }
 
     @Override
@@ -170,8 +170,9 @@ public class Robot extends TimedRobot {
         
 
         if(RobotContainer.getInstance().bLauncherVelocityInTol == true){
-           //new CmdVib(VibType.LauncherSpeedSet);
+           new CmdVib(VibType.LauncherSpeedSet);
         }
+        
 
     }
 
