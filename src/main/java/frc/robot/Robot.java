@@ -166,13 +166,16 @@ public class Robot extends TimedRobot {
         RobotContainer.getInstance().subClimber.climbMan2(RobotContainer.getInstance().Xbox.leftStick.getX());
         RobotContainer.getInstance().subClimber.transverseMan(RobotContainer.getInstance().Xbox.rightStick.getX());
         RobotContainer.getInstance().subClimber.transverseMan2(RobotContainer.getInstance().Xbox.rightStick.getY());
-
+        
         
 
         if(RobotContainer.getInstance().bLauncherVelocityInTol == true){
-           new CmdVib(VibType.LauncherSpeedSet);
-        }
-        
+            RobotContainer.getInstance().wl_SubVibration.SetVib(VibType.LauncherSpeedSet);
+         }
+
+         if(RobotContainer.getInstance().bTargetLock == true){
+            RobotContainer.getInstance().wl_SubVibration.SetVib(VibType.TargetLock);
+         }
 
     }
 
