@@ -21,7 +21,7 @@ public class LaunchValues {
             // { 35.00, 1374.0 }, // 2
             // { 35.00, 1516.0 }, // 3
             // { 35.00, 1658.0 }, // 4
-            { 35.00, 1500.0 },  // 5  Low Shot
+            { 35.00, 1550.0 },  // 5  Low Shot
             { 22.59, 2321.0 },  // 6 Target aquired about 6 feet from hub
             { 18.17, 2467.0 },  // 7
             { 14.39, 2612.0 },  // 8
@@ -38,7 +38,7 @@ public class LaunchValues {
             { -5.13, 4213.0 },  // 19
             { -6.69, 4358.0 }, // 20 // far safe zone (245 inches)
             { -7.50, 4504.0 }, // 21
-            { -35.00, 1500.0 }  // Low Shot
+            { -35.00, 1550.0 }  // Low Shot
     };
 
     public static double getRPM(double cameraAngle) {
