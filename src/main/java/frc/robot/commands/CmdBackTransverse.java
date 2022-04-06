@@ -32,12 +32,7 @@ public class CmdBackTransverse extends CommandBase {
     @Override
     public void initialize() {
         bdone = false;
-        System.err.println("MoveExtender");
-
-        addRequirements(RobotContainer.getInstance().subIntake);
-
-
-        RobotContainer.getInstance().subIntake.setExtend(RobotContainer.getInstance().subIntake.getFullExtendedPos());
+    
         
         addRequirements(RobotContainer.getInstance().subClimber);
 
@@ -51,9 +46,6 @@ public class CmdBackTransverse extends CommandBase {
     @Override
     public void execute() {
     
-        if (RobotContainer.bLogging) {
-            System.err.println("Retractor Moving");
-        }
 
         if (CommonLogic.isInRange(RobotContainer.getInstance().subClimber.getTransverseCurPos(), RobotContainer.getInstance().subClimber.getTransverseTarPos(), RobotContainer.getInstance().subClimber.getTransverseTolPos())) {
             bdone = true;
