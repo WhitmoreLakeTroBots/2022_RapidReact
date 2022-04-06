@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class SubLauncher extends SubsystemBase {
     public double kP, kI, kD, kIz, kFF, maxRPM, minVEL;
     public final double kMaxOutput = 1.0;
-    public final double kMinOutput = -1.0;
+    public final double kMinOutput = 0.0;
     public PID PIDcalc;
     private SubLimelight subLimeLight = null;
     private double iTargetRPM = 0;
@@ -23,15 +23,17 @@ public class SubLauncher extends SubsystemBase {
     private double currPowerStep = 0; // how large of steps to take for ramping
     private double PIDv = 0;
     private final double LAUNCHER_MAX_RPM = 5676;
-    private final int RAMP_STEPS = 25;
-    private final double STEP_RANGE = 2.0 / RAMP_STEPS;
+    private final double POWER_STEP_INCREMENT = .0211;
+    private final double STEP_RANGE = POWER_STEP_INCREMENT + .01;
+    private final int MAX_STEP_COUNT = 25;
+    private int currPowerStepCounter = 0;
 
-    private double rampWaitEndTime = 0.0;
-    private final double rampWaitTime = .5;
+    // private double rampWaitEndTime = 0.0;
+    // private final double rampWaitTime = .5;
 
     public enum LauncherModes {
         RAMPING,
-        RAMP_WAIT,
+        // RAMP_WAIT,
         RUNNING,
         STOPPED
     }
@@ -65,7 +67,7 @@ public class SubLauncher extends SubsystemBase {
         // This method will be called once per scheduler run when in simulation
 
         // make sure we have set a camera
-        if (subLimeLight != null) {
+        if ((subLimeLight != null)) {
             // make sure we are under limelight control
             if (bAutoRPMEnabled) {
                 double rpm = 0.0;
@@ -88,13 +90,15 @@ public class SubLauncher extends SubsystemBase {
                 }
                 // If we are within x% of current RPM then use the PID to change
                 // velocity. Else set a new target and use the RAMP to get there
-                if (CommonLogic.isInRange(iActualRPM, rpm, (iActualRPM * .03)) &&
-                        LauncherModes.RUNNING == currLauncherMode) {
-                    // using PID to change to new RPM
-                    iTargetRPM = rpm;
-                } else {
-                    // using the RAMP function to get to new RPM
-                    setTargetRPM(rpm);
+                if (LauncherModes.STOPPED != currLauncherMode) {
+                    if (CommonLogic.isInRange(iActualRPM, rpm, (iActualRPM * .03)) &&
+                            LauncherModes.RUNNING == currLauncherMode) {
+                        // using PID to change to new RPM
+                        iTargetRPM = rpm;
+                    } else {
+                        // using the RAMP function to get to new RPM
+                        setTargetRPM(rpm);
+                    }
                 }
             }
         }
@@ -103,26 +107,29 @@ public class SubLauncher extends SubsystemBase {
 
         {
             case RAMPING:
-                // we are ramping to curret Speed
-                // Are we within 2.5% ?
-                // if (IsVelocityInTol(2.5)){
-                if (CommonLogic.isInRange(currActualPower, currRequestedPower, STEP_RANGE)) {
+                // we are ramping to corret power
+                // Ramping ends if our power is near where we want it OR if we have steped
+                // a given number of times ~20ms * 25 ~ 500 ms
+                if (CommonLogic.isInRange(currActualPower, currRequestedPower, STEP_RANGE) ||
+                        currPowerStepCounter >= MAX_STEP_COUNT) {
                     // We are close to running speed go to pid control
                     setpower(currRequestedPower);
-                    currLauncherMode = LauncherModes.RAMP_WAIT;
-                    rampWaitEndTime = CommonLogic.getTime() + rampWaitTime;
-                    // PIDcalc.resetErrors();
+                    currLauncherMode = LauncherModes.RUNNING;
+                    // rampWaitEndTime = CommonLogic.getTime() + rampWaitTime;
+                    PIDcalc.resetErrors();
                 } else {
                     // We are not close to requested velocity keep ramping it
                     setpower(currActualPower + currPowerStep);
                 }
                 break;
-            case RAMP_WAIT:
-                if (CommonLogic.getTime() >= rampWaitEndTime) {
-                    PIDcalc.resetErrors();
-                    currLauncherMode = LauncherModes.RUNNING;
-                }
-                break;
+            /*
+             * case RAMP_WAIT:
+             * if (CommonLogic.getTime() >= rampWaitEndTime) {
+             * PIDcalc.resetErrors();
+             * currLauncherMode = LauncherModes.RUNNING;
+             * }
+             * break;
+             */
             case RUNNING:
                 // we are running under PID Control
                 PIDv = calcpowrdiff(iActualRPM, iTargetRPM);
@@ -150,7 +157,8 @@ public class SubLauncher extends SubsystemBase {
         iTargetRPM = newTargetRPM;
         currRequestedPower = iTargetRPM / LAUNCHER_MAX_RPM;
         currLauncherMode = LauncherModes.RAMPING;
-        currPowerStep = (currRequestedPower - currActualPower) / RAMP_STEPS;
+        currPowerStepCounter = 0;
+        currPowerStep = Math.signum(currRequestedPower - currActualPower) * POWER_STEP_INCREMENT;
     }
 
     public double getTargetRPM() {
@@ -165,6 +173,7 @@ public class SubLauncher extends SubsystemBase {
         // be sure to cap the power between 0.0 (stopped) and 1.0;
         currActualPower = CommonLogic.CapMotorPower(power, kMinOutput, kMaxOutput);
         CanSpark_launcher.set(currActualPower);
+        currPowerStepCounter = currPowerStepCounter + 1;
     }
 
     // Stop the flywheel
@@ -194,8 +203,11 @@ public class SubLauncher extends SubsystemBase {
     public boolean IsVelocityInTol(double percent) {
         double pcnt = CommonLogic.CapMotorPower(Math.abs(percent) / 100, 0.0, 1.0);
 
-        return (CommonLogic.isInRange(iActualRPM, iTargetRPM, (iTargetRPM * pcnt)) /*&&
-                LauncherModes.RUNNING == currLauncherMode*/);
+        return (CommonLogic.isInRange(iActualRPM, iTargetRPM, (iTargetRPM * pcnt)) /*
+                                                                                    * &&
+                                                                                    * LauncherModes.RUNNING ==
+                                                                                    * currLauncherMode
+                                                                                    */);
     }
 
     // Enable/Disable the AutoRPM Logic
