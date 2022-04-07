@@ -188,7 +188,7 @@ public class RobotContainer {
     m_chooser.addOption("V1AutoGrp_2Balls", new AutoGrp_2BallsV1());
     m_chooser.addOption("V2AutoGrp_2Balls", new AutoGrp_2BallsV2());
     m_chooser.addOption("V3AutoGrp_2Balls", new AutoGrp_2BallsV3());
-    m_chooser.addOption("4Ball", new AutoGrp_4BallsV2());
+    m_chooser.addOption("3Ball", new AutoGrp_3BallsV2());
 
     m_chooser.setDefaultOption(defaultCmd.getName().replace(' ', '_'), defaultCmd);
 
