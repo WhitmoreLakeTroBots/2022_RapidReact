@@ -86,12 +86,13 @@ public class CmdIndexerLaunch extends CommandBase {
         
         double CurrentTime = RobotMath.getTime();
         if (CurrentTime >= IdleTime && CurrentTime < TargetTime) {
+            RobotContainer.getInstance().subIndexer.Launchtrack();
             RobotContainer.getInstance().subIndexer.FeederLaunch();
 
         } else if (CurrentTime >= TargetTime && CurrentTime < RestartTime) {
             RobotContainer.getInstance().subIndexer.FeederStop();
         } else if (CurrentTime >= RestartTime) {
-
+            RobotContainer.getInstance().subIndexer.starttrack();
             bdone = true;
         }
 

@@ -83,7 +83,10 @@ public class SubIndexer extends SubsystemBase {
         //start Track motor at TrackPower
         CanSpark_TrackMotor.set(TrackMotorPower);
     }
-
+    public void Launchtrack() {
+        //start Track motor at TrackPower
+        CanSpark_TrackMotor.set(0.80);
+    }
     
     public void stopTrack() {
         //stop track motor

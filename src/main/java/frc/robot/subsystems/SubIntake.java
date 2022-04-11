@@ -60,6 +60,8 @@ public class SubIntake extends SubsystemBase {
 
     private double AutoStartRollerPos = 40;
 
+    public double RollerAmps;
+
     public SubIntake() {
  //*****Initialize constants here*****
 
@@ -107,6 +109,7 @@ CanSpark_Retractor.burnFlash();
         }
 
         //Need to process Roller actions.  
+        RollerAmps = CanSpark_Roller.getOutputCurrent();
 
     }
 
