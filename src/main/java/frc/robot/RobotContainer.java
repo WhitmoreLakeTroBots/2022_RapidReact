@@ -388,6 +388,8 @@ public class RobotContainer {
     SmartDashboard.putNumber("climbPos", subClimber.getClimbCurPos());
     // SmartDashboard.putBoolean("climbEnable", subClimber.getbclimb());
 
+    SmartDashboard.putNumber("IntakeAmps", subIntake.RollerAmps);
+
   }
 
 }
