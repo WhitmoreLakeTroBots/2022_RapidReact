@@ -51,7 +51,7 @@ public class SubLauncher extends SubsystemBase {
         PIDcalc = new PID(kP, kI, kD);
         CanSpark_launcher.restoreFactoryDefaults();
         CanSpark_launcher.setInverted(false);
-        CanSpark_launcher.setSmartCurrentLimit(80);
+        CanSpark_launcher.setSmartCurrentLimit(70);
         CanSpark_launcher.setIdleMode(WL_Spark.IdleMode.kCoast);
 
     }
