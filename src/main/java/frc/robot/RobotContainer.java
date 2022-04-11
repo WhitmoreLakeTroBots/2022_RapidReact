@@ -176,11 +176,11 @@ public class RobotContainer {
     // Configure the button bindings
     configureButtonBindings();
 
-    SmartDashboard.putData("Vib TargSeen Test", new CmdVib(VibType.TargetSeen));
-    SmartDashboard.putData("Vib TargLock Test", new CmdVib(VibType.TargetLock));
-    SmartDashboard.putData("Vib LaunchAutoSpeed Test", new CmdVib(VibType.LauncherAutoSpeed));
-    SmartDashboard.putData("Vib LaunchFixSpeed Test", new CmdVib(VibType.LauncherFixedSpeed));
-    SmartDashboard.putData("Vib LaunchSpeedSet", new CmdVib(VibType.LauncherSpeedSet));
+    //SmartDashboard.putData("Vib TargSeen Test", new CmdVib(VibType.TargetSeen));
+    //SmartDashboard.putData("Vib TargLock Test", new CmdVib(VibType.TargetLock));
+    //SmartDashboard.putData("Vib LaunchAutoSpeed Test", new CmdVib(VibType.LauncherAutoSpeed));
+    //SmartDashboard.putData("Vib LaunchFixSpeed Test", new CmdVib(VibType.LauncherFixedSpeed));
+    //SmartDashboard.putData("Vib LaunchSpeedSet", new CmdVib(VibType.LauncherSpeedSet));
     SmartDashboard.putData("Climb", new Agrp_TransverseFull());
     //SmartDashboard.putData("autoRPM", new CmdEnableDisableAutoRPM());
 
@@ -188,7 +188,8 @@ public class RobotContainer {
     m_chooser.addOption("V1AutoGrp_2Balls", new AutoGrp_2BallsV1());
     m_chooser.addOption("V2AutoGrp_2Balls", new AutoGrp_2BallsV2());
     m_chooser.addOption("V3AutoGrp_2Balls", new AutoGrp_2BallsV3());
-    m_chooser.addOption("3Ball", new AutoGrp_3BallsV2());
+    m_chooser.addOption("Red3Ball", new AutoGrp_3BallsV2Red());
+    m_chooser.addOption("Blue3Ball", new AutoGrp_3BallsV2Blue());
 
     m_chooser.setDefaultOption(defaultCmd.getName().replace(' ', '_'), defaultCmd);
 
@@ -233,14 +234,13 @@ public class RobotContainer {
     // Xbox.lt.whenReleased(new CmdForwardRoller());
 
     Xbox.lt.whenPressed(new CmdStopRoller());
-
     // Xbox.lb.whenPressed(new CmdStopRoller());
     Xbox.lb.whenHeld(new CmdReverseRoller());
     Xbox.lb.whenReleased(new CmdForwardRoller());
 
-    Xbox.dPad.up.whenPressed(new CmdLauncherRun(2650.0));
-    //Xbox.dPad.left.whenPressed(new CmdLauncherRun(1500.0));
-    Xbox.dPad.left.whenPressed(new CmdEnableDisableAutoRPM());
+    Xbox.dPad.up.whenPressed(new CmdLauncherRun(2675.0));
+    Xbox.dPad.left.whenPressed(new CmdLauncherRun(1500.0));
+    //Xbox.dPad.left.whenPressed(new CmdEnableDisableAutoRPM());
     Xbox.dPad.right.whenPressed(new CmdLauncherRun(3000.0));
     Xbox.dPad.down.whenPressed(new CmdLauncherRun(3500.0));
     // 3500

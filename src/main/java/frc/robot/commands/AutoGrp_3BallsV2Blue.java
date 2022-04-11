@@ -12,11 +12,11 @@ import frc.robot.commands.CmdIndexerLaunch;
 import frc.robot.subsystems.SubIntake;
 
 
-public class AutoGrp_3BallsV2 extends SequentialCommandGroup {
-    public final double TURN_SPEED = 0.175;
-    public final double STRAIGHT_SPEED = 0.325;
+public class AutoGrp_3BallsV2Blue extends SequentialCommandGroup {
+    public final double TURN_SPEED = 0.2;
+    public final double STRAIGHT_SPEED = 0.35;
     
-    public AutoGrp_3BallsV2() {
+    public AutoGrp_3BallsV2Blue() {
         addCommands(new CmdRobotInit());
         //Start flywheel
         
@@ -29,19 +29,17 @@ public class AutoGrp_3BallsV2 extends SequentialCommandGroup {
         addCommands(new CmdMoveExtender(16));
         addCommands(new CmdTurnByGyro2(172,-TURN_SPEED, TURN_SPEED));   
        
-        addCommands(new CmdDelay(.25));
+        
         addCommands(new Agrp_Launch());
         
         //move and get more balls
         //addCommands(new CmdTurnByGyro2(-110,-TURN_SPEED, TURN_SPEED));
-        addCommands(new CmdLauncherRun(2675));
-        addCommands(new CmdAutoDriveStraght(108, -110, .2));
+        addCommands(new CmdLauncherRun(2675)); 
         addCommands(new CmdMoveExtender());
+        addCommands(new CmdAutoDriveStraght(112, -115, STRAIGHT_SPEED));
         addCommands(new CmdMoveExtender(0));
         addCommands(new CmdTurnByGyro2(125, -TURN_SPEED, TURN_SPEED));
         addCommands(new CmdAutoDriveStraght(20, 125, STRAIGHT_SPEED));
-
-        addCommands(new CmdDelay(.25));
         addCommands(new Agrp_Launch());
 
         //stop
