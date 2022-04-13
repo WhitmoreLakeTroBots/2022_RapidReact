@@ -157,8 +157,8 @@ public class WL_SubVibration extends SubsystemBase {
                 // vib target lock
                 // medIntensity, MedDuration RightSide
                 //ExecVib(HAND.RIGHT, MedIntensity, CalcEndtime(MediumDuration));
-                rIntensity = HighIntensity;
-                rEndTime = CalcEndtime(MediumDuration);
+                lIntensity = HighIntensity;
+                lEndTime = CalcEndtime(MediumDuration);
                 vType = VibType.STOP;
                 break;
 
@@ -190,6 +190,11 @@ public class WL_SubVibration extends SubsystemBase {
                 vType = VibType.STOP;
                 break;
 
+                case BallCaptured:
+                rIntensity = HighIntensity;
+                rEndTime =CalcEndtime(ShortDuration);
+                vType = VibType.STOP;
+                break;
         }
     }
 
@@ -199,7 +204,8 @@ public class WL_SubVibration extends SubsystemBase {
         TargetLock,
         LauncherFixedSpeed,
         LauncherAutoSpeed,
-        LauncherSpeedSet;
+        LauncherSpeedSet,
+        BallCaptured;
     }
 
 }

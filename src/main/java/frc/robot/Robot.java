@@ -107,7 +107,7 @@ public class Robot extends TimedRobot {
 
     @Override
     public void disabledPeriodic() {
-
+        RobotContainer.getInstance().updateSmartDash();
     }
 
     /**
@@ -175,6 +175,10 @@ public class Robot extends TimedRobot {
 
          if(RobotContainer.getInstance().bTargetLock == true){
             RobotContainer.getInstance().wl_SubVibration.SetVib(VibType.TargetLock);
+         }
+
+         if(RobotContainer.getInstance().subIntake.RollerAmps >= 5 && RobotContainer.getInstance().subIntake.RollerAmps <= 15 ){
+            RobotContainer.getInstance().wl_SubVibration.SetVib(VibType.BallCaptured);
          }
 
     }
