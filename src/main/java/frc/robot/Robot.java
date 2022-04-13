@@ -177,7 +177,7 @@ public class Robot extends TimedRobot {
             RobotContainer.getInstance().wl_SubVibration.SetVib(VibType.TargetLock);
          }
 
-         if(RobotContainer.getInstance().subIntake.RollerAmps >= 5 && RobotContainer.getInstance().subIntake.RollerAmps <= 15 ){
+         if(RobotContainer.getInstance().subIntake.RollerAmps >= 8 && RobotContainer.getInstance().subIntake.RollerAmps <= 15 ){
             RobotContainer.getInstance().wl_SubVibration.SetVib(VibType.BallCaptured);
          }
 
