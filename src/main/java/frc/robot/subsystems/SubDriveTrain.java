@@ -55,7 +55,7 @@ public class SubDriveTrain extends SubsystemBase {
         CanSpark_driveRight_1.setInverted(true);
         CanSpark_driveRight_2.setInverted(true);
 
-        int maxCurrent = 40;
+        int maxCurrent = 50;
         CanSpark_driveLeft_1.setSmartCurrentLimit(maxCurrent);
         CanSpark_driveLeft_2.setSmartCurrentLimit(maxCurrent);
         CanSpark_driveRight_1.setSmartCurrentLimit(maxCurrent);
