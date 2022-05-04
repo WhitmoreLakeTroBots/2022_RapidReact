@@ -25,11 +25,14 @@ public class CmdEnableDisableAutoRPM extends CommandBase {
     
     @Override
     public void initialize() {
+        System.err.print("*********this*******");
         if (performToggle) {
             RobotContainer.getInstance().subLauncher.AutoRPM_toggle();
+            System.err.print("NORPM");
         }
         else {
             RobotContainer.getInstance().subLauncher.AutoRPM_set(autoRPMEnabled);
+            System.err.print("autoRPM");
         }
         bDone = true;
     }

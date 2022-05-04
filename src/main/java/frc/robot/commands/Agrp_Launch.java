@@ -6,11 +6,10 @@ import frc.robot.Constants.limelightConstants.cameras;
 public class Agrp_Launch extends SequentialCommandGroup {
     public Agrp_Launch() {
 
-        addCommands(new CmdTurnByLimeAim(cameras.limelight_high,0));
+       //addCommands(new CmdTurnByLimeAim(cameras.limelight_high,0));
         addCommands(new CmdDelay(.1));
-        addCommands(new CmdIndexerLaunch());
-        addCommands(new CmdIndexerLaunch());
-    
+        addCommands(new CmdIndexerLaunchv2());
+        addCommands(new CmdIndexerLaunchv2());
         
 
     }

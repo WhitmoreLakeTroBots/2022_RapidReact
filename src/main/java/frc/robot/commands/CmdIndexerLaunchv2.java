@@ -67,8 +67,8 @@ public class CmdIndexerLaunchv2 extends CommandBase {
 
         RunningTime = RobotMath.getTime();
         IdleTime = RunningTime + (DelayTime);
-        TargetTime = IdleTime + (4 * DelayTime);
-        RestartTime = TargetTime + (3 * DelayTime);
+        TargetTime = IdleTime + (8 * DelayTime);
+        RestartTime = TargetTime + (5 * DelayTime);
 
         addRequirements(RobotContainer.getInstance().subIndexer);
         RobotContainer.getInstance().subIndexer.FeederStop();

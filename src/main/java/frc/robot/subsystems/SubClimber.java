@@ -41,17 +41,17 @@ public class SubClimber extends SubsystemBase {
     public double Climb_power = 0.7;
     private boolean bClimb = false;
 
-    private double Transverse_MinPos = 104.74;
-    private double Transverse_MaxPos = -115;
+    private double Transverse_MaxPos = 105;
+    private double Transverse_MinPos = -115;
     
-    private double Transverse_Grab = 75;
-    private double Transverse_Release = -110;
+    private double Transverse_Grab = 73;
+    private double Transverse_Release = -108;
     private double Transverse_RetractPOS = 0;
     private double Transverse_ExtendPos = -113;
 
     private double Transverse_TargetPos = 0;
-    private double Transverse_Tol = 7;
-    private double Transverse_power = 0.1;
+    private double Transverse_Tol = 3;
+    private double Transverse_power = 0.8;
     private boolean bTransverse = false;
 
     public SubClimber() {
@@ -238,12 +238,12 @@ public class SubClimber extends SubsystemBase {
         // else if current positon is greater than target postion
         else if (CanSpark_Transverse.getPosition() > Transverse_TargetPos + Transverse_Tol) {
             // then apply (-) RetractorPower
-            CanSpark_Transverse.set( Transverse_power);
+            CanSpark_Transverse.set(-1 * Transverse_power);
         }
         // else if if current position is commonlogic inRange
         else if (CanSpark_Transverse.getPosition() < Transverse_TargetPos - Transverse_Tol) {
             // then apply RetractorPower
-            CanSpark_Transverse.set(-1 * Transverse_power);
+            CanSpark_Transverse.set(Transverse_power);
         }
     }
 
@@ -295,7 +295,7 @@ public class SubClimber extends SubsystemBase {
             //SetTransversePos(getTransverseTarPos() + (direction));
         } else if (direction <= -0.5) {
             RobotContainer.getInstance().subIntake.setExtend(RobotContainer.getInstance().subIntake.getFullExtendedPos());
-            SetTransversePos(Transverse_MinPos);
+            SetTransversePos(102);
 
             //SetTransversePos(getTransverseTarPos() + (direction));
         }

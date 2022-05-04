@@ -182,6 +182,7 @@ public class RobotContainer {
     //SmartDashboard.putData("Vib LaunchFixSpeed Test", new CmdVib(VibType.LauncherFixedSpeed));
     //SmartDashboard.putData("Vib LaunchSpeedSet", new CmdVib(VibType.LauncherSpeedSet));
     SmartDashboard.putData("Climb", new Agrp_TransverseFull());
+    SmartDashboard.putData("NO_CAR_TURN", new CmdNoCarTurn());
     //SmartDashboard.putData("autoRPM", new CmdEnableDisableAutoRPM());
 
     // Add Auton's to Selection dropdown.
@@ -225,16 +226,12 @@ public class RobotContainer {
     Xbox.back.whenPressed(new Agrp_Transverse());
     // Xbox.start.whenPressed(new CmdClimbEnable());
 
-    Xbox.rb.whenPressed(new CmdIndexerLaunchv2());
-    Xbox.rt.whenPressed(new CmdIndexerLaunch());
+    Xbox.rb.whenPressed(new CmdIndexerLaunch());
+    Xbox.rt.whenPressed(new CmdIndexerLaunchv2());
 
     Xbox.rightStick.whenPressed(new AModeEmStop());
 
-    // Xbox.lt.whenHeld(new CmdReverseRoller());
-    // Xbox.lt.whenReleased(new CmdForwardRoller());
-
-    //Xbox.lt.whenPressed(new CmdStopRoller());
-    // Xbox.lb.whenPressed(new CmdStopRoller());
+  
     Xbox.lt.whenHeld(new CmdReverseRoller());
     Xbox.lt.whenReleased(new CmdForwardRoller());
 
@@ -243,7 +240,13 @@ public class RobotContainer {
     //Xbox.dPad.left.whenPressed(new CmdEnableDisableAutoRPM());
     Xbox.dPad.right.whenPressed(new CmdLauncherRun(3000.0));
     Xbox.dPad.down.whenPressed(new CmdLauncherRun(3500.0));
-    // 3500
+    
+
+    // Xbox.lt.whenHeld(new CmdReverseRoller());
+    // Xbox.lt.whenReleased(new CmdForwardRoller());
+
+    //Xbox.lt.whenPressed(new CmdStopRoller());
+    // Xbox.lb.whenPressed(new CmdStopRoller());
     /**
      * 
      * final JoystickButton btnLowFLaunch = new JoystickButton(joy2, 5);

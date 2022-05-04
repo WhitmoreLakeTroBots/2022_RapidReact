@@ -31,7 +31,7 @@ public class SubDriveTrain extends SubsystemBase {
     public final double kp_DriveStraightGyro = 0.006;
     public final double ki_DriveStraightGyro = 0.0; 
     public final double kd_DriveStraightGyro = 0.0; 
-    
+    public boolean unInvertCarTurn = false;    
 
     
     public SubDriveTrain() {
@@ -124,10 +124,11 @@ public class SubDriveTrain extends SubsystemBase {
          double joyY = CommonLogic.joyDeadBand(-stick.getY(), JoyStick_Constants.DriveDeadband);
         
         //car turn go burr
+    if(unInvertCarTurn == false){
         if(joyY <= -0.05){
             joyX = joyX * -1;
         }
-         
+    }
          Drive((joyY - joyX), (joyY + joyX));
         
         

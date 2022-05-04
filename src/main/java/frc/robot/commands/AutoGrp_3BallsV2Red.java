@@ -40,6 +40,8 @@ public class AutoGrp_3BallsV2Red extends SequentialCommandGroup {
         addCommands(new CmdMoveExtender(0));
         addCommands(new CmdTurnByGyro2(130, -TURN_SPEED, TURN_SPEED));
         addCommands(new CmdAutoDriveStraght(25, 130, STRAIGHT_SPEED));
+        
+        addCommands(new CmdTurnByLimeAim(cameras.limelight_high,0));
         addCommands(new Agrp_Launch());
 
         //stop
