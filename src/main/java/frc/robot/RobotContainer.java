@@ -181,7 +181,7 @@ public class RobotContainer {
     //SmartDashboard.putData("Vib LaunchAutoSpeed Test", new CmdVib(VibType.LauncherAutoSpeed));
     //SmartDashboard.putData("Vib LaunchFixSpeed Test", new CmdVib(VibType.LauncherFixedSpeed));
     //SmartDashboard.putData("Vib LaunchSpeedSet", new CmdVib(VibType.LauncherSpeedSet));
-    SmartDashboard.putData("Climb", new Agrp_TransverseFull());
+    //SmartDashboard.putData("Climb", new Agrp_TransverseFull());
     SmartDashboard.putData("NO_CAR_TURN", new CmdNoCarTurn());
     //SmartDashboard.putData("autoRPM", new CmdEnableDisableAutoRPM());
 
@@ -223,7 +223,6 @@ public class RobotContainer {
     Xbox.a.whenPressed(new AModeIntake());
     Xbox.b.whenPressed(new AModeCarry());
     Xbox.start.whenPressed(new AModeClimb());
-    Xbox.back.whenPressed(new Agrp_Transverse());
     // Xbox.start.whenPressed(new CmdClimbEnable());
 
     Xbox.rb.whenPressed(new CmdIndexerLaunch());
