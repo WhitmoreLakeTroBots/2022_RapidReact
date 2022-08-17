@@ -23,7 +23,7 @@ public class SubClimber extends SubsystemBase {
     private WL_Spark CanSpark_Climber_1;
     private WL_Spark CanSpark_Climber_2;
 
-    private WL_Spark CanSpark_Transverse;
+    // private WL_Spark CanSpark_Transverse;
 
     private double Climb_MaxPos = 106;
     private double Climb_MinPos = 0;
@@ -36,7 +36,7 @@ public class SubClimber extends SubsystemBase {
     private double Climb_power = 0.9;
     private boolean bClimb = false;
 
-    private double Transverse_MaxPos = 92;
+   /* private double Transverse_MaxPos = 92;
     private double Transverse_MinPos = -81;
 
     private double Transverse_RetractPOS = 0;
@@ -45,7 +45,7 @@ public class SubClimber extends SubsystemBase {
     private double Transverse_TargetPos = 0;
     private double Transverse_Tol = 3;
     private double Transverse_power = 0.4;
-    private boolean bTransverse = false;
+    private boolean bTransverse = false; */
 
     /**
     *
@@ -55,39 +55,39 @@ public class SubClimber extends SubsystemBase {
         // for full chassis uncomment other motors
         CanSpark_Climber_1 = new WL_Spark(CAN_ID_Constants.kCanID_Climber_1, WL_Spark.MotorType.kBrushless);
         CanSpark_Climber_2 = new WL_Spark(CAN_ID_Constants.kCanID_Climber_2, WL_Spark.MotorType.kBrushless);
-        CanSpark_Transverse = new WL_Spark(CAN_ID_Constants.kCanID_Climb_Transversal, WL_Spark.MotorType.kBrushless);
+    //  CanSpark_Transverse = new WL_Spark(CAN_ID_Constants.kCanID_Climb_Transversal, WL_Spark.MotorType.kBrushless);
 
         CanSpark_Climber_1.restoreFactoryDefaults();
         CanSpark_Climber_2.restoreFactoryDefaults();
-        CanSpark_Transverse.restoreFactoryDefaults();
+    //  CanSpark_Transverse.restoreFactoryDefaults();
 
         CanSpark_Climber_1.setInverted(false);
         CanSpark_Climber_2.setInverted(true);
-        CanSpark_Transverse.setInverted(false);
+    //  CanSpark_Transverse.setInverted(false);
 
         int maxCurrent = 50;
         CanSpark_Climber_1.setSmartCurrentLimit(maxCurrent);
         CanSpark_Climber_2.setSmartCurrentLimit(maxCurrent);
-        CanSpark_Transverse.setSmartCurrentLimit(maxCurrent);
+    //  CanSpark_Transverse.setSmartCurrentLimit(maxCurrent);
 
         CanSpark_Climber_1.setIdleMode(WL_Spark.IdleMode.kBrake);
         CanSpark_Climber_2.setIdleMode(WL_Spark.IdleMode.kBrake);
 
-        CanSpark_Transverse.setIdleMode(WL_Spark.IdleMode.kBrake);
+    //  CanSpark_Transverse.setIdleMode(WL_Spark.IdleMode.kBrake);
 
         //CanSpark_Climber_2.follow(CanSpark_Climber_1);
 
         // burn new settings in to survive a brownout
         CanSpark_Climber_1.burnFlash();
         CanSpark_Climber_2.burnFlash();
-        CanSpark_Transverse.burnFlash();
+    //    CanSpark_Transverse.burnFlash();
 
         // addChild("CanSpark_Climber_1", CanSpark_Climber_1);
         // addChild("CanSpark_Climber_2", CanSpark_Climber_2);
 
     }
 
-    @Override
+  /*  @Override
     public void periodic() {
         // This method will be called once per scheduler run
         if (bClimb) {
@@ -99,12 +99,13 @@ public class SubClimber extends SubsystemBase {
         }
         if (bTransverse) {
             gotoPositonTraversal();
-        } else {
+        }
+         else {
             Transverse_TargetPos = CanSpark_Transverse.getPosition();
             CanSpark_Transverse.set(0);
-        }
+        } 
 
-    }
+    } */
 
     @Override
     public void simulationPeriodic() {
@@ -117,12 +118,12 @@ public class SubClimber extends SubsystemBase {
 
     public void EnableClimb() {
         bClimb = true;
-        bTransverse = true;
+      //  bTransverse = true;
     }
 
     public void DisableClimb() {
         bClimb = false;
-        bTransverse = false;
+       // bTransverse = false;
     }
 
     public double getClimbCurPos() {
@@ -150,9 +151,9 @@ public boolean getbclimb(){
 }
 
 
-    public double getTransverseCurPos() {
+   /* public double getTransverseCurPos() {
         return CanSpark_Transverse.getPosition();
-    }
+    } 
 
     public double getTransverseTarPos() {
         return Transverse_TargetPos;
@@ -168,25 +169,25 @@ public boolean getbclimb(){
 
     public double getTransverseTolPos(){
         return Transverse_Tol;
-    }
+    } */
 
     public void SetClimbPos(double newTargetPosition){
         Climb_TargetPos = CommonLogic.CapMotorPower(newTargetPosition, Climb_MinPos, Climb_MaxPos );
 
     }
 
-    public void SetTransversePos(double newTargetPosition){
+   /*  public void SetTransversePos(double newTargetPosition){
         Transverse_TargetPos = CommonLogic.CapMotorPower(newTargetPosition, Transverse_MinPos, Transverse_MaxPos );
 
-    }
+    } */
 
-    private void gotoPositonClimb() {
+   /* private void gotoPositonClimb() {
         // if current position is less than targetPostion
         if (CommonLogic.isInRange(CanSpark_Climber_1.getPosition(), Climb_TargetPos, Climb_Tol)) {
             // than stop
             CanSpark_Climber_1.set(0);
             CanSpark_Climber_2.set(0);
-        }
+        } 
 
         // else if current positon is greater than target postion
         else if (CanSpark_Climber_1.getPosition() > Climb_TargetPos + Climb_Tol) {
@@ -201,9 +202,10 @@ public boolean getbclimb(){
             CanSpark_Climber_2.set(Climb_power);
             System.err.print("add power");
         }
-    }
+    } 
+   */
 
-    private void gotoPositonTraversal() {
+   /*  private void gotoPositonTraversal() {
         // if current position is less than targetPostion
         if (CommonLogic.isInRange(CanSpark_Transverse.getPosition(), Transverse_TargetPos, Transverse_Tol)) {
             // than stop
@@ -220,7 +222,7 @@ public boolean getbclimb(){
             // then apply RetractorPower
             CanSpark_Transverse.set(Transverse_power);
         }
-    }
+    } */
 
 public void climbMan(double direction){
     
@@ -236,7 +238,7 @@ public void climbMan(double direction){
         SetClimbPos(Climb_RetractPOS);
     }
 }
-
+/* 
 public void transverseMan(double direction){
    System.err.print("trans " + Transverse_TargetPos); 
     if (direction >= 0.1){
@@ -247,7 +249,7 @@ public void transverseMan(double direction){
 
         SetTransversePos(getTransverseTarPos() + (direction )); 
     }
-}
+} */
 
 
 }
