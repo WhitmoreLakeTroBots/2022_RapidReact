@@ -87,7 +87,7 @@ public class SubClimber extends SubsystemBase {
 
     }
 
-  /*  @Override
+    @Override
     public void periodic() {
         // This method will be called once per scheduler run
         if (bClimb) {
@@ -97,15 +97,15 @@ public class SubClimber extends SubsystemBase {
             CanSpark_Climber_1.set(0);
             CanSpark_Climber_2.set(0);
         }
-        if (bTransverse) {
+      /*  if (bTransverse) {
             gotoPositonTraversal();
         }
          else {
             Transverse_TargetPos = CanSpark_Transverse.getPosition();
             CanSpark_Transverse.set(0);
-        } 
+        } */
 
-    } */
+    } 
 
     @Override
     public void simulationPeriodic() {
@@ -181,7 +181,7 @@ public boolean getbclimb(){
 
     } */
 
-   /* private void gotoPositonClimb() {
+    private void gotoPositonClimb() {
         // if current position is less than targetPostion
         if (CommonLogic.isInRange(CanSpark_Climber_1.getPosition(), Climb_TargetPos, Climb_Tol)) {
             // than stop
@@ -203,7 +203,7 @@ public boolean getbclimb(){
             System.err.print("add power");
         }
     } 
-   */
+   
 
    /*  private void gotoPositonTraversal() {
         // if current position is less than targetPostion
